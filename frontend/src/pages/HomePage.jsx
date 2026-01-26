@@ -4,6 +4,14 @@ import HomeOffer from '../components/HomeOffer'
 import HomeService from '../components/HomeService'
 import HomeAbout from '../components/HomeAbout'
 import HomeShop from '../components/HomeShop'
+import HomeGallery from '../components/HomeGallery'
+import HomePrice from '../components/HomePrice'
+import HomeTeam from '../components/HomeTeam'
+import HomeFact from '../components/HomeFact'
+import HomeTestimonials from '../components/HomeTestimonials'
+import HomePartner from '../components/HomePartner'
+import HomeAppointment from '../components/HomeAppointment'
+import HomeNewsletter from '../components/HomeNewsletter'
 
 const HomePage = () => {
   return (
@@ -71,6 +79,14 @@ const HomePage = () => {
     <HomeService />
     <HomeAbout />
     <HomeShop />  
+    <HomeGallery />
+    <HomePrice />
+    <HomeTeam />
+    <HomeFact />
+    <HomeTestimonials />
+    <HomePartner />
+    <HomeAppointment />
+    <HomeNewsletter />
     </>
   )
 }

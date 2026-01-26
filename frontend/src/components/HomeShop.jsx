@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { CiHeart } from "react-icons/ci";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { IoSwapVertical } from "react-icons/io5";
 
 const HomeShop = () => {
   return (
@@ -16,6 +19,11 @@ const HomeShop = () => {
                         <div className='home-product-card'>
                             <div className='product-img-div'>
                                 <img src="/image/home/shop/shop-1.png" alt="" />
+                                <div className='home-product-icon'>
+                                    <button><CiHeart /></button>
+                                    <button><AiOutlineShoppingCart /></button>
+                                    <button><IoSwapVertical /></button>
+                                </div>
                             </div>
                             <div className='home-productinfo-box'>
                                 Rating Star
@@ -28,10 +36,16 @@ const HomeShop = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className="col-12 col-sm-6 col-lg-3">
                         <div className='home-product-card'>
                             <div className='product-img-div'>
                                 <img src="/image/home/shop/shop-2.png" alt="" />
+                                <div className='home-product-icon'>
+                                    <button><CiHeart /></button>
+                                    <button><AiOutlineShoppingCart /></button>
+                                    <button><IoSwapVertical /></button>
+                                </div>
                             </div>
                             <div className='home-productinfo-box'>
                                 Rating Star
@@ -44,10 +58,16 @@ const HomeShop = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className="col-12 col-sm-6 col-lg-3">
                         <div className='home-product-card'>
                             <div className='product-img-div'>
                                 <img src="/image/home/shop/shop-3.png" alt="" />
+                                <div className='home-product-icon'>
+                                    <button><CiHeart /></button>
+                                    <button><AiOutlineShoppingCart /></button>
+                                    <button><IoSwapVertical /></button>
+                                </div>
                             </div>
                             <div className='home-productinfo-box'>
                                 Rating Star
@@ -60,10 +80,16 @@ const HomeShop = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className="col-12 col-sm-6 col-lg-3">
                         <div className='home-product-card'>
                             <div className='product-img-div'>
                                 <img src="/image/home/shop/shop-1.png" alt="" />
+                                <div className='home-product-icon'>
+                                    <button><CiHeart /></button>
+                                    <button><AiOutlineShoppingCart /></button>
+                                    <button><IoSwapVertical /></button>
+                                </div>
                             </div>
                             <div className='home-productinfo-box'>
                                 Rating Star

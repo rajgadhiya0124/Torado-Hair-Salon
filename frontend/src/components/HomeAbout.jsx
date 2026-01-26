@@ -16,7 +16,7 @@ const HomeAbout = () => {
                     </div>
                 </div>
 
-                <div className="col-12 col-6">
+                <div className="col-12 col-lg-6">
                     <div className='about-right'>
                         <span className='about-sub'>Welcome To Torado</span>
 
