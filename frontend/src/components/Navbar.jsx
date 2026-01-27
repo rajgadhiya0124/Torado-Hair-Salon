@@ -3,6 +3,7 @@ import { FiPlus } from "react-icons/fi";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { HiBars3BottomRight } from "react-icons/hi2";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -53,7 +54,7 @@ const Navbar = () => {
                                             <li>Gallery</li>
                                             <li>Faq</li>
                                             <li>Testimonilas</li>
-                                            <li>My Account</li>
+                                            <li><Link to={"/login"} className='dropdown-items-link'> My Account </Link></li>
                                             <li>Privacy Policy</li>
                                             <li>Terms & Conditions</li>
                                             <li>404 Error Page</li>
@@ -97,9 +98,9 @@ const Navbar = () => {
                                         </ul>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link custom-nav-link" href="#">
+                                        <Link to={'/contactus'} className="nav-link custom-nav-link">
                                             Contact Us 
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>

@@ -7,14 +7,32 @@ import {Routes,Route} from "react-router-dom"
 import HomePage from './pages/HomePage'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
+import ContactUsPage from './pages/ContactUsPage';
+import { ToastContainer } from 'react-toastify';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
 
   return (
     <>
+
+      <ToastContainer 
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
+
       <Navbar />
         <Routes>
-          <Route path='/' element={<HomePage />} />           
+          <Route path='/' element={<HomePage />} />        
+          <Route path='/contactus' element={<ContactUsPage />} />        
+          <Route path='/register' element={<RegisterPage />} />        
+          <Route path='/login' element={<LoginPage />} />        
+
         </Routes>
       <Footer />
     </>
