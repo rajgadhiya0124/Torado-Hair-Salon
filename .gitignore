@@ -1,12 +1,16 @@
-# dependencies
+# node
 node_modules/
+**/node_modules/
 
-# environment files
+# env files
 .env
+**/.env
 
-# build files
-dist/
+# builds
 build/
+dist/
+**/build/
+**/dist/
 
 # logs
 npm-debug.log*
