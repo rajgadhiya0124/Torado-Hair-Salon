@@ -1412,6 +1412,20 @@ h1,h2,h3,h4{
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+.newsletter-message {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+}
+
+.newsletter-message.success {
+  color: #28a745;
+}
+
+.newsletter-message.error {
+  color: #dc3545;
+}
 @media(max-width:992px){
     .newsletter-title{
         font-family: 'Playfair Display', serif;
@@ -1540,13 +1554,13 @@ h1,h2,h3,h4{
 .contact-form-title{
     font-size: 40px;
 }
-.appointment-form{
+.contactus-form{
     margin-top: 25px;
     padding: 45px;
     border-radius: 10px;
     box-shadow: 0 2px  4px rgba(0,0,0,0.4);
 }
-.appoinmnt-form-row{
+.contactus-form-row{
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
@@ -1634,10 +1648,10 @@ h1,h2,h3,h4{
         font-size: 18px;
         font-weight: 600;
     }
-    .appointment-form{
+    .contactus-form{
         padding: 30px;
     }
-    .appoinmnt-form-row{
+    .contactus-form-row{
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -1795,3 +1809,288 @@ h1,h2,h3,h4{
         flex-direction: column;
     }
 }
+
+/*appointment page*/
+.appointment-hero-section{
+    padding: 80px 0px;
+    background-color: #FFF6EF;
+    position: relative;
+}
+
+.appointment-page-section{
+    padding: 80px 0px;
+}
+.appointment-left-img{
+    width: 100%;
+}
+.appoint-subtitle{
+    color: #ff5c71;
+    font-weight: 700;
+}
+.appointment-title{
+    font-family: 'Playfair Display', serif;
+    font-size: 45px;
+}
+.appointment-form{
+    margin-top: 50px;
+}
+.appoint-form-row{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.form-groups {
+    flex: 1;
+}
+.form-groups input,
+.form-groups select,
+.form-groups textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background-color: #F3F3F3;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+    border-radius: 8px;
+}
+.appoint-book-btn{
+    background-color: #ff5c71;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+.appointment-newsletter-section{
+    background-color: #FFF6EF;
+    padding: 80px 0px;
+}
+.appoint-newsletter-sub{
+    color: #ff5c71;
+    font-weight: 700;
+}
+.appoint-newsletter-title{
+    font-size: 40px;
+}
+.appoint-news-right{
+    display: flex;
+}
+.news-email-input{
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #d3d3d3;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.new-subscribe-btn{
+    background-color: #000000;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 15px 25px;
+}
+@media(max-width:992px){
+    .appointment-right{
+        margin-top: 30px;
+    }
+    .appointment-title{
+        font-size: 35px;
+    }
+    .appoint-newsletter-title{
+        font-size: 30px;
+    }
+    .appoint-news-right{
+        margin-top: 15px;
+    }
+}
+@media(max-width:768px){
+    .appointment-title{
+        font-size: 30px;
+    }
+    .appoint-newsletter-title{
+        font-size: 25px;
+    }
+}
+@media(max-width:576px){
+    .appointment-title{
+        font-size: 25px;
+    }
+    .appointment-form{
+        margin-top: 20px;
+    }
+    .appoint-form-row{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    .appoint-book-btn{
+        padding: 8px 20px;
+        margin-top: 20px;
+    }
+    .appoint-newsletter-sub{
+        color: #ff5c71;
+        font-size: 14px;
+    }
+    .appoint-newsletter-title{
+        font-size: 20px;
+    }
+    .appoint-news-right{
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+    }
+    .news-email-input{
+        padding: 10px 15px;
+        border-radius: 8px;
+    }
+    .new-subscribe-btn{
+        width: fit-content;
+        background-color: #000000;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+    }
+}
+@media(max-width:480px){
+    .appoint-subtitle{
+        color: #ff5c71;
+        font-size: 14px;
+    }
+    .appointment-title{
+        font-size: 20px;
+    }
+}
+
+/*faq page*/
+.faq-hero-section{
+    padding: 80px 0px;
+    background-color: #FFF6EF;
+    position: relative;
+}
+
+.faq-page-section{
+    padding: 80px 0px;
+}
+.faq-head{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 625px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.faq-sub{
+    color: #ff5c71;
+    font-weight: 700;
+}
+.faq-title{
+    font-size: 45px;
+    font-weight: 500;
+}
+.faq-content{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+    margin-top: 50px;
+}
+.faq-item-box{
+    padding: 25px 25px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+.faq-question{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+.faq-question h4{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0px;
+}
+.plus-icon{
+    font-size: 25px;
+    color: #FF6F61;
+    line-height: 0;
+}
+.faq-answer{
+    margin-top: 20px;
+    border-top: 1px solid #d3d3d3;
+    padding-top: 20px;
+    color: #555555;
+    font-weight: 500;
+}
+
+@media(max-width:992px){
+    .faq-title{
+        font-size: 30px;
+        font-weight: 500;
+    }
+}
+@media(max-width:768px){
+    .faq-head{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .faq-content{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+    .faq-item-box{
+        padding: 20px 25px;
+    }
+    .faq-question h4{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .plus-icon{
+        font-size: 22px;
+        color: #FF6F61;
+    }
+}
+@media(max-width:576px){
+    .faq-title{
+        font-size: 25px;
+        font-weight: 500;
+    }
+    .faq-head{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+     .faq-item-box{
+        padding: 16px 20px;
+    }
+    .faq-question h4{
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .plus-icon{
+        font-size: 22px;
+        color: #FF6F61;
+    }
+}
+@media(max-width:425px){
+    .faq-head{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        width: 275px;
+        margin-left: 0px;
+        margin-right: auto;
+    }
+}
+
+

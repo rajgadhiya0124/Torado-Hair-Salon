@@ -50,11 +50,18 @@ const Navbar = () => {
                                         <ul className='dropdown-menu-custom'>
                                             <li>Pricing</li>
                                             <li>Team</li>
-                                            <li>Make An Appointment</li>
+                                            <li>
+                                                <Link to={'/appointment'} className='dropdown-items-link'>
+                                                Make An Appointment</Link>
+                                            </li>
                                             <li>Gallery</li>
-                                            <li>Faq</li>
+                                            <li><Link to={"/faq"} className='dropdown-items-link'>
+                                                Faq</Link>
+                                            </li>
                                             <li>Testimonilas</li>
-                                            <li><Link to={"/login"} className='dropdown-items-link'> My Account </Link></li>
+                                            <li><Link to={"/login"} className='dropdown-items-link'>
+                                                My Account </Link>
+                                            </li>
                                             <li>Privacy Policy</li>
                                             <li>Terms & Conditions</li>
                                             <li>404 Error Page</li>

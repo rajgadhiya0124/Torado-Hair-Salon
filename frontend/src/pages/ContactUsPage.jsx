@@ -133,8 +133,8 @@ const ContactUsPage = () => {
                     <h2 className="contact-form-title">Stay Connected With Torado</h2>
                 </div>
 
-                <form className="appointment-form" onSubmit={handleSubmit}>
-                    <div className="appoinmnt-form-row">
+                <form className="contactus-form" onSubmit={handleSubmit}>
+                    <div className="contactus-form-row">
                         <div className="a-form-group">
                             <input
                                 type="text"
@@ -157,7 +157,7 @@ const ContactUsPage = () => {
                         </div>
                     </div>
 
-                    <div className="appoinmnt-form-row">
+                    <div className="contactus-form-row">
                         <div className="a-form-group">
                               <input
                                     type="text"

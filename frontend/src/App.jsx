@@ -11,6 +11,8 @@ import ContactUsPage from './pages/ContactUsPage';
 import { ToastContainer } from 'react-toastify';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import AppointmentPage from './pages/AppointmentPage';
+import FaqPage from './pages/FaqPage';
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
           <Route path='/contactus' element={<ContactUsPage />} />        
           <Route path='/register' element={<RegisterPage />} />        
           <Route path='/login' element={<LoginPage />} />        
+          <Route path='/appointment' element={<AppointmentPage />} />        
+          <Route path='/faq' element={<FaqPage />} />        
 
         </Routes>
       <Footer />

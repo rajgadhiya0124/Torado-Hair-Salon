@@ -1,15 +1,17 @@
 import { contactUsModel } from "../models/contactus.model.js";
+import { sendContactInformationEmail } from "../utils/mailer.js";
 
 
 //create contactus
 export const createContacus = async(req,res)=>{
     try {
-        const data = {
-            ...req.body,
-            createdBy : req.user ? req.user.id : null
-        }
+        const {name,email,phone,subject,message} = req.body;
+        
+        const createdBy = req.user ? req.user.id : null;
 
-        await contactUsModel.createContactUs(data);
+        await contactUsModel.createContactUs({name,email,phone,subject,message,createdBy});
+
+        await sendContactInformationEmail({name,email,subject})
 
         res.status(200).json({
             success:true,
