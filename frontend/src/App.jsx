@@ -13,6 +13,7 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import AppointmentPage from './pages/AppointmentPage';
 import FaqPage from './pages/FaqPage';
+import BlogPage from './pages/BlogPage';
 
 function App() {
 
@@ -35,7 +36,9 @@ function App() {
           <Route path='/register' element={<RegisterPage />} />        
           <Route path='/login' element={<LoginPage />} />        
           <Route path='/appointment' element={<AppointmentPage />} />        
-          <Route path='/faq' element={<FaqPage />} />        
+          <Route path='/faq' element={<FaqPage />} />  
+
+          <Route path='/blog' element={<BlogPage />} />        
 
         </Routes>
       <Footer />

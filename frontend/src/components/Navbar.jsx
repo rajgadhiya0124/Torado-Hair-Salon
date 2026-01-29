@@ -97,7 +97,9 @@ const Navbar = () => {
                                         </a>
 
                                         <ul className='dropdown-menu-custom'>
-                                            <li>Blog Grid</li>
+                                            <li><Link to={'/blog'} className='dropdown-items-link'>
+                                                Blog Grid</Link>
+                                            </li>
                                             <li>Right Sidebar</li>
                                             <li>Left Sidebar</li>
                                             <li>Others <FiPlus/> </li>

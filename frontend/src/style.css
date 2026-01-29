@@ -2093,4 +2093,142 @@ h1,h2,h3,h4{
     }
 }
 
+/*blog page*/
+.blog-hero-section{
+    padding: 80px 0px;
+    background-color: #FFF6EF;
+    position: relative;
+}
+.blog-head{
+    text-align: center;
 
+}
+
+.blog-page-section{
+    padding: 50px 0px;
+}
+.blog-sub{
+    color: #ff5c71;
+    font-weight: 700;
+}
+.blog-head-title{
+    font-size: 45px;
+}
+
+.blog-list-content{
+    margin-top: 50px;
+}
+.blog-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+.blog-card{
+    border-radius: 8px;
+    box-shadow:  0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.blog-image{
+    width: 100%;
+    border-radius: 8px;
+}
+.blog-info-box{
+    padding: 25px;
+}
+.date-info-ul{
+    list-style: none;
+    padding: 0px;
+    display: flex;
+    gap: 10px;
+}
+.date-li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.blog-titles{
+    font-weight: 600;
+}
+.blog-titles:hover{
+    color:#FF6F61;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.read-more-link{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+    font-size: 18px;
+}
+.read-more-link:hover{
+    color: #FF6F61;
+    transition: 1s ease;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.pagination-left-btn,
+.pagination-right-btn{
+    border: none;
+    background: none;
+    font-size: 28px;
+    line-height: 0;
+}
+.pagination-btn{
+    border: none;
+    font-weight: 700;
+    border-radius: 50%;
+    line-height: 0;
+    padding: 20px 15px;
+}
+.active {
+    background: #FF6F61;
+    color: #fff;
+}
+
+@media(max-width:992px){
+    .blog-head-title{
+        font-size: 35px;
+    }
+    .blog-grid{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 25px;
+    }
+}
+@media(max-width:768px){
+    .blog-head-title{
+        font-size: 30px;
+    }
+    .blog-grid{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 25px;
+    }
+
+}
+@media(max-width:576px){
+    .blog-head-title{
+        font-size: 22px;
+    }
+    .blog-titles{
+        font-size: 18px;
+    }
+    .read-more-link{
+        font-size: 15px;
+    }
+    
+}
+@media(max-width:480px){
+    .blog-head-title{
+        font-size: 22px;
+    }
+    .date-li p{
+        font-size: 12px;
+    }
+    
+}
