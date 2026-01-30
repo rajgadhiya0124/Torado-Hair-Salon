@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IoCalendarOutline } from "react-icons/io5";
 import { LiaComment } from "react-icons/lia";
 import { useState } from 'react';
@@ -11,6 +11,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 
 const BlogPage = () => {
+    const navigate = useNavigate();
 
     const [blog,setBlog] = useState([]);
 
@@ -100,11 +101,14 @@ const BlogPage = () => {
                                     <p className='m-0'>No Comments</p>
                                 </li>
                             </ul>
-                            <h4 className='blog-titles'>{item.blog_title}</h4>
+                            
+                            <h4 className='blog-titles' onClick={()=>navigate(`/blogdetails/${item.id}`)}>
+                                {item.blog_title}
+                            </h4>
 
                             <p>Lorem ipsum dolor sit amet conectetur adipis elementum erat ut aliquet neque pra.</p>
 
-                            <Link className='read-more-link'>Read More</Link>
+                            <Link to={`/blogdetails/${item.id}`} className='read-more-link'>Read More</Link>
                         </div>
 
                     </div>

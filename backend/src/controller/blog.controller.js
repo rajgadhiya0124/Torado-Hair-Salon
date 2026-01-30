@@ -111,3 +111,42 @@ export const deleteBlog = async(req,res)=>{
         });
     }
 }
+
+//get blog by category or category id
+export const getBlogByCategory = async(req,res)=>{
+    try {
+        const category_id = req.params.category_id;
+
+        const blog = await BlogModel.getBlogBycategory(category_id);
+
+        res.status(200).json({
+            success:true,
+            data: blog
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+//get blog by tag or tag id
+export const getBlogByTag = async(req,res)=>{
+    try {
+        const tag_id = req.params.tag_id;
+
+        const blog = await BlogModel.getBlogByTag(tag_id);
+
+        res.status(200).json({
+            success:true,
+            data: blog
+        });
+        
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}

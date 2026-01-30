@@ -100,8 +100,12 @@ const Navbar = () => {
                                             <li><Link to={'/blog'} className='dropdown-items-link'>
                                                 Blog Grid</Link>
                                             </li>
-                                            <li>Right Sidebar</li>
-                                            <li>Left Sidebar</li>
+                                            <li><Link to={'/blog-right'} className='dropdown-items-link'>
+                                                Right Sidebar</Link>
+                                            </li>
+                                            <li><Link to={'/blog-left'} className='dropdown-items-link'>
+                                                Left Sidebar</Link>
+                                            </li>
                                             <li>Others <FiPlus/> </li>
                                             <li>Single Post <FiPlus/> </li>
                                         </ul>

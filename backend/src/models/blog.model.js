@@ -51,5 +51,25 @@ export const BlogModel = {
         )
     
         return rows;
+    },
+
+    //get blog by category or category id
+    getBlogBycategory: async(category_id)=>{
+
+        const [result] = await db.query("CALL sp_get_blogs_by_category(?)",
+            [category_id]
+        );
+
+        return result[0];
+    },
+
+    //get blog by tag id
+    getBlogByTag : async(tag_id)=>{
+
+        const [result] = await db.query("CALL sp_get_blogs_by_tag(?)",
+            [tag_id]
+        );
+
+        return result[0];
     }
 }

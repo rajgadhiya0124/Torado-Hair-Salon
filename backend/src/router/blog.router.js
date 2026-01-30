@@ -1,7 +1,7 @@
 import express from "express"
 import verifyToken from "../middlewares/auth.js";
 import { upload } from "../middlewares/multer.js";
-import { CreateBlog, deleteBlog, getAllBlog, getBlogById, updateBlog } from "../controller/blog.controller.js";
+import { CreateBlog, deleteBlog, getAllBlog, getBlogByCategory, getBlogById, getBlogByTag, updateBlog } from "../controller/blog.controller.js";
 
 const router = express.Router();
 
@@ -10,8 +10,10 @@ router.post("/create",verifyToken,upload("blog").single("blog_image"), CreateBlo
 router.get("/getAll",getAllBlog);
 router.get("/getById/:BlogId",getBlogById);
 
-router.put("/update/:BlogId",verifyToken,upload("blog").single("blog_image"),updateBlog);
+router.get("/getByCategory/:category_id",getBlogByCategory);   //get blog by category
+router.get("/getByTag/:tag_id",getBlogByTag);  //get blog by tag
 
+router.put("/update/:BlogId",verifyToken,upload("blog").single("blog_image"),updateBlog);
 router.delete("/delete/:BlogId",verifyToken,deleteBlog);
 
 export default router;

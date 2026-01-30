@@ -14,6 +14,10 @@ import LoginPage from './pages/LoginPage';
 import AppointmentPage from './pages/AppointmentPage';
 import FaqPage from './pages/FaqPage';
 import BlogPage from './pages/BlogPage';
+import BlogRight from './pages/BlogRight';
+import BlogLeft from './pages/BlogLeft';
+import BlogDetails from './pages/BlogDetails';
+import BlogDetailsRight from './pages/BlogDetailsRight';
 
 function App() {
 
@@ -39,6 +43,11 @@ function App() {
           <Route path='/faq' element={<FaqPage />} />  
 
           <Route path='/blog' element={<BlogPage />} />        
+          <Route path='/blog-right' element={<BlogRight />} />        
+          <Route path='/blog-left' element={<BlogLeft />} />  
+
+          <Route path='/blogdetails/:id' element={<BlogDetails />} />      
+          <Route path='/blogdetails/right/:id' element={<BlogDetailsRight />} />      
 
         </Routes>
       <Footer />

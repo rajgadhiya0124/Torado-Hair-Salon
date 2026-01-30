@@ -63,8 +63,13 @@ BEGIN
         b.content, 
         b.status,
         
+        c.id AS category_id,
         c.category_name,
+        
+        t.id AS tag_id,
         t.tag_name,
+        
+        a.id AS author_id,
         a.author_name
 
     FROM tbl_blogs b
@@ -112,7 +117,6 @@ END$$
 DELIMITER ;
 
 -- update blog
-
 DELIMITER $$
 
 CREATE PROCEDURE sp_update_blog (
@@ -159,3 +163,76 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+-- get blog by category or category id
+DELIMITER $$
+
+CREATE PROCEDURE sp_get_blogs_by_category (
+    IN p_category_id INT
+)
+BEGIN
+    SELECT 
+		b.id, b.blog_title, b.blog_image,
+        DATE_FORMAT(b.blog_date, '%Y-%m-%d') AS blog_date, 
+        b.createdAt,
+        b.content, 
+        b.status,
+        
+        c.id AS category_id,
+        c.category_name,
+        
+        t.id AS tag_id,
+        t.tag_name,
+        
+        a.id AS author_id,
+        a.author_name
+        
+    FROM tbl_blogs b
+	LEFT JOIN tbl_blog_categories c ON b.category_id = c.id
+	LEFT JOIN tbl_blog_tags t ON b.tag_id = t.id
+    LEFT JOIN tbl_blog_authors a ON b.author_id = a.id
+    
+    WHERE category_id = p_category_id
+      AND b.status = 1
+    ORDER BY blog_date DESC;
+END $$
+
+DELIMITER ;
+
+
+-- get blog by tag or tag id
+DELIMITER $$
+
+CREATE PROCEDURE sp_get_blogs_by_tag (
+    IN p_tag_id INT
+)
+BEGIN
+    SELECT 
+		b.id, b.blog_title, b.blog_image,
+        DATE_FORMAT(b.blog_date, '%Y-%m-%d') AS blog_date, 
+        b.createdAt,
+        b.content, 
+        b.status,
+        
+        c.id AS category_id,
+        c.category_name,
+        
+        t.id AS tag_id,
+        t.tag_name,
+        
+        a.id AS author_id,
+        a.author_name
+        
+    FROM tbl_blogs b
+	LEFT JOIN tbl_blog_categories c ON b.category_id = c.id
+	LEFT JOIN tbl_blog_tags t ON b.tag_id = t.id
+    LEFT JOIN tbl_blog_authors a ON b.author_id = a.id
+
+    WHERE b.tag_id = p_tag_id
+      AND b.status = 1
+    ORDER BY blog_date DESC;
+END $$
+
+DELIMITER ;
+
