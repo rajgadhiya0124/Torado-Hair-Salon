@@ -11,6 +11,7 @@ import blogTagRoutes from "./router/blog.tag.router.js"
 import blogAuthorRoutes from "./router/blog.author.router.js"
 import blogRoutes from "./router/blog.router.js"
 import blogCommentRoutes from "./router/blog.comment.router.js"
+import serviceRoutes from "./router/service.router.js"
 
 const app = express();
 
@@ -25,6 +26,8 @@ app.use("/api/blogCategory",blogCategoryRoutes);
 app.use("/api/blogTag",blogTagRoutes);
 app.use("/api/blog/author",blogAuthorRoutes);
 app.use("/api/blog",blogRoutes);
+
+app.use("/api/service",serviceRoutes);
 
 app.use("/api/blogComment",blogCommentRoutes);
 

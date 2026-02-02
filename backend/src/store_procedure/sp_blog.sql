@@ -21,8 +21,6 @@ CREATE TABLE tbl_blogs (
 	FOREIGN KEY (author_id) REFERENCES tbl_blog_authors(id)
 );
 
-truncate table tbl_blogs;
-
 select * from tbl_blogs;
 
 -- create blog

@@ -74,7 +74,9 @@ const Navbar = () => {
                                         </a>
 
                                         <ul className='dropdown-menu-custom'>
-                                            <li>Service</li>
+                                            <li><Link to={"/service"} className='dropdown-items-link'> 
+                                                Service</Link>
+                                            </li>
                                             <li>Service Details</li>
                                         </ul>
                                     </li>

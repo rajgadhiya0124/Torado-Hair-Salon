@@ -18,6 +18,9 @@ import BlogRight from './pages/BlogRight';
 import BlogLeft from './pages/BlogLeft';
 import BlogDetails from './pages/BlogDetails';
 import BlogDetailsRight from './pages/BlogDetailsRight';
+import ServicePage from './pages/ServicePage';
+import ServiceDetails from './pages/ServiceDetails';
+import ScrollTop from './components/ScrollTop';
 
 function App() {
 
@@ -34,6 +37,7 @@ function App() {
       />
 
       <Navbar />
+        <ScrollTop />
         <Routes>
           <Route path='/' element={<HomePage />} />        
           <Route path='/contactus' element={<ContactUsPage />} />        
@@ -41,6 +45,9 @@ function App() {
           <Route path='/login' element={<LoginPage />} />        
           <Route path='/appointment' element={<AppointmentPage />} />        
           <Route path='/faq' element={<FaqPage />} />  
+
+          <Route path='/service' element={<ServicePage />} />  
+          <Route path='/service-details/:id' element={<ServiceDetails />} />  
 
           <Route path='/blog' element={<BlogPage />} />        
           <Route path='/blog-right' element={<BlogRight />} />        
