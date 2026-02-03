@@ -12,6 +12,10 @@ import blogAuthorRoutes from "./router/blog.author.router.js"
 import blogRoutes from "./router/blog.router.js"
 import blogCommentRoutes from "./router/blog.comment.router.js"
 import serviceRoutes from "./router/service.router.js"
+import teamRoutes from "./router/team.router.js"
+import leadRoutes from "./router/lead.router.js"
+import galleryCatRoutes from "./router/gallery.category.router.js"
+import galleryRoutes from "./router/gallery.router.js"
 
 const app = express();
 
@@ -27,14 +31,19 @@ app.use("/api/blogTag",blogTagRoutes);
 app.use("/api/blog/author",blogAuthorRoutes);
 app.use("/api/blog",blogRoutes);
 
-app.use("/api/service",serviceRoutes);
-
 app.use("/api/blogComment",blogCommentRoutes);
+
+app.use("/api/service",serviceRoutes);
+app.use("/api/team",teamRoutes);
 
 app.use("/api/appointment",appointmentRoutes);
 app.use("/api/newsletter",newsletterRoutes);
 app.use("/api/faq",faqRoutes);
 
-app.use("/api/user",userRoutes)
+app.use("/api/gallery/category",galleryCatRoutes);
+app.use("/api/gallery",galleryRoutes);
+
+app.use("/api/user",userRoutes);
+app.use("/api/leadform",leadRoutes);
 
 export default app;

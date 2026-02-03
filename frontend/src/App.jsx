@@ -21,6 +21,8 @@ import BlogDetailsRight from './pages/BlogDetailsRight';
 import ServicePage from './pages/ServicePage';
 import ServiceDetails from './pages/ServiceDetails';
 import ScrollTop from './components/ScrollTop';
+import TeamPage from './pages/TeamPage';
+import GalleryPage from './pages/GalleryPage';
 
 function App() {
 
@@ -44,7 +46,10 @@ function App() {
           <Route path='/register' element={<RegisterPage />} />        
           <Route path='/login' element={<LoginPage />} />        
           <Route path='/appointment' element={<AppointmentPage />} />        
-          <Route path='/faq' element={<FaqPage />} />  
+          <Route path='/faq' element={<FaqPage />} /> 
+
+          <Route path='/team' element={<TeamPage />} />  
+          <Route path='/gallery' element={<GalleryPage />} />  
 
           <Route path='/service' element={<ServicePage />} />  
           <Route path='/service-details/:id' element={<ServiceDetails />} />  

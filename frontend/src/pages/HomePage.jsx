@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HomeAnimation from '../components/HomeAnimation'
 import HomeOffer from '../components/HomeOffer'
 import HomeService from '../components/HomeService'
@@ -12,8 +12,47 @@ import HomeTestimonials from '../components/HomeTestimonials'
 import HomePartner from '../components/HomePartner'
 import HomeAppointment from '../components/HomeAppointment'
 import HomeNewsletter from '../components/HomeNewsletter'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const HomePage = () => {
+    const [leadForm , setLeadForm] = useState({
+      user_name:"",
+      email:"",
+      company: ""
+    });
+  
+    const token = localStorage.getItem("token");
+
+    const handleChange = (e) => {
+      setLeadForm({
+        ...leadForm,
+        [e.target.name]: e.target.value
+      });
+    };
+
+    const handleSubmit = async(e)=>{
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("http://localhost:4000/api/leadform/create",leadForm,
+        {
+          headers:{
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      if (res.data.success) {
+        toast.success(res.data.message);
+        setLeadForm({ user_name: "", email: "", company: "" });
+      }
+
+      } catch (error) {
+        console.error("Erroe While Submit lead form",error);
+      }
+    }
+
   return (
     <>
     <section className="home-hero-section">
@@ -43,30 +82,40 @@ const HomePage = () => {
           </div>
 
           <div className="col-md-9 col-12">
-            {/* <form className='hero-form'>
-                <div>
-                  <input 
-                    type="text" 
-                    className="hero-form-input"
-                    placeholder='First Name'
-                    />
-                </div>
-                <div>
-                  <input 
-                    type="email" 
-                    className="hero-form-input"
-                    placeholder='Email'
+            <form className='hero-form' onSubmit={handleSubmit}>
+              <div>
+                <input 
+                  type="text" 
+                  className="hero-form-input"
+                  placeholder='Name'
+                  name="user_name"
+                  value={leadForm.user_name}
+                  onChange={handleChange}
                   />
-                </div>
-                <div>
-                  <input 
-                    type="text" 
-                    className="hero-form-input"
-                    placeholder='Company'
-                  />
-                </div>
-                <button type="submit" className='hero-send-btn'>Send</button>
-              </form> */}
+              </div>
+              <div>
+                <input 
+                  type="email" 
+                  className="hero-form-input"
+                  placeholder='Email'
+                  name="email"
+                  value={leadForm.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input 
+                  type="text" 
+                  className="hero-form-input"
+                  placeholder='Company'
+                  name="company"
+                  value={leadForm.company}
+                  onChange={handleChange}
+                />
+              </div>
+              
+              <button type="submit" className='hero-send-btn'>Send</button>
+            </form>
           </div>
         </div>
 
