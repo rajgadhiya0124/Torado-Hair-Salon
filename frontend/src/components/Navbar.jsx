@@ -58,8 +58,8 @@ const Navbar = () => {
                                                 Make An Appointment</Link>
                                             </li>
                                             <li>
-                                                <Link to={'/gallery'} className='dropdown-items-link'>Gallery
-                                                </Link>
+                                                <Link to={'/gallery'} className='dropdown-items-link'>
+                                                Gallery</Link>
                                             </li>
                                             <li><Link to={"/faq"} className='dropdown-items-link'>
                                                 Faq</Link>
@@ -67,6 +67,9 @@ const Navbar = () => {
                                             <li>Testimonilas</li>
                                             <li><Link to={"/login"} className='dropdown-items-link'>
                                                 My Account </Link>
+                                            </li>
+                                            <li><Link to={'/wishlist'} className='dropdown-items-link'> 
+                                                Wishlist</Link>
                                             </li>
                                             <li>Privacy Policy</li>
                                             <li>Terms & Conditions</li>
@@ -92,7 +95,9 @@ const Navbar = () => {
                                         </a>
 
                                         <ul className='dropdown-menu-custom'>
-                                            <li>Shop</li>
+                                            <li><Link to={'/shop'} className='dropdown-items-link'> 
+                                                Shop</Link>
+                                            </li>
                                             <li>Shopping Cart</li>
                                             <li>Checkout</li>
                                             <li>Shop Details</li>

@@ -16,6 +16,9 @@ import teamRoutes from "./router/team.router.js"
 import leadRoutes from "./router/lead.router.js"
 import galleryCatRoutes from "./router/gallery.category.router.js"
 import galleryRoutes from "./router/gallery.router.js"
+import productCatRoutes from "./router/product.category.router.js"
+import productTagRoutes from "./router/product.tag.router.js"
+import productRoutes from "./router/product.router.js"
 
 const app = express();
 
@@ -35,6 +38,10 @@ app.use("/api/blogComment",blogCommentRoutes);
 
 app.use("/api/service",serviceRoutes);
 app.use("/api/team",teamRoutes);
+
+app.use("/api/product/category",productCatRoutes);
+app.use("/api/product/tag",productTagRoutes);
+app.use("/api/product",productRoutes);
 
 app.use("/api/appointment",appointmentRoutes);
 app.use("/api/newsletter",newsletterRoutes);

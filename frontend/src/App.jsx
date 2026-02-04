@@ -23,6 +23,9 @@ import ServiceDetails from './pages/ServiceDetails';
 import ScrollTop from './components/ScrollTop';
 import TeamPage from './pages/TeamPage';
 import GalleryPage from './pages/GalleryPage';
+import ShopPage from './pages/ShopPage';
+import WishListPage from './pages/WishListPage';
+import ShopDetailsPage from './pages/ShopDetailsPage';
 
 function App() {
 
@@ -50,6 +53,11 @@ function App() {
 
           <Route path='/team' element={<TeamPage />} />  
           <Route path='/gallery' element={<GalleryPage />} />  
+
+          <Route path='/shop' element={<ShopPage />} />  
+          <Route path='/shopdetails' element={<ShopDetailsPage />} />
+            
+          <Route path='/wishlist' element={<WishListPage />} />  
 
           <Route path='/service' element={<ServicePage />} />  
           <Route path='/service-details/:id' element={<ServiceDetails />} />  

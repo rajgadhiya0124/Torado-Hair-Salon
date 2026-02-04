@@ -105,7 +105,7 @@ const ContactUsPage = () => {
                 </div>
                 ))}
 
-                <div className="contact-info-card">
+                {/* <div className="contact-info-card">
                     <div className='ccard-icon'>
                         <HiOutlineMail />
                     </div>
@@ -124,7 +124,7 @@ const ContactUsPage = () => {
                         <h3>Our Location</h3>
                         <p>70-80 Upper St Norwich NR2 London United Kingdom</p>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className='contactus-form-container'>
