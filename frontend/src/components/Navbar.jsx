@@ -98,7 +98,9 @@ const Navbar = () => {
                                             <li><Link to={'/shop'} className='dropdown-items-link'> 
                                                 Shop</Link>
                                             </li>
-                                            <li>Shopping Cart</li>
+                                            <li><Link to={'/cart'} className='dropdown-items-link'> 
+                                                Shopping Cart</Link>
+                                            </li>
                                             <li>Checkout</li>
                                             <li>Shop Details</li>
                                         </ul>

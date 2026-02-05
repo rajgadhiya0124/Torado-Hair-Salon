@@ -26,12 +26,13 @@ import GalleryPage from './pages/GalleryPage';
 import ShopPage from './pages/ShopPage';
 import WishListPage from './pages/WishListPage';
 import ShopDetailsPage from './pages/ShopDetailsPage';
+import CartPage from './pages/CartPage';
 
 function App() {
 
   return (
     <>
-
+  
       <ToastContainer 
         position="top-right"
         autoClose={3000}
@@ -55,10 +56,11 @@ function App() {
           <Route path='/gallery' element={<GalleryPage />} />  
 
           <Route path='/shop' element={<ShopPage />} />  
-          <Route path='/shopdetails' element={<ShopDetailsPage />} />
+          <Route path='/shopdetails/:id' element={<ShopDetailsPage />} />
+
+          <Route path='/cart' element={<CartPage />} />
             
           <Route path='/wishlist' element={<WishListPage />} />  
-
           <Route path='/service' element={<ServicePage />} />  
           <Route path='/service-details/:id' element={<ServiceDetails />} />  
 

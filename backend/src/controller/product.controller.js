@@ -6,6 +6,10 @@ export const createProduct = async(req,res)=>{
         const data = {
             ...req.body,
             product_image : req.file ? req.file.filename : null,
+            discount_price:
+                req.body.discount_price === "" || req.body.discount_price === undefined
+                    ? null
+                    : req.body.discount_price,
             createdBy : req.user ? req.user.id : null
         }
 
@@ -66,6 +70,8 @@ export const updateProduct = async(req,res)=>{
             ...req.body,
             id: req.params.id,
             product_image : req.file ? req.file.filename : null,
+            discount_price:
+                req.body.discount_price === "" ? null : req.body.discount_price,
             updatedBy : req.user ? req.user.id : null
         }   
 

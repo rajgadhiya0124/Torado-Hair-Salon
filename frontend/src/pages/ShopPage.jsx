@@ -10,15 +10,17 @@ import { HiMinusSmall } from "react-icons/hi2";
 import { Link, useNavigate } from 'react-router-dom'
 import HomePartner from '../components/HomePartner';
 import { toast } from 'react-toastify';
+import RatingStar from '../components/RatingStar';
+import { useCart } from '../Context/CartContext';
 
 const ShopPage = () => {
     const navigate = useNavigate();
+    const { addToCart } = useCart();
+    const quantity = 1;
 
     const MIN = 0;
     const MAX = 10000;
-
     const [values, setValues] = useState([2000, 8000]);
-
 
     const [product, setProduct] = useState([]);
     const [search, setSearch] = useState("");
@@ -110,14 +112,18 @@ const ShopPage = () => {
 
                                 <div className='products-icon'>
                                     <button onClick={()=>addToWishlist(item)}><CiHeart /></button>
-                                    <button><AiOutlineShoppingCart /></button>
+                                    <button onClick={()=>addToCart(item,quantity)}>
+                                        <AiOutlineShoppingCart />
+                                    </button>
                                     <button><IoSwapVertical /></button>
                                 </div>
                             </div>
 
                             <div className='produt-info-box'>
-                                <p> Rating Star </p>
-                                <h3 className='product-name'>{item.product_name}</h3>
+                                <p> <RatingStar rating={item.avg_rating}/> </p>
+                                <h3 className='product-name' onClick={()=>navigate(`/shopdetails/${item.id}`)}>
+                                    {item.product_name}
+                                </h3>
                                 <span className='product-price'>${item.price}</span>
                             </div>
                         </div>

@@ -19,6 +19,7 @@ import galleryRoutes from "./router/gallery.router.js"
 import productCatRoutes from "./router/product.category.router.js"
 import productTagRoutes from "./router/product.tag.router.js"
 import productRoutes from "./router/product.router.js"
+import productReviewRoutes from "./router/product.reivew.router.js"
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use("/api/team",teamRoutes);
 app.use("/api/product/category",productCatRoutes);
 app.use("/api/product/tag",productTagRoutes);
 app.use("/api/product",productRoutes);
+app.use("/api/product/review",productReviewRoutes);
 
 app.use("/api/appointment",appointmentRoutes);
 app.use("/api/newsletter",newsletterRoutes);

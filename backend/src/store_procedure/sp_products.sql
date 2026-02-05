@@ -66,12 +66,18 @@ BEGIN
         p.product_description, p.additional_information, p.stock, p.status, p.createdAt,
         
         c.category_name,
-        t.tag_name
+        t.tag_name,
+			
+        IFNULL(AVG(r.rating), 0) AS avg_rating
         
     FROM tbl_products p
     JOIN tbl_product_category c ON p.category_id = c.id
     JOIN tbl_product_tags t ON p.tag_id = t.id
+    
+    LEFT JOIN tbl_product_reviews r ON r.product_id = p.id AND r.status = 1
+    
     WHERE p.status = 1
+    GROUP BY p.id
     ORDER BY p.id DESC;
 END$$
 
@@ -125,7 +131,7 @@ BEGIN
 		product_name = 		COALESCE(p_product_name, product_name),
 		product_image =		COALESCE(p_product_image, product_image),
 		price = 			COALESCE(p_price, price),
-		discount_price = 	COALESCE(p_discount_price, discount_price),
+		discount_price = 	p_discount_price,
 		product_description = COALESCE(p_product_description, product_description),
 		additional_information = COALESCE(p_additional_information, additional_information),
 		stock = 			COALESCE(p_stock, stock),
