@@ -42,3 +42,5 @@ export const upload = (folderName)=>{
         fileFilter
     })
 }
+
+export const uploadNone = multer();

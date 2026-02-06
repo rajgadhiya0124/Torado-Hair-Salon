@@ -71,7 +71,10 @@ const Navbar = () => {
                                             <li><Link to={'/wishlist'} className='dropdown-items-link'> 
                                                 Wishlist</Link>
                                             </li>
-                                            <li>Privacy Policy</li>
+                                            <li>
+                                                <Link to={'/privacy'} className='dropdown-items-link'>
+                                                Privacy Policy</Link>
+                                            </li>
                                             <li>Terms & Conditions</li>
                                             <li>404 Error Page</li>
                                         </ul>
@@ -101,8 +104,10 @@ const Navbar = () => {
                                             <li><Link to={'/cart'} className='dropdown-items-link'> 
                                                 Shopping Cart</Link>
                                             </li>
-                                            <li>Checkout</li>
-                                            <li>Shop Details</li>
+                                            <li>
+                                                <Link to={'/checkout'} className='dropdown-items-link'>Checkout
+                                                </Link>
+                                            </li>
                                         </ul>
 
                                     </li>

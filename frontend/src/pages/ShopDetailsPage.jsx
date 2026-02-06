@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from "axios"
 import { HiMinusSmall } from "react-icons/hi2";
 import { GoPlus } from "react-icons/go";
@@ -11,6 +11,7 @@ import { useCart } from '../Context/CartContext';
 const ShopDetailsPage = () => {
     const { id } = useParams();
     const { addToCart } = useCart();
+    const navigate = useNavigate();
 
     const [product, setProduct] = useState([]);
     const [productReview, setProductReview] = useState([]);
@@ -205,10 +206,21 @@ const ShopDetailsPage = () => {
                             </div>
                         </div>
 
-                        <button className='shop-cart-btn'
-                                onClick={()=> addToCart(product,quantity)}>
-                            Add To Cart
-                        </button>
+                        <div className='shopdetails-buy-button'>
+                            <button className='shop-cart-btn'
+                                    onClick={()=> addToCart(product,quantity)}>
+                                Add To Cart
+                            </button>
+
+                            <button className='shop-buy-btn'
+                                onClick={()=>{
+                                    addToCart(product,quantity)
+                                    navigate("/cart")
+                                }}
+                            >
+                                Buy Now
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

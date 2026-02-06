@@ -20,6 +20,8 @@ import productCatRoutes from "./router/product.category.router.js"
 import productTagRoutes from "./router/product.tag.router.js"
 import productRoutes from "./router/product.router.js"
 import productReviewRoutes from "./router/product.reivew.router.js"
+import orderRoutes from "./router/order.router.js";
+import privacyRoutes from "./router/privacy.router.js"
 
 const app = express();
 
@@ -45,9 +47,12 @@ app.use("/api/product/tag",productTagRoutes);
 app.use("/api/product",productRoutes);
 app.use("/api/product/review",productReviewRoutes);
 
+app.use("/api/order",orderRoutes);
+
 app.use("/api/appointment",appointmentRoutes);
 app.use("/api/newsletter",newsletterRoutes);
 app.use("/api/faq",faqRoutes);
+app.use("/api/privacy",privacyRoutes);
 
 app.use("/api/gallery/category",galleryCatRoutes);
 app.use("/api/gallery",galleryRoutes);

@@ -27,6 +27,8 @@ import ShopPage from './pages/ShopPage';
 import WishListPage from './pages/WishListPage';
 import ShopDetailsPage from './pages/ShopDetailsPage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import PrivacyPolicy from './pages/privacyPolicy';
 
 function App() {
 
@@ -59,7 +61,9 @@ function App() {
           <Route path='/shopdetails/:id' element={<ShopDetailsPage />} />
 
           <Route path='/cart' element={<CartPage />} />
+          <Route path='/checkout' element={<CheckoutPage />} />
             
+          <Route path='/privacy' element={<PrivacyPolicy />} />  
           <Route path='/wishlist' element={<WishListPage />} />  
           <Route path='/service' element={<ServicePage />} />  
           <Route path='/service-details/:id' element={<ServiceDetails />} />  

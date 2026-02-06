@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../Context/CartContext'
 import { BiSolidTrashAlt } from "react-icons/bi";
 import { FiMinus } from "react-icons/fi";
@@ -8,6 +8,7 @@ import { FiPlus } from "react-icons/fi";
 const CartPage = () => {
 
     const {cartItems, incrementQuantity,decrementQuantity,removeFromCart,cartTotal} = useCart();
+    const navigate = useNavigate();
 
   return (
     <>
@@ -141,13 +142,20 @@ const CartPage = () => {
                             <h5>${cartTotal}</h5>
                         </div>
 
-                        <button className='checkout-btn'>Proceed To CheckOut</button>
+                        <button 
+                            className='checkout-btn'
+                            onClick={()=>navigate("/checkout")}
+                        >
+                            Proceed To CheckOut
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
     </section>
     </>
+
+    
   )
 }
 
