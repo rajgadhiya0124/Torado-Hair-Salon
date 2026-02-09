@@ -1,38 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiSolidQuoteSingleLeft } from "react-icons/bi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Thumbs } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/thumbs";
+import axios from 'axios';
 
 const HomeTestimonials = () => {
 
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [testimonial,setTestimonial] = useState([]);
 
-    const testimonials = [
-    {
-        id: 1,
-        name: "John Doe",
-        role: "Hair Stylist",
-        image: "/image/home/testimonials/testimonials-1.png",
-        text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
-    },
-    {
-        id: 2,
-        name: "Sarah Smith",
-        role: "Customer",
-        image: "/image/home/testimonials/testimonials-2.png",
-        text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
-    },
-    {
-        id: 3,
-        name: "David Lee",
-        role: "Client",
-        image: "/image/home/testimonials/testimonials-3.png",
-        text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
+
+    const fetchtestimonial = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/product/review/getall");
+            setTestimonial(res.data.data);
+        } catch (error) {
+            console.error("Error While fetch Testimonial",error);
+        }
     }
-    ];
+
+    useEffect(()=>{
+        fetchtestimonial();
+    },[]);
+
+    
+    // const testimonials = [
+    // {
+    //     id: 1,
+    //     name: "John Doe",
+    //     role: "Hair Stylist",
+    //     image: "/image/home/testimonials/testimonials-1.png",
+    //     text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
+    // },
+    // {
+    //     id: 2,
+    //     name: "Sarah Smith",
+    //     role: "Customer",
+    //     image: "/image/home/testimonials/testimonials-2.png",
+    //     text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
+    // },
+    // {
+    //     id: 3,
+    //     name: "David Lee",
+    //     role: "Client",
+    //     image: "/image/home/testimonials/testimonials-3.png",
+    //     text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
+    // }
+    // ];
 
   return (
    <section className='home-testimonials-section'>
@@ -54,12 +71,12 @@ const HomeTestimonials = () => {
                         loop
                         className='testimonial-text-swiper'
                     >
-                        {testimonials.map((item)=>(
+                        {testimonial.slice(0,3).map((item)=>(
                             <SwiperSlide key={item.id}>
                                 <BiSolidQuoteSingleLeft className='qoutes'/>
                                 <BiSolidQuoteSingleLeft className='qoutes' />
-                                <p className="testimonial-text">"{item.text}"</p>
-                                <h4 className="testimonial-name">{item.name}</h4>
+                                <p className="testimonial-text">"{item.review_message}"</p>
+                                <h4 className="testimonial-name">{item.user_name}</h4>
                                 <p>New Customer</p>
                             </SwiperSlide>
                         ))}
@@ -74,9 +91,11 @@ const HomeTestimonials = () => {
                     watchSlidesProgress
                     className='testimonial-thumb-swiper'
                 >       
-                    {testimonials.map((item)=>(
+                    {testimonial.slice(0,3).map((item)=>(
                         <SwiperSlide key={item.id}>
-                            <img src={item.image} alt="" />
+                            <div className='testimonial-avtar'>
+                                {item.user_name?.charAt(0).toUpperCase()}
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>

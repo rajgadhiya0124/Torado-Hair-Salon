@@ -29,6 +29,9 @@ import ShopDetailsPage from './pages/ShopDetailsPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import PrivacyPolicy from './pages/privacyPolicy';
+import Testimonial from './pages/TestimonialPage';
+import TestimonialPage from './pages/TestimonialPage';
+import TermsPage from './pages/TermsPage';
 
 function App() {
 
@@ -53,6 +56,10 @@ function App() {
           <Route path='/login' element={<LoginPage />} />        
           <Route path='/appointment' element={<AppointmentPage />} />        
           <Route path='/faq' element={<FaqPage />} /> 
+          <Route path='/testimonial' element={<TestimonialPage />} /> 
+          <Route path='/privacy' element={<PrivacyPolicy />} />  
+          <Route path='/terms&condition' element={<TermsPage />} />  
+          <Route path='/wishlist' element={<WishListPage />} />  
 
           <Route path='/team' element={<TeamPage />} />  
           <Route path='/gallery' element={<GalleryPage />} />  
@@ -63,8 +70,6 @@ function App() {
           <Route path='/cart' element={<CartPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
             
-          <Route path='/privacy' element={<PrivacyPolicy />} />  
-          <Route path='/wishlist' element={<WishListPage />} />  
           <Route path='/service' element={<ServicePage />} />  
           <Route path='/service-details/:id' element={<ServiceDetails />} />  
 

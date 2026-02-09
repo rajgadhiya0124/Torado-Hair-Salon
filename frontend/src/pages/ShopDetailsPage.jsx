@@ -347,7 +347,7 @@ const ShopDetailsPage = () => {
                                         />
                                     </div>
 
-                                    <button type='submit' className="message-button">
+                                    <button type='submit' className="messages-button">
                                         Send Messagee
                                     </button>
                                 </form>

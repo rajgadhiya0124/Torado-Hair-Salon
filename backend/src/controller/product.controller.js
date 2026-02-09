@@ -110,3 +110,21 @@ export const deleteProduct = async(req,res)=>{
         });
     }
 }
+
+//get best selling product
+export const getBestsellingProduct = async(req,res)=>{
+    try {
+        const bestselling = await ProductModel.getbestsellingProduct();
+
+        res.status(200).json({
+            success: true,
+            data: bestselling,
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}

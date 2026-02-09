@@ -48,5 +48,11 @@ export const ProductModel = {
         );
 
         return rows;
+    },
+
+    getbestsellingProduct: async()=>{
+        const [result] = await db.query("CALL sp_get_best_selling_products()");
+
+        return result[0];
     }
 }

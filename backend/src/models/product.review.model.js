@@ -11,6 +11,11 @@ export const ProductReviewModel = {
         return rows;
     },
 
+    getAllReview: async()=>{
+        const [result] = await db.query("CALL sp_getall_product_review()");
+        return result[0];
+    },
+
     //get all product review with total count and avrage raing for reach product
     getProductAllReview: async(productId)=>{
 

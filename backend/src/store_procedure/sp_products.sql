@@ -158,4 +158,29 @@ END$$
 
 DELIMITER ;
 
+-- get best selling product
+DELIMITER $$
+
+CREATE PROCEDURE sp_get_best_selling_products()
+BEGIN
+    SELECT 
+        p.id,
+        p.product_name,
+        p.product_image,
+        p.price, 
+        p.discount_price,
+        
+		IFNULL(AVG(r.rating), 0) AS avg_rating,
+        SUM(oi.quantity) AS total_sold
+    FROM  tbl_products p 
+    JOIN tbl_order_items oi ON p.id = oi.product_id
+    JOIN tbl_product_reviews r ON r.product_id = p.id AND r.status = 1
+    
+    WHERE p.status = 1
+    GROUP BY oi.product_id
+    ORDER BY total_sold DESC
+    LIMIT 4;
+END$$
+
+DELIMITER ;
 

@@ -11,7 +11,7 @@ const Navbar = () => {
         <div className='navbar-container'>
             <div className='row align-items-center'>
                 <div className='nav-logo col-2 '>
-                    <img src="/image/navbar/navbar-logo.svg" alt="" />
+                    <Link to={'/'}><img src="/image/navbar/navbar-logo.svg"  alt="" /></Link>
                 </div>
 
                 <div className='col-6'>
@@ -64,7 +64,10 @@ const Navbar = () => {
                                             <li><Link to={"/faq"} className='dropdown-items-link'>
                                                 Faq</Link>
                                             </li>
-                                            <li>Testimonilas</li>
+                                            <li>
+                                                <Link to={'/testimonial'} className='dropdown-items-link'>
+                                                Testimonilas</Link>
+                                            </li>
                                             <li><Link to={"/login"} className='dropdown-items-link'>
                                                 My Account </Link>
                                             </li>
@@ -75,7 +78,9 @@ const Navbar = () => {
                                                 <Link to={'/privacy'} className='dropdown-items-link'>
                                                 Privacy Policy</Link>
                                             </li>
-                                            <li>Terms & Conditions</li>
+                                            <li><Link to={'/terms&condition'} className='dropdown-items-link'>
+                                                Terms & Conditions</Link>
+                                            </li>
                                             <li>404 Error Page</li>
                                         </ul>
 

@@ -22,6 +22,24 @@ export const createProductReview = async(req,res)=>{
     }
 }
 
+// get all review
+export const getAllReview = async(req,res)=>{
+    try {
+        const review = await ProductReviewModel.getAllReview();
+
+        res.status(200).json({
+            success: true,
+           data : review
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //get all product review with total count and avrage raing for reach product
 export const getProductAllReview = async(req,res)=>{
     try {

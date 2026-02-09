@@ -23,10 +23,11 @@ const storage = (folderName)=>
 
     const fileFilter = (req,file,cb)=>{
     if(
-        file.mimetype === "image/jpeg" ||
-        file.mimetype === "image/png" ||
-        file.mimetype === "image/jpg" ||
-        file.mimetype === "image/webp"
+        file.mimetype.startsWith("image/")
+        // file.mimetype === "image/jpeg" ||
+        // file.mimetype === "image/png" ||
+        // file.mimetype === "image/jpg" ||
+        // file.mimetype === "image/webp"
     )
     {
         cb(null, true)
@@ -38,7 +39,7 @@ const storage = (folderName)=>
 export const upload = (folderName)=>{
     return multer({
         storage: storage(folderName),
-        limits: { fileSize: 2 * 1024 * 1024 },
+        limits: { fileSize: 20 * 1024 * 1024 },
         fileFilter
     })
 }

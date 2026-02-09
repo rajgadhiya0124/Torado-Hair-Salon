@@ -1,7 +1,26 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { BsTelephoneFill } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 
 const HomeAbout = () => {
+    const navigate = useNavigate();
+    const [aboutus,setAaboutUs] = useState([]);
+
+    //fetch about
+    const fetchAboutus = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/home/about/get");
+            setAaboutUs(res.data.data);
+        } catch (error) {
+            console.error("Error While fetch aboutus",error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchAboutus();
+    },[]);
+
   return (
     <section className="home-about-section">
         <section className="containers">
@@ -10,7 +29,7 @@ const HomeAbout = () => {
             <div className="row align-items-center">
                 <div className="col-12 col-lg-6">
                     <div className='about-left'>
-                        <img src="/image/home/about/home-about.png" className='home-about-img' alt="" />
+                        <img src={`http://localhost:4000/uploads/home/about/${aboutus.about_image}`} className='home-about-img' alt="" />
 
                         <img src="/image/home/about/about-sign.png" className="about-sign-img" alt="" />
                     </div>
@@ -18,16 +37,16 @@ const HomeAbout = () => {
 
                 <div className="col-12 col-lg-6">
                     <div className='about-right'>
-                        <span className='about-sub'>Welcome To Torado</span>
+                        <span className='about-sub'>{aboutus.sub_title}</span>
 
-                        <h2 className='home-about-title'>We Are More Than A Beauty Salon In Your Town</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempo incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrice risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                        <h2 className='home-about-title'>{aboutus.main_title}</h2>
+                        <p>{aboutus.small_description}</p>
 
-                        <h3>We Mend A Healthy & Strong Look To Your Hair Properly</h3>
-                        <p>Rhoncus dolor quam etiam mattis tincidunt nec lobortis sociis facilisi aenean netus tempor duis labore magn set.</p>
+                        <h3 className='home-about-second-title'>{aboutus.second_title}</h3>
+                        <p>{aboutus.second_description}</p>
 
                         <div className='home-aboutcall-info'>
-                            <button className='about-btn'>
+                            <button className='about-btn' onClick={()=>navigate("/aboutus")}>
                                 More About Us
                             </button>
 
@@ -37,7 +56,7 @@ const HomeAbout = () => {
                                 </div>
                                 <div>
                                     <p className='m-0'>Call Us On:</p>
-                                    <a className='about-contact-no'>+ 855 2669 1234 894</a>
+                                    <a className='about-contact-no'>{aboutus.contact_no}</a>
                                 </div>
                             </div>
                         </div>

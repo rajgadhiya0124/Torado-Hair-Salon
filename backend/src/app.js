@@ -22,12 +22,17 @@ import productRoutes from "./router/product.router.js"
 import productReviewRoutes from "./router/product.reivew.router.js"
 import orderRoutes from "./router/order.router.js";
 import privacyRoutes from "./router/privacy.router.js"
+import termsRoutes from "./router/terms.router.js"
+import homeHeroRoutes from "./router/home.hero.router.js"
+import homeAboutRoutes from "./router/home.aboutus.router.js"
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/home/hero",homeHeroRoutes)
+app.use("/api/home/about",homeAboutRoutes)
 
 app.use("/api/contactInfo",contactRoutes);
 app.use("/api/contactus",contactUsRoutes);
@@ -36,7 +41,6 @@ app.use("/api/blogCategory",blogCategoryRoutes);
 app.use("/api/blogTag",blogTagRoutes);
 app.use("/api/blog/author",blogAuthorRoutes);
 app.use("/api/blog",blogRoutes);
-
 app.use("/api/blogComment",blogCommentRoutes);
 
 app.use("/api/service",serviceRoutes);
@@ -53,6 +57,7 @@ app.use("/api/appointment",appointmentRoutes);
 app.use("/api/newsletter",newsletterRoutes);
 app.use("/api/faq",faqRoutes);
 app.use("/api/privacy",privacyRoutes);
+app.use("/api/terms",termsRoutes);
 
 app.use("/api/gallery/category",galleryCatRoutes);
 app.use("/api/gallery",galleryRoutes);

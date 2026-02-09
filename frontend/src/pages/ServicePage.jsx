@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import axios from 'axios';
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import HomeNewsletter from '../components/HomeNewsletter';
 
 const ServicePage = () => {
     const navigate = useNavigate();
@@ -177,6 +178,8 @@ const ServicePage = () => {
             </div>
         </section>
     </section>
+
+    <HomeNewsletter />
     </>
   )
 }

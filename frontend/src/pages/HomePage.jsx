@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HomeAnimation from '../components/HomeAnimation'
 import HomeOffer from '../components/HomeOffer'
 import HomeService from '../components/HomeService'
@@ -16,6 +16,8 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 
 const HomePage = () => {
+
+    const [hero,setHero] = useState([]);
     const [leadForm , setLeadForm] = useState({
       user_name:"",
       email:"",
@@ -53,23 +55,41 @@ const HomePage = () => {
       }
     }
 
+    //fetch hero section data
+    const fetchero = async()=>{
+      try {
+          const res = await axios.get("http://localhost:4000/api/home/hero/get");
+          setHero(res.data.data);
+      } catch (error) {
+        console.error("Error While Fetch Hero",error);
+      }
+    }
+
+    useEffect(()=>{
+      fetchero();
+    },[]);
+
   return (
     <>
-    <section className="home-hero-section">
+    <section className="home-hero-section" 
+      style={{background:`url(http://localhost:4000/uploads/home/hero/${hero.background_image})`}}>
+
+      <div className="hero-overlay"></div>
+
       <section className="home-containers">
         <div className='row'>
             <div className="col-lg-5 col-12">
               <div className='hero-left'>
                 <div className='logo-img-div'>
-                  <img src="/image/home/hero-logo.png" alt="" />
+                  <img src={`http://localhost:4000/uploads/home/hero/${hero.logo_image}`} alt="" />
                 </div>
-                <h1 className='h1-one'>Best Haircut Salons</h1>
-                <h1 className='h1-two'>For Men Women</h1>
+                <h1 className='h1-one'>{hero.heading_one}</h1>
+                <h1 className='h1-two'>{hero.heading_two}</h1>
               </div>
             </div>
 
             <div className="col-lg-7 col-12">
-              <img src="/image/home/hero-right.png" className='hero-right-img' alt="" />
+              <img src={`http://localhost:4000/uploads/home/hero/${hero.hero_image}`} className='hero-right-img' alt="" />
             </div>
             
         </div>

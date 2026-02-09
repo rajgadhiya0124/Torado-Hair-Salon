@@ -40,7 +40,7 @@ CREATE PROCEDURE sp_get_privacy_policy ()
 BEGIN
     SELECT *
     FROM tbl_privacy_policy
-    WHERE status = 0;
+    WHERE status = 1;
 END$$
 
 DELIMITER ;
