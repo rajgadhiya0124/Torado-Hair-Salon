@@ -1,21 +1,37 @@
 import React from 'react'
 import { Swiper ,SwiperSlide} from "swiper/react"
 import { Autoplay } from 'swiper/modules'
-
+import axios from "axios"
 import 'swiper/css'
 import 'swiper/css/navigation'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const HomePartner = () => {
+    const [partner, setPartner] = useState([]);
 
-    const partnerImg = [
-        "/image/home/partner/partner-1.png",
-        "/image/home/partner/partner-2.png",
-        "/image/home/partner/partner-3.png",
-        "/image/home/partner/partner-4.png",
-        "/image/home/partner/partner-5.png",
-        "/image/home/partner/partner-1.png",
-        "/image/home/partner/partner-2.png",
-    ]
+    const fetchPartner = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/home/partner/get");
+            setPartner(res.data.data);
+        } catch (error) {
+            console.error("Error While Fetch Prtner",error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchPartner();
+    },[]);
+
+    // const partnerImg = [
+    //     "/image/home/partner/partner-1.png",
+    //     "/image/home/partner/partner-2.png",
+    //     "/image/home/partner/partner-3.png",
+    //     "/image/home/partner/partner-4.png",
+    //     "/image/home/partner/partner-5.png",
+    //     "/image/home/partner/partner-1.png",
+    //     "/image/home/partner/partner-2.png",
+    // ]
 
   return (
     <section className="home-partner-section">
@@ -42,10 +58,10 @@ const HomePartner = () => {
                     }}
 
                 >   
-                {partnerImg.map((item)=>(
+                {partner.map((item)=>(
                     <SwiperSlide key={item.id}>
                         <div className='partner-item'>
-                            <img src={item} alt="" />
+                            <img src={`http://localhost:4000/uploads/home/partner/${item.partner_image}`} alt="" />
                         </div>
                     </SwiperSlide>
                 ))}

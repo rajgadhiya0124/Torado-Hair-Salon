@@ -113,6 +113,23 @@ export const getAlluser = async(req,res)=>{
     }
 } 
 
+//get admin all user active and inactive
+export const getAllAdmimUser = async(req,res)=>{
+    try {
+        const adminuser = await UserModel.getAllAdminUser();
+
+        res.status(201).json({
+            sucess:true, 
+            data:adminuser
+        });
+    } catch (error) {
+        res.status(500).json({
+          success: false,
+          message: error.message,
+        });
+    }
+}
+
 //delete user
 export const deleteUser = async(req,res)=>{
     try {

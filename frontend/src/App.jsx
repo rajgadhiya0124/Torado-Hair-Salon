@@ -1,9 +1,10 @@
 import { useState } from 'react'
 // import './App.css'
 import './style.css'
+import './admin.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import {Routes,Route} from "react-router-dom"
+import {Routes,Route, useLocation} from "react-router-dom"
 import HomePage from './pages/HomePage'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
@@ -32,12 +33,19 @@ import PrivacyPolicy from './pages/privacyPolicy';
 import Testimonial from './pages/TestimonialPage';
 import TestimonialPage from './pages/TestimonialPage';
 import TermsPage from './pages/TermsPage';
+import AdminLayout from './layout/AdminLayout';
+import AdminUserList from './pages/Admin/AdminUserList';
+import DashBoard from './pages/Admin/DashBoard';
+import AdminContact from './pages/Admin/contact/AdminContact';
+import AdminContactInfo from './pages/Admin/contact/AdminContactInfo';
 
 function App() {
+    const location = useLocation();
 
+    const isAdminRoute = location.pathname.startsWith("/admin")
   return (
     <>
-  
+
       <ToastContainer 
         position="top-right"
         autoClose={3000}
@@ -47,7 +55,9 @@ function App() {
         draggable
       />
 
-      <Navbar />
+      {!isAdminRoute && <Navbar />}
+
+      {/* <Navbar /> */}
         <ScrollTop />
         <Routes>
           <Route path='/' element={<HomePage />} />        
@@ -80,8 +90,19 @@ function App() {
           <Route path='/blogdetails/:id' element={<BlogDetails />} />      
           <Route path='/blogdetails/right/:id' element={<BlogDetailsRight />} />      
 
+
+          <Route path='/admin' element={<AdminLayout /> }>
+            <Route index element={<DashBoard />} />
+            <Route path='userlist' element={<AdminUserList />} />
+
+            <Route path='contact' element={<AdminContact />} />
+            <Route path='contactinfo' element={<AdminContactInfo />} />
+          </Route>
+
         </Routes>
-      <Footer />
+      {/* <Footer /> */}
+
+      {!isAdminRoute && <Footer />}
     </>
   )
 }

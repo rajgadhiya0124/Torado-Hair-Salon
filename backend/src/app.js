@@ -25,14 +25,16 @@ import privacyRoutes from "./router/privacy.router.js"
 import termsRoutes from "./router/terms.router.js"
 import homeHeroRoutes from "./router/home.hero.router.js"
 import homeAboutRoutes from "./router/home.aboutus.router.js"
+import homePartnerRoutes from "./router/home.partner.router.js"
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/home/hero",homeHeroRoutes)
-app.use("/api/home/about",homeAboutRoutes)
+app.use("/api/home/hero",homeHeroRoutes);
+app.use("/api/home/about",homeAboutRoutes);
+app.use("/api/home/partner",homePartnerRoutes);
 
 app.use("/api/contactInfo",contactRoutes);
 app.use("/api/contactus",contactUsRoutes);

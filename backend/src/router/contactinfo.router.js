@@ -4,9 +4,9 @@ import verifyToken from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.post("/create",createContactInfo);
+router.post("/create",verifyToken,createContactInfo);
 router.get("/getAll",getAllContactInfo);
-router.put("/update/:id",updateContactInfo);
-router.delete("/delete/:id",deleteContactInfo);
+router.put("/update/:id",verifyToken,updateContactInfo);
+router.delete("/delete/:id",verifyToken,deleteContactInfo);
 
 export default router;

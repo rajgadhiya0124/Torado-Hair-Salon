@@ -1,0 +1,433 @@
+
+.admin-action-button{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.admin-edit-btn{
+    color:green;
+    background: none;
+    font-size: 20px;
+    border: none;
+}
+.admin-delete-btn{
+    color: #ff0000;
+    background: none;
+    font-size: 20px;
+    border: none;
+}
+.update-model-action{
+    display: flex;
+    gap: 15px;
+    justify-content: end;
+}
+.admin-update-btn{
+    border: none;
+    background-color: rgb(10, 205, 130);
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+.admin-cancel-btn{
+    border: 1px solid #000;
+    background: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+.admin-badge{
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+/*admin layout*/
+.admin-wrapper{
+    display: flex;
+    min-height: 100vh;
+    background: #f1f5f9;
+}
+.admin-main {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+}
+.main{
+    padding: 15px 25px;
+}
+
+/*admin sidebar*/
+.admin-sidebar {
+    width: 260px;
+    background: #fff;
+    color: #fff;
+    transition: width 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 1px solid #c6c9ce;
+}
+
+.admin-sidebar.collapsed {
+    width: 70px;
+}
+.admin-sidebar.collapsed .admin-item-span{
+    padding: 0px;
+}
+
+.admin-logo {
+    text-align: center;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: 600;
+    background-color: rgb(104, 104, 104);
+    border-bottom: 1px solid #e5e7eb;
+}
+.admin-menu {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+}
+.admin-item-span{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+}
+
+.item-icon{
+    color: #283c50;
+    font-size: 20px;
+}
+.adminside-item-link{
+    list-style: none;
+    text-decoration: none;
+    color: #283c50;
+    font-weight: 500;
+    font-size: 17px;
+    cursor: pointer;
+}
+.admin-item-name{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.dropdown-arrow{
+    color: #000;
+    font-size: 20px;
+    transition: 0.3s;
+}
+.dropdown-arrow.rotate {
+    transform: rotate(180deg);
+}
+.admin-submenu{
+    display: flex;
+    flex-direction: column;
+}
+.admin-submenu-link{
+    list-style: none;
+    text-decoration: none;
+    color: #283c50;
+    font-weight: 500;
+    padding-left: 35px;
+    margin: 5px 0px;
+}
+
+.admin-item-span:hover{
+    background-color: #EAEBEF;
+    width: 100%;
+    border-radius: 8px;
+}
+.admin-sidebar.collapsed .admin-item-span {
+    justify-content: center;
+    margin: 15px 0px;
+}
+.admin-main.collapsed {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+}
+/*admin top bar*/
+.admin-topbar{
+    height: 70px;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 15px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #fff;
+}
+.bar-toggle-btn{
+    border: none;
+    background: none;
+    line-height: 0px;
+    font-size: 25px;
+}
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: 300px;
+}
+.admin-search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+}
+
+/*admin dashboard*/
+.dashboard-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color:#404143;
+}
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.dashboard-card p {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.dashboard-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Icons */
+.card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+}
+
+.card-icon.users { background: #6366f1; }
+.card-icon.orders { background: #22c55e; }
+.card-icon.products { background: #f59e0b; }
+.card-icon.revenue { background: #ef4444; }
+
+/*admin userlist*/
+.admin-page-container{
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px 20px;
+    box-shadow: 4px 8px 12px rgba(0,0,0,0.08);
+}
+.admin-page-title{
+    font-size: 25px;
+}
+.admin-user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  overflow: hidden;
+}
+
+.admin-user-table th,
+.admin-user-table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.admin-user-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.admin-user-table tr:hover {
+  background: #f1f5f9;
+}
+
+/*admin contact*/
+.admin-contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    overflow: hidden;
+}
+
+.admin-contact-table th,
+.admin-contact-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.admin-contact-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.admin-contact-table tr:hover {
+    background: #f1f5f9;
+}
+
+/* admin contact info */
+.admin-contactinfo-cotent {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 25px;
+}
+.admin-contactinfo-cotent h3 {
+    margin-bottom: 18px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1e293b;
+    text-align: center;
+}
+
+.admin-contactinfo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.admin-contactinfo-form input, 
+.admin-contactinfo-form select{
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+.admin-contactinfo-form input::placeholder {
+    color: #676a6d;
+}
+
+.admin-contactinfo-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.save-cntactinfo-btn {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.admin-contactinfo-form button:hover {
+  background-color: #1d4ed8;
+}
+
+.contactinfo-form-content{
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+}
+.contactinfo-form-content h3{
+    font-size: 20px;
+    font-weight: 600;
+}
+.admin-contactinfo-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    overflow: hidden;
+}
+
+.admin-contactinfo-table th,
+.admin-contactinfo-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.admin-contactinfo-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.admin-contactinfo-table tr:hover {
+    background: #f1f5f9;
+}
+
+.edit-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.contactinfo-edit-modal {
+    width: 400px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+.edit-model-h3{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.contactinfo-edit-modal input,
+.contactinfo-edit-modal select {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+/* responsive */
+@media (max-width: 576px) {
+  .admin-contactinfo-cotent {
+    padding: 20px;
+  }
+}

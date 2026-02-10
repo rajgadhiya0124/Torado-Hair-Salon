@@ -60,6 +60,24 @@ END $$
 DELIMITER ;
 
 
+-- //get all users admin active and inactive
+DELIMITER $$
+CREATE PROCEDURE sp_admin_get_all_users ()
+BEGIN
+    SELECT 
+        id,
+        name,
+        email,
+        role,
+        status,
+        createdAt
+    FROM tbl_users
+    ORDER BY id DESC;
+END $$
+DELIMITER ;
+
+
+
 -- delete user
 DELIMITER $$
 CREATE PROCEDURE sp_delete_user (

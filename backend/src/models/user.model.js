@@ -23,6 +23,11 @@ export const UserModel = {
         return result[0];
     },
 
+    getAllAdminUser: async()=>{
+        const [result] = await db.query("CALL sp_admin_get_all_users()")
+        return result[0];
+    },
+
     deleteUser: async(data) =>{
         const {userId, updatedBy} = data;
 

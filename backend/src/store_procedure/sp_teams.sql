@@ -12,8 +12,8 @@ CREATE TABLE tbl_team_members (
     updatedBy INT
 );
 
-select * from tbl_team_members;
 
+select * from tbl_team_members;
 -- create team member
 DELIMITER $$
 
