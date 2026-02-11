@@ -19,6 +19,15 @@ export const AppointmentModel = {
         return result[0];
     },
 
+    updateAppointmentStatus : async(data)=>{
+        const {id, appointment_status, updatedBy} = data;
+
+        const [rows] = await db.query("CALL sp_update_appointment_status(?,?,?)",
+            [id, appointment_status, updatedBy]
+        );
+        return rows;
+    },
+
     deleteAppointment: async(data)=>{
         const {id,updatedBy} = data;
 

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { MdOutlineDashboard } from "react-icons/md";
 import { FiChevronDown, FiUsers } from "react-icons/fi";
 import { LuContactRound } from "react-icons/lu";
+import { IoCalendarNumber } from "react-icons/io5";
+import { RiQuestionAnswerLine } from "react-icons/ri";
+import { RiTeamLine } from "react-icons/ri";
 
 const AdminSidebar = ({collapsed }) => {
 
@@ -34,8 +37,31 @@ const AdminSidebar = ({collapsed }) => {
                 )}
             </span>
 
-            <div className='admin-dropdown'>
+            <span className='admin-item-span'>
+                <RiTeamLine  className='item-icon'/>
 
+                {!collapsed && (
+                    <Link to={'team'} className='adminside-item-link'> Team Members</Link>
+                )}
+            </span>
+
+            <span className='admin-item-span'>
+                <RiQuestionAnswerLine  className='item-icon'/>
+
+                {!collapsed && (
+                    <Link to={'faq'} className='adminside-item-link'> FAQ</Link>
+                )}
+            </span>
+
+            <span className='admin-item-span'>
+                <IoCalendarNumber  className='item-icon'/>
+
+                {!collapsed && (
+                    <Link to={'appointment'} className='adminside-item-link'> Appointment</Link>
+                )}
+            </span>
+
+            <div className='admin-dropdown'>
                 <span className='admin-item-span' onClick={()=>toggle("contact")}>
                     <LuContactRound  className='item-icon'/>
 

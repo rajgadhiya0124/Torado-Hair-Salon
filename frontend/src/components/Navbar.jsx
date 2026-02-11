@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FiPlus } from "react-icons/fi";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
+    <>
     <section className="navbar-section">
         <div className='navbar-container'>
             <div className='row align-items-center'>
@@ -148,14 +149,17 @@ const Navbar = () => {
 
                 <div className="col-4">
                     <div className='nav-icon-content'>
-                        <div className='search-icon'><IoSearchOutline /></div>
-                        <div className='shop-icon'><HiOutlineShoppingBag /></div>
-                        <div className='bar-icon'><HiBars3BottomRight /></div>
+                        <button className='search-icon'><IoSearchOutline /></button>
+                        <button className='shop-icon'><HiOutlineShoppingBag /></button>
+                        <button className='bar-icon'>
+                            <HiBars3BottomRight />
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    </>
   )
 }
 

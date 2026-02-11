@@ -43,7 +43,13 @@ const LoginPage = () => {
                     localStorage.setItem('user',JSON.stringify(res.data.user));
                 }
 
-                setTimeout(() => navigate('/'), 1500);
+                // setTimeout(() => navigate('/'), 1500);
+                if(res.data.user.role === "admin"){
+                    navigate("/admin")
+                }
+                else{
+                    navigate("/")
+                }
             } else {
                 setMessage(res.data.message || 'Login failed');
                 toast.error(res.data.message || 'Login failed');

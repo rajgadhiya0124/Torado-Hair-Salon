@@ -62,6 +62,30 @@ export const getAllAppointment = async(req,res)=>{
     }
 }
 
+//update appointment status
+export const updateAppoinmentStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            appointment_status: req.body.appointment_status,
+            updatedBy:  req.user ? req.user.id : null,
+        }
+
+        await AppointmentModel.updateAppointmentStatus(data);
+
+        res.json({
+            success:true,
+            message: "Appointment Status Sucssfully",
+        })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message: error.message
+        })
+    }
+}
+
+
 ///delete appointment
 export const deleteAppointment = async(req,res)=>{
     try {

@@ -38,6 +38,20 @@ h1,h2,h3,h4{
     color: #fff;
     justify-content: end;
 }
+.search-icon,
+.shop-icon,
+.bar-icon{
+    font-size: 25px;
+    padding: 0px 15px;
+    border: none;
+    background-color: #0e0e0e;
+    color: #fff;
+}
+.search-icon,
+.shop-icon{
+    border-right:  1px solid #fff;
+}
+
 
 .nav-dropdown{
     position: relative;
@@ -76,17 +90,6 @@ h1,h2,h3,h4{
     color: #FF6F61;
     cursor: pointer;
     transition: 1s ease;
-}
-
-.search-icon,
-.shop-icon,
-.bar-icon{
-    font-size: 25px;
-    padding: 0px 15px;
-}
-.search-icon,
-.shop-icon{
-    border-right:  1px solid #fff;
 }
 
 /*footer*/

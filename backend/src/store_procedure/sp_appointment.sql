@@ -7,13 +7,18 @@ CREATE TABLE tbl_appointments (
     appointment_date DATE NOT NULL,
     address VARCHAR(255),
     message TEXT,
-   
+	appointment_status ENUM('pending','approved','cancelled') DEFAULT 'pending',
+    
 	status TINYINT(1) DEFAULT 1,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     createdBy INT,
     updatedBy INT
 );
+
+-- ALTER TABLE tbl_appointments
+-- ADD COLUMN appointment_status ENUM('pending','approved','cancelled') 
+-- DEFAULT 'pending'AFTER message;
 
 select * from tbl_appointments;
 
@@ -58,8 +63,27 @@ BEGIN
 END$$
 DELIMITER ;
 
--- delete appointment
 
+-- update appointment status
+DELIMITER $$
+
+CREATE PROCEDURE sp_update_appointment_status(
+    IN p_id INT,
+    IN p_status VARCHAR(20),
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_appointments
+    SET 
+        appointment_status = p_status,
+        updatedBy = p_updatedBy
+    WHERE id = p_id AND status = 1;
+END$$
+
+DELIMITER ;
+
+
+-- delete appointment
 DELIMITER $$
 CREATE PROCEDURE sp_delete_appointment(
     IN p_id INT,

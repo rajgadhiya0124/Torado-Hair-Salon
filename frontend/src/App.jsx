@@ -38,6 +38,10 @@ import AdminUserList from './pages/Admin/AdminUserList';
 import DashBoard from './pages/Admin/DashBoard';
 import AdminContact from './pages/Admin/contact/AdminContact';
 import AdminContactInfo from './pages/Admin/contact/AdminContactInfo';
+import AdminAppointement from './pages/Admin/AdminAppointement';
+import AdminFaq from './pages/Admin/AdminFaq';
+import AdminTeam from './pages/Admin/team/AdminTeam';
+import AdminRoute from './routes/AdminRoute';
 
 function App() {
     const location = useLocation();
@@ -91,8 +95,18 @@ function App() {
           <Route path='/blogdetails/right/:id' element={<BlogDetailsRight />} />      
 
 
-          <Route path='/admin' element={<AdminLayout /> }>
+          <Route 
+            path='/admin' 
+            element={
+              <AdminRoute>
+                <AdminLayout /> 
+              </AdminRoute>
+          }>
             <Route index element={<DashBoard />} />
+
+            <Route path='team' element={<AdminTeam />} />
+            <Route path='faq' element={<AdminFaq />} />
+            <Route path='appointment' element={<AdminAppointement />} />
             <Route path='userlist' element={<AdminUserList />} />
 
             <Route path='contact' element={<AdminContact />} />

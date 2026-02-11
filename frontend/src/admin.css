@@ -13,13 +13,14 @@
 .admin-delete-btn{
     color: #ff0000;
     background: none;
-    font-size: 20px;
+    font-size: 18px;
     border: none;
 }
-.update-model-action{
-    display: flex;
-    gap: 15px;
-    justify-content: end;
+.admin-view-btn{
+    color: #f59e0b;
+    background: none;
+    font-size: 20px;
+    border: none;
 }
 .admin-update-btn{
     border: none;
@@ -27,11 +28,41 @@
     border-radius: 8px;
     padding: 5px 10px;
 }
+.admin-close-btn{
+    border: 1px solid #000;
+    background: none;
+    border-radius: 8px;
+    padding: 5px 15px;
+}
 .admin-cancel-btn{
     border: 1px solid #000;
     background: none;
     border-radius: 8px;
-    padding: 5px 10px;
+    padding: 5px 15px;
+}
+.admin-add-btn-wrapper{
+    display: flex;
+    justify-content: end;
+}
+.admin-add-btn{
+    border: none;
+    background-color:#23e423;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+
+}
+.update-model-action{
+    display: flex;
+    gap: 15px;
+    justify-content: end;
+    margin-top: 20px;
+}
+.view-modal-action{
+    display: flex;
+    gap: 15px;
+    justify-content: end;
+    margin-top: 20px;
 }
 .admin-badge{
     padding: 5px 10px;
@@ -269,7 +300,7 @@
 .admin-user-table th {
   background: #f8fafc;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .admin-user-table tr:hover {
@@ -294,7 +325,7 @@
 .admin-contact-table th {
     background: #f8fafc;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .admin-contact-table tr:hover {
@@ -385,7 +416,7 @@
 .admin-contactinfo-table th {
     background: #f8fafc;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .admin-contactinfo-table tr:hover {
@@ -415,7 +446,7 @@
     font-size: 20px;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .contactinfo-edit-modal input,
 .contactinfo-edit-modal select {
@@ -430,4 +461,364 @@
   .admin-contactinfo-cotent {
     padding: 20px;
   }
+}
+
+/*admin appointment*/
+.appointment-form-content{
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+}
+.appointment-form-content h3{
+    font-size: 20px;
+    font-weight: 600;
+}
+.admin-appointment-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    overflow: hidden;
+}
+
+.admin-appointment-table th,
+.admin-appointment-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.admin-appointment-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.admin-appointment-table tr:hover {
+    background: #f1f5f9;
+}
+.appointment-status-dropdown {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.appointment-status-dropdown option[value="pending"] {
+  color: orange;
+}
+
+.appointment-status-dropdown option[value="approved"] {
+  color: green;
+}
+
+.appointment-status-dropdown option[value="cancelled"] {
+    color: red;
+}
+.status-pending {
+    color: orange;
+    border-color: orange;
+}
+
+.status-approved {
+    color: green;
+    border-color: green;
+}
+
+.status-cancelled {
+    color: red;
+    border-color: red;
+}
+
+/* view model */
+.appoinntview-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.appointment-view-modal {
+    background: #fff;
+    width: 500px;
+    border-radius: 10px;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.appoint-view-label {
+    font-size: 13px;
+    color: #888;
+    display: block;
+    margin-bottom: 3px;
+}
+.viewmodal-status-badge {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+.viewmodal-status-badge.pending {
+    background: #fff4e5;
+    color: orange;
+}
+.viewmodal-status-badge.approved {
+    background: #e6f4ea;
+    color: green;
+}
+.viewmodal-status-badge.cancelled {
+    background: #fdeaea;
+    color: red;
+}
+.message-box {
+    margin-top: 25px;
+    padding: 10px;
+    background: #f9fafb;
+    border-radius: 6px;
+}
+
+
+/*admin faq*/
+.admin-faq-form-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+.admin-faq-table-content h2{
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.faq-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.faq-form input,
+.faq-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+}
+
+.faq-form input:focus,
+.faq-form textarea:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.faq-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.add-faq-button {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-faq-button:hover {
+    background: #1e4fd8;
+}
+
+.faq-editmodal-overlay{
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+}
+.admin-faq-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    overflow: hidden;
+}
+
+.admin-faq-table th,
+.admin-faq-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.admin-faq-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    font-size: 15px;
+}
+.admin-faq-table tr:hover {
+    background: #f1f5f9;
+}
+
+.faq-editmodal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 15px;
+}
+.faq-edit-modal {
+    background: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.3s ease-in-out;
+    padding: 20px;
+}
+/* Form */
+.faq-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.faq-form label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 4px;
+}
+.faq-form input,
+.faq-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+.faq-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+
+/*admin team*/
+
+.admin-team-content{
+    margin-top: 25px;
+}
+.team-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.team-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.team-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.admin-team-name{
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.admin-team-role{
+    color: #555555;
+    font-weight: 500;
+}
+.team-action-button{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+/* update model */
+.team-edit-modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.team-edit-modal{
+    background: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.3s ease-in-out;
+    padding: 20px;
+}
+.team-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.team-edit-form label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+.team-edit-form input[type="text"],
+.team-edit-form input[type="file"] {
+  padding: 9px 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: 0.3s;
+  background: #fff;
+}
+
+.team-edit-form input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
