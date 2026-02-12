@@ -42,6 +42,9 @@ import AdminAppointement from './pages/Admin/AdminAppointement';
 import AdminFaq from './pages/Admin/AdminFaq';
 import AdminTeam from './pages/Admin/team/AdminTeam';
 import AdminRoute from './routes/AdminRoute';
+import AdminBlogcategory from './pages/Admin/blog/AdminBlogcategory';
+import AdminBlogTag from './pages/Admin/blog/AdminBlogTag';
+import AdminblogAuthor from './pages/Admin/blog/AdminblogAuthor';
 
 function App() {
     const location = useLocation();
@@ -92,7 +95,7 @@ function App() {
           <Route path='/blog-left' element={<BlogLeft />} />  
 
           <Route path='/blogdetails/:id' element={<BlogDetails />} />      
-          <Route path='/blogdetails/right/:id' element={<BlogDetailsRight />} />      
+          <Route path='/blogdetails/right' element={<BlogDetailsRight />} />      
 
 
           <Route 
@@ -104,11 +107,15 @@ function App() {
           }>
             <Route index element={<DashBoard />} />
 
+            <Route path='blog/category' element={<AdminBlogcategory />} />
+            <Route path='blog/tag' element={<AdminBlogTag />} />
+            <Route path='blog/author' element={<AdminblogAuthor />} />
+
             <Route path='team' element={<AdminTeam />} />
             <Route path='faq' element={<AdminFaq />} />
             <Route path='appointment' element={<AdminAppointement />} />
             <Route path='userlist' element={<AdminUserList />} />
-
+            
             <Route path='contact' element={<AdminContact />} />
             <Route path='contactinfo' element={<AdminContactInfo />} />
           </Route>

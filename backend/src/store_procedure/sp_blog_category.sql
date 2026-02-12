@@ -32,10 +32,39 @@ DELIMITER $$
 CREATE PROCEDURE sp_get_all_blog_category()
 BEGIN
     SELECT * FROM tbl_blog_categories
-    WHERE status = 1
     ORDER BY id DESC;
 END $$
 
+DELIMITER ;
+
+-- get all blog category for admin
+
+-- DELIMITER $$
+-- CREATE PROCEDURE sp_get_all_blog_category_admin()
+-- BEGIN
+--     SELECT *
+--     FROM tbl_blog_categories
+--     ORDER BY id DESC;
+-- END $$
+-- DELIMITER ;
+
+
+-- update blog category status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_blog_category_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_blog_categories
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
 DELIMITER ;
 
 

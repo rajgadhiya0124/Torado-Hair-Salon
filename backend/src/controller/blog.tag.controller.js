@@ -39,6 +39,30 @@ export const getAllBlogTag = async(req,res)=>{
     }
 }
 
+
+//update blog tag status
+export const updateBlogtagStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await BlogTagModel.updateBlogTagStatus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Blog Tag updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //update blog
 export const updateBlogTag = async(req,res)=>{
     try {

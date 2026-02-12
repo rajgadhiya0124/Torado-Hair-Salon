@@ -18,6 +18,16 @@ export const BlogAuthorModel = {
         return result[0];
     },
 
+    updateBlogAuthorStatus : async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [rows] = await db.query("CALL sp_toggle_blog_author_status(?,?)",
+            [id,updatedBy]
+        );
+        return rows;
+    },
+
+
     updateBlogAuthor: async(data)=>{
         const {id,author_name,author_image,author_bio,updatedBy} = data;
 

@@ -67,9 +67,9 @@ const AdminUserList = () => {
                     <td>{user.email}</td>
                     <td>{user.role || "-"}</td>
                     <td>
-                        <span className={`admin-badge ${user.status === 1 ? 'bg-success' : 'bg-danger'}`}>
-                            {user.status === 1 ? "Active" : "Inactive"}
-                        </span>
+                      <span className={`admin-badge ${user.status === 1 ? 'bg-success' : 'bg-danger'}`}>
+                          {user.status === 1 ? "Active" : "Inactive"}
+                      </span>
                     </td>
                     <td>
                         <BiSolidTrashAlt  

@@ -18,6 +18,15 @@ export const BlogCategoryModel = {
         return result[0];
     },
 
+    updateBlgCategoryStatus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_blog_category_status(?,?)",
+            [id, updatedBy]
+        );
+        return result;
+    },
+
     updateBlogCategory: async(data)=>{
         const {id,category_name,category_slug,updatedBy} = data;
 

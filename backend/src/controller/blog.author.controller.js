@@ -43,6 +43,29 @@ export const getAllBlogAuthor = async(req,res)=>{
     }
 }
 
+//update blog Author status
+export const updateBlogAuthorStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await BlogAuthorModel.updateBlogAuthorStatus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Author status updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //update blog author
 export const updateBlogAuthor = async(req,res)=>{
     try {

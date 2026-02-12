@@ -37,6 +37,39 @@ const AdminSidebar = ({collapsed }) => {
                 )}
             </span>
 
+            <div className='admin-dropdown'>
+                <span className='admin-item-span' onClick={()=>toggle("blog")}>
+                    <LuContactRound  className='item-icon'/>
+
+                    <div className='admin-item-name'>
+                        {!collapsed && (
+                            <span className='adminside-item-link'> Blogs</span>
+                        )}
+
+                        {!collapsed && (
+                            <FiChevronDown
+                            className={`dropdown-arrow ${open.blog ? "rotate" : ""}`}
+                            />
+                        )}
+                    </div>
+                </span>
+
+                {open.blog && !collapsed &&(
+                    <div className='admin-submenu'>
+                        <Link to="blog/category" className='admin-submenu-link'>
+                            Blog Category
+                        </Link>
+                        <Link to="blog/tag" className='admin-submenu-link'>
+                            Blog Tags
+                        </Link>
+                        <Link to="blog/author" className='admin-submenu-link'>
+                            Blog Authors
+                        </Link>
+                    </div>
+                )}
+            </div>
+
+
             <span className='admin-item-span'>
                 <RiTeamLine  className='item-icon'/>
 

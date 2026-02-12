@@ -185,7 +185,7 @@ const BlogDetails = () => {
 
                             <div>
                                 <h4 className='author-name'>{blog?.author_name}</h4>
-                                <p>{blog?.author_bio}</p>
+                                <p style={{whiteSpace:"pre-line"}}>{blog?.author_bio}</p>
 
                                 <ul className='b-social-ul'>
                                     <li><TiSocialFacebook /></li>

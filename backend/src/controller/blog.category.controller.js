@@ -43,6 +43,29 @@ export const getAllBlogCategory = async(req,res)=>{
     }
 }
 
+//update blog category status
+export const updateBlogCategoryStatus = async (req, res) => {
+  try {
+
+    const data = {
+        id: req.params.id,
+        updatedBy: req.user ? req.user.id : null
+    }
+
+    await BlogCategoryModel.updateBlgCategoryStatus(data);
+
+    res.json({
+      success: true,
+      message: "Category status updated successfully",
+    });
+  } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+  }
+};
+
 //update blog category
 export const updateBlogCategory = async(req,res)=>{
     try {

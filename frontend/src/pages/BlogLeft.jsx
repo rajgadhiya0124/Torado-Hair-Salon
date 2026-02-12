@@ -5,9 +5,10 @@ import { LiaComment } from 'react-icons/lia'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { RiSearchLine } from "react-icons/ri";
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const BlogLeft = () => {
+    const navigate = useNavigate();
     const [blog,setBlog] = useState([]);
     const [blogcategory , setBlogcategory] = useState([]);
     const [blogtag , setBlogtag] = useState([]);
@@ -42,7 +43,11 @@ const BlogLeft = () => {
     const fetchblogCategory = async()=>{
         try {
             const res = await axios.get("http://localhost:4000/api/blogCategory/getall");
-            setBlogcategory(res.data.data);
+
+            const activeCategory = res.data.data.filter(
+                (item) => item.status === 1
+            );
+            setBlogcategory(activeCategory);
             
         } catch (error) {
             console.error("Error While Fetch Blogs Category",error);
@@ -53,7 +58,11 @@ const BlogLeft = () => {
     const fetchblogTag = async()=>{
         try {
             const res = await axios.get("http://localhost:4000/api/blogTag/getall");
-            setBlogtag(res.data.data);
+
+            const activetag = res.data.data.filter(
+                (item)=>item.status === 1
+            )
+            setBlogtag(activetag);
         } catch (error) {
             console.error("Error While Fetch Blogs Tag",error);
         }
@@ -177,11 +186,13 @@ const BlogLeft = () => {
                                             <p className='m-0'>No Comments</p>
                                         </li>
                                     </ul>
-                                    <h4 className='r-blog-titles'>{item.blog_title}</h4>
+                                    <h4 className='r-blog-titles' onClick={()=>navigate(`/blogdetails/${item.id}`)}>
+                                        {item.blog_title}
+                                    </h4>
     
                                     <p>Lorem ipsum dolor sit amet conectetur adipis elementum erat ut aliquet neque pra.</p>
     
-                                    <Link className='read-link'>Read More</Link>
+                                    <Link to={`/blogdetails/${item.id}`} className='read-link'>Read More</Link>
                                 </div>
     
                             </div>

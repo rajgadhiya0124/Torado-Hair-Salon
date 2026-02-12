@@ -17,6 +17,15 @@ export const BlogTagModel = {
         return result[0];
     },
 
+    updateBlogTagStatus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_blog_tag_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
     updateBlogTag: async(data)=>{
         const {id, tag_name, tag_slug, updatedBy} = data;
 

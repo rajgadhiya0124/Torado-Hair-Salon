@@ -27,18 +27,36 @@ END $$
 
 DELIMITER ;
 
+
 -- get all tag
 DELIMITER $$
 
 CREATE PROCEDURE sp_get_all_blog_tags()
 BEGIN
     SELECT * FROM tbl_blog_tags
-    WHERE status = 1
     ORDER BY id DESC;
 END $$
 
 DELIMITER ;
 
+
+-- update blog tag status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_blog_tag_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_blog_tags
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
+DELIMITER ;
 
 -- update blog tag
 DELIMITER $$
