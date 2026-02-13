@@ -27,6 +27,15 @@ export const serviceModel = {
         return result[0][0];
     },
 
+    updateServiceStatus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_service_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
     updateService: async(data)=>{
         const {id,service_name,service_icon,service_image,price,
             service_video,service_video_bg,service_description,is_top,updatedBy} = data;

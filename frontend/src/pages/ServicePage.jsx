@@ -18,7 +18,11 @@ const ServicePage = () => {
     const fetchService = async()=>{
         try {
             const res = await axios.get("http://localhost:4000/api/service/getAll");
-            setService(res.data.data);
+            
+            const ActiveServices = res.data.data.filter(
+                (item)=> item.status === 1
+            )
+            setService(ActiveServices);
 
         } catch (error) {
             console.error("Error fetching services:", error);

@@ -28,6 +28,8 @@ const AdminSidebar = ({collapsed }) => {
             {/* <img src="/image/navbar/navbar-logo.svg" alt="" /> */}
         </div>
 
+
+
         <div className='admin-menu'>
             <span className='admin-item-span'>
                 <MdOutlineDashboard  className='item-icon'/>
@@ -36,6 +38,35 @@ const AdminSidebar = ({collapsed }) => {
                     <Link to={'/admin'} className='adminside-item-link'> DashBoard</Link>
                 )}
             </span>
+
+            <div className='admin-dropdown'>
+                <span className='admin-item-span' onClick={()=>toggle("service")}>
+                    <LuContactRound  className='item-icon'/>
+
+                    <div className='admin-item-name'>
+                        {!collapsed && (
+                            <span className='adminside-item-link'> Salon Services</span>
+                        )}
+
+                        {!collapsed && (
+                            <FiChevronDown
+                            className={`dropdown-arrow ${open.service ? "rotate" : ""}`}
+                            />
+                        )}
+                    </div>
+                </span>
+
+                {open.service && !collapsed &&(
+                    <div className='admin-submenu'>
+                        <Link to="service" className='admin-submenu-link'>
+                            Services
+                        </Link>
+                        <Link to="service/create" className='admin-submenu-link'>
+                            Create Services
+                        </Link>
+                    </div>
+                )}
+            </div>
 
             <div className='admin-dropdown'>
                 <span className='admin-item-span' onClick={()=>toggle("blog")}>
@@ -64,6 +95,12 @@ const AdminSidebar = ({collapsed }) => {
                         </Link>
                         <Link to="blog/author" className='admin-submenu-link'>
                             Blog Authors
+                        </Link>
+                        <Link to="blog" className='admin-submenu-link'>
+                            Blog 
+                        </Link>
+                        <Link to="blog/create" className='admin-submenu-link'>
+                            Create Blog 
                         </Link>
                     </div>
                 )}

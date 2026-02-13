@@ -45,6 +45,10 @@ import AdminRoute from './routes/AdminRoute';
 import AdminBlogcategory from './pages/Admin/blog/AdminBlogcategory';
 import AdminBlogTag from './pages/Admin/blog/AdminBlogTag';
 import AdminblogAuthor from './pages/Admin/blog/AdminblogAuthor';
+import AdminBlog from './pages/Admin/blog/AdminBlog';
+import AdminCreateBlog from './pages/Admin/blog/AdminCreateBlog';
+import AdminService from './pages/Admin/hairservice/AdminService';
+import AdminServiceCreate from './pages/Admin/hairservice/AdminServiceCreate';
 
 function App() {
     const location = useLocation();
@@ -110,6 +114,11 @@ function App() {
             <Route path='blog/category' element={<AdminBlogcategory />} />
             <Route path='blog/tag' element={<AdminBlogTag />} />
             <Route path='blog/author' element={<AdminblogAuthor />} />
+            <Route path='blog' element={<AdminBlog />} />
+            <Route path='blog/create' element={<AdminCreateBlog />} />
+
+            <Route path='service' element={<AdminService />} />
+            <Route path='service/create' element={<AdminServiceCreate />} />
 
             <Route path='team' element={<AdminTeam />} />
             <Route path='faq' element={<AdminFaq />} />

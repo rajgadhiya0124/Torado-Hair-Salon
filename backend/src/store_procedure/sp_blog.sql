@@ -74,7 +74,7 @@ BEGIN
     LEFT JOIN tbl_blog_categories c ON b.category_id = c.id
     LEFT JOIN tbl_blog_tags t ON b.tag_id = t.id
     LEFT JOIN tbl_blog_authors a ON b.author_id = a.id
-    WHERE b.status = 1
+
     ORDER BY b.id DESC;
 END$$
 
@@ -113,6 +113,26 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+-- update blog status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_blog_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_blogs
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
 
 -- update blog
 DELIMITER $$

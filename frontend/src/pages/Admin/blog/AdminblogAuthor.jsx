@@ -160,6 +160,7 @@ const AdminblogAuthor = () => {
         </div>
         
         <div className='admin-author-table-content'>
+            <h2>Author list</h2>
             <table className="admin-author-table">
                 <thead>
                 <tr>

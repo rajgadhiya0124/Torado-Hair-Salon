@@ -63,6 +63,30 @@ export const getServiceById = async(req,res)=>{
     }
 }
 
+
+//update Service status
+export const updateServiceStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await serviceModel.updateServiceStatus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Service Status updated"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //update service
 export const updateService = async(req,res)=>{
     try {

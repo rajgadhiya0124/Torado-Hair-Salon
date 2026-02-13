@@ -43,7 +43,10 @@ const BlogDetails = () => {
     const fetchBlogComment = async()=>{
         try {
             const res = await axios.get(`http://localhost:4000/api/blogComment/getAllComment/${id}`);
-            setBlogComment(res.data.data);
+            const ActiveComment = res.data.data.filter(
+                (item)=> item.status === 1
+            )
+            setBlogComment(ActiveComment);
         } catch (error) {
             console.log("Error While Fetch blog comment",error);
         }
@@ -180,7 +183,8 @@ const BlogDetails = () => {
 
                         <div className='author-box'>
                             <div>
-                                <img src={`http://localhost:4000/uploads/blog/author/${blog?.author_image}`} alt="" />
+                                <img src={`http://localhost:4000/uploads/blog/author/${blog?.author_image}`} 
+                                    className="blog-author-image" alt="" />
                             </div>
 
                             <div>
@@ -199,7 +203,7 @@ const BlogDetails = () => {
                         <div className="user-blog-comment">
                             <h2>{blogcomment.length} Comments</h2>
 
-                            {blogcomment.map((item)=>(
+                            {blogcomment.slice(0,3).map((item)=>(
                             <div className="user-comment-box">
 
                                 <div className='blog-avtar'>

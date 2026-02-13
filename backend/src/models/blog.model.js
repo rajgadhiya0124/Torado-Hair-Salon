@@ -30,6 +30,15 @@ export const BlogModel = {
         return result[0][0];
     },
 
+    updateBlogStatus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_blog_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
     updateBlog : async(data)=>{
         const {
             BlogId,category_id, tag_id, author_id,

@@ -33,8 +33,11 @@ const BlogRight = () => {
     const fetchBlogs  = async()=>{
         try {
             const res = await axios.get("http://localhost:4000/api/blog/getAll");
-            setBlog(res.data.data);
-            console.log(res.data)
+
+            const activeBlog = res.data.data.filter(
+                (item) => item.status === 1
+            )
+            setBlog(activeBlog);
         } catch (error) {
             console.error("Error While Fetch Blogs",error);
         }

@@ -72,7 +72,6 @@ CREATE PROCEDURE sp_get_all_services ()
 BEGIN
     SELECT *
     FROM tbl_salon_services
-    WHERE status = 1
     ORDER BY createdAt DESC;
 END $$
 
@@ -91,6 +90,25 @@ BEGIN
       AND status = 1;
 END $$
 
+DELIMITER ;
+
+
+-- update Service status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_service_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_salon_services
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
 DELIMITER ;
 
 

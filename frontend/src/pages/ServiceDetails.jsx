@@ -43,7 +43,10 @@ const ServiceDetails = () => {
     const fetchAllService = async()=>{
         try {
             const res = await axios.get("http://localhost:4000/api/service/getAll");
-            setAllService(res.data.data);
+            const ActiveService = res.data.data.filter(
+                (item)=> item.status === 1
+            )
+            setAllService(ActiveService);
 
         } catch (error) {
             console.error("Error fetching services:", error);
