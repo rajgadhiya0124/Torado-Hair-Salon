@@ -24,5 +24,15 @@ export const ProductReviewModel = {
         )
 
         return  result;
-    } 
+    },
+    
+    deleteProductReview : async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_delete_product_review(?,?)",
+            [id,updatedBy]
+        );
+
+        return result
+    }
 }

@@ -64,8 +64,11 @@ BEGIN
     SELECT 
         p.id, p.product_name, p.product_image, p.price, p.discount_price,
         p.product_description, p.additional_information, p.stock, p.status, p.createdAt,
-        
+			
+		c.id AS category_id,
         c.category_name,
+        
+        t.id AS tag_id,
         t.tag_name,
 			
         IFNULL(AVG(r.rating), 0) AS avg_rating
@@ -76,7 +79,6 @@ BEGIN
     
     LEFT JOIN tbl_product_reviews r ON r.product_id = p.id AND r.status = 1
     
-    WHERE p.status = 1
     GROUP BY p.id
     ORDER BY p.id DESC;
 END$$
@@ -104,6 +106,25 @@ BEGIN
       AND p.status = 1;
 END$$
 
+DELIMITER ;
+
+
+-- update Product status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_product_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_products
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
 DELIMITER ;
 
 

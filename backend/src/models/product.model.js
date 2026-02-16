@@ -28,6 +28,15 @@ export const ProductModel = {
         return result[0][0];
     },
 
+    updateProductStaus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_product_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
     updateProduct: async(data)=>{
         const {id ,category_id, tag_id, product_name, product_image,
         price, discount_price, product_description, additional_information, stock,updatedBy} = data;

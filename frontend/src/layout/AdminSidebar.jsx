@@ -6,6 +6,8 @@ import { LuContactRound } from "react-icons/lu";
 import { IoCalendarNumber } from "react-icons/io5";
 import { RiQuestionAnswerLine } from "react-icons/ri";
 import { RiTeamLine } from "react-icons/ri";
+import { AiFillProduct } from "react-icons/ai";
+
 
 const AdminSidebar = ({collapsed }) => {
 
@@ -106,6 +108,43 @@ const AdminSidebar = ({collapsed }) => {
                 )}
             </div>
 
+            <div className='admin-dropdown'>
+                <span className='admin-item-span' onClick={()=>toggle("product")}>
+                    <AiFillProduct  className='item-icon'/>
+
+                    <div className='admin-item-name'>
+                        {!collapsed && (
+                            <span className='adminside-item-link'> Product </span>
+                        )}
+
+                        {!collapsed && (
+                            <FiChevronDown
+                            className={`dropdown-arrow ${open.product ? "rotate" : ""}`}
+                            />
+                        )}
+                    </div>
+                </span>
+
+                {open.product && !collapsed &&(
+                    <div className='admin-submenu'>
+                        <Link to="product/category" className='admin-submenu-link'>
+                            Product Category
+                        </Link>
+                        <Link to="product/tag" className='admin-submenu-link'>
+                            Product Tag
+                        </Link>
+                        <Link to="product" className='admin-submenu-link'>
+                            Product
+                        </Link>
+                        <Link to="product/create" className='admin-submenu-link'>
+                            Create Product 
+                        </Link>
+                        <Link to="product/review" className='admin-submenu-link'>
+                            Product Review 
+                        </Link>
+                    </div>
+                )}
+            </div>
 
             <span className='admin-item-span'>
                 <RiTeamLine  className='item-icon'/>

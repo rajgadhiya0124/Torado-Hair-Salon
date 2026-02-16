@@ -35,7 +35,7 @@ DELIMITER ;
 -- get all product category
 DELIMITER $$
 
-CREATE PROCEDURE sp_get_product_tags ()
+CREATE PROCEDURE sp_get_all_product_tags ()
 BEGIN
     SELECT 
         id,
@@ -44,11 +44,30 @@ BEGIN
         status,
         createdAt
     FROM tbl_product_tags
-    WHERE status = 1
     ORDER BY id DESC;
 END$$
 
 DELIMITER ;
+
+
+-- update Product Tag status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_product_tag_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_product_tags
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
 
 
 -- update product tag

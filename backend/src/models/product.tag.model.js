@@ -12,8 +12,17 @@ export const ProductTagModel = {
     },
 
     getAllProductTag : async()=>{
-        const [result] = await db.query("CALL sp_get_product_tags()");
+        const [result] = await db.query("CALL sp_get_all_product_tags()");
 
+        return result[0];
+    },
+
+    updateProductTagStatus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_product_tag_status(?,?)",
+            [id,updatedBy]
+        );
         return result[0];
     },
 

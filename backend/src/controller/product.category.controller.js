@@ -39,6 +39,29 @@ export const GetAllProductCat = async(req,res)=>{
     }
 }
 
+//update Product Category status
+export const updateProductCatStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await ProductCategoryModel.updateProductCatStatus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Prodct Category Status updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //update Product Category
 export const updateProductCat = async(req,res)=>{
     try {

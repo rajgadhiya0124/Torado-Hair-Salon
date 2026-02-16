@@ -48,20 +48,25 @@ DELIMITER $$
 CREATE PROCEDURE sp_getall_product_review ()
 BEGIN
     SELECT
-        user_name,
-        user_email,
-        rating,
-        review_message,
-        status,
-        createdAt
-    FROM tbl_product_reviews
-    WHERE status = 1
+		pr.id,
+        pr.user_name,
+        pr.user_email,
+        pr.rating,
+        pr.review_message,
+        pr.status,
+        pr.createdAt,
+        
+        p.product_name
+        
+    FROM tbl_product_reviews pr
+    JOIN tbl_products p ON p.id =  pr.product_id
+    
     ORDER BY createdAt DESC;
 END$$
 DELIMITER ;
 
 
--- get all product review with total count and avrage raing for reach product
+-- get all product review with total count and avrage raing for each product
 DELIMITER $$
 
 CREATE PROCEDURE sp_get_product_reviews_with_summary (
@@ -90,5 +95,20 @@ BEGIN
       AND status = 1;
 END$$
 
+DELIMITER ;
+
+-- delete product review
+DELIMITER $$
+CREATE PROCEDURE sp_delete_product_review (
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_product_reviews
+    SET 
+        status = 0,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
 DELIMITER ;
 

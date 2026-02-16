@@ -65,3 +65,25 @@ export const getProductAllReview = async(req,res)=>{
         });
     }
 }
+
+//delete product review
+export const deleteProductReview = async(req,res)=>{
+    try {
+        const data ={
+            id: req.params.id,
+            updatedBy : req.user ? req.user.id : null
+        }
+
+        await ProductReviewModel.deleteProductReview(data);
+
+        res.status(200).json({
+            success: true,
+            message : "Product Review Deleted"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}

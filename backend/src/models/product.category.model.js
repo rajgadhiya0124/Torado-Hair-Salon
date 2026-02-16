@@ -19,6 +19,15 @@ export const ProductCategoryModel = {
         return result[0];
     },
 
+    updateProductCatStatus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_product_category_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
     updateProductCategory : async(data)=>{
         const {id,category_name,category_slug,updatedBy} = data;
 

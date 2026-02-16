@@ -41,6 +41,29 @@ export const getAllProductTag = async(req,res)=>{
     }
 }
 
+//update Product Tag status
+export const updateProductTagStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await ProductTagModel.updateProductTagStatus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Product Tag Status updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //update product tag
 export const updateProductTag = async(req,res)=>{
     try {

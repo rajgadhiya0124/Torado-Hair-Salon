@@ -43,9 +43,27 @@ BEGIN
         status,
         createdAt
     FROM tbl_product_category
-    WHERE status = 1
     ORDER BY id DESC;
 END$$
+DELIMITER ;
+
+
+-- update Product Category status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_product_category_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_product_category
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
 DELIMITER ;
 
 

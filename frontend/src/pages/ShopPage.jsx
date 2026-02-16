@@ -32,7 +32,10 @@ const ShopPage = () => {
     const fetchProduct = async()=>{
         try {
             const res = await axios.get("http://localhost:4000/api/product/getAll");
-            setProduct(res.data.data);
+            const Activeproduct = res.data.data.filter(
+                (item)=> item.status === 1
+            )
+            setProduct(Activeproduct);
         } catch (error) {
             console.error("Error While Fetch product", error);
         }

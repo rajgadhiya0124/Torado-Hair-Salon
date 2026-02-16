@@ -49,6 +49,11 @@ import AdminBlog from './pages/Admin/blog/AdminBlog';
 import AdminCreateBlog from './pages/Admin/blog/AdminCreateBlog';
 import AdminService from './pages/Admin/hairservice/AdminService';
 import AdminServiceCreate from './pages/Admin/hairservice/AdminServiceCreate';
+import AdminProductCategory from './pages/Admin/product/AdminProductCategory';
+import AdminProductTag from './pages/Admin/product/AdminProductTag';
+import AdminProduct from './pages/Admin/product/AdminProduct';
+import AdminProductCreate from './pages/Admin/product/AdminProductCreate';
+import AdminProductReview from './pages/Admin/product/AdminProductReview';
 
 function App() {
     const location = useLocation();
@@ -119,6 +124,12 @@ function App() {
 
             <Route path='service' element={<AdminService />} />
             <Route path='service/create' element={<AdminServiceCreate />} />
+
+            <Route path='product' element={<AdminProduct />} />
+            <Route path='product/category' element={<AdminProductCategory />} />
+            <Route path='product/tag' element={<AdminProductTag />} />
+            <Route path='product/create' element={<AdminProductCreate />} />
+            <Route path='product/review' element={<AdminProductReview />} />
 
             <Route path='team' element={<AdminTeam />} />
             <Route path='faq' element={<AdminFaq />} />

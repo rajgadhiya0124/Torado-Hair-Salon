@@ -63,17 +63,61 @@ export const getProductById = async(req,res)=>{
     }
 }
 
+
+//update Product Tag status
+export const updateProductStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await ProductModel.updateProductStaus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Product Status updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //update Product
 export const updateProduct = async(req,res)=>{
     try {
+        let discountPrice = null;
+
+        if (
+            req.body.discount_price !== "" &&
+            req.body.discount_price !== undefined
+        ) {
+            const parsed = req.body.discount_price;
+
+            // important check
+            if (!isNaN(parsed)) {
+                discountPrice = parsed;
+            }
+        }
+
         const data = {
             ...req.body,
             id: req.params.id,
             product_image : req.file ? req.file.filename : null,
-            discount_price:
-                req.body.discount_price === "" ? null : req.body.discount_price,
+            discount_price: discountPrice,
+            // discount_price:
+            //     req.body.discount_price === "" || 
+            //     req.body.discount_price === undefined ||  
+            //     req.body.discount_price === null
+            //     ? null : req.body.discount_price,
+
             updatedBy : req.user ? req.user.id : null
         }   
+        
 
         await ProductModel.updateProduct(data);
 
