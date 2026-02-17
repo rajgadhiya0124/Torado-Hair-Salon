@@ -11,7 +11,7 @@ CREATE TABLE tbl_privacy_policy (
     updatedBy INT
 );
 
-select * from tbl_privacy_policy;
+	select * from tbl_privacy_policy;
 
 -- create privcy policy
 DELIMITER $$

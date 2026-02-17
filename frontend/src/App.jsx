@@ -54,6 +54,10 @@ import AdminProductTag from './pages/Admin/product/AdminProductTag';
 import AdminProduct from './pages/Admin/product/AdminProduct';
 import AdminProductCreate from './pages/Admin/product/AdminProductCreate';
 import AdminProductReview from './pages/Admin/product/AdminProductReview';
+import AdminGalleryCategory from './pages/Admin/gallery/AdminGalleryCategory';
+import AdminGallery from './pages/Admin/gallery/AdminGallery';
+import AdminPrivacy from './pages/Admin/AdminPrivacy';
+import AdminTerms from './pages/Admin/AdminTerms';
 
 function App() {
     const location = useLocation();
@@ -131,9 +135,14 @@ function App() {
             <Route path='product/create' element={<AdminProductCreate />} />
             <Route path='product/review' element={<AdminProductReview />} />
 
+            <Route path='gallery/category' element={<AdminGalleryCategory />} />
+            <Route path='gallery' element={<AdminGallery />} />
+
             <Route path='team' element={<AdminTeam />} />
             <Route path='faq' element={<AdminFaq />} />
             <Route path='appointment' element={<AdminAppointement />} />
+            <Route path='privacy-policy' element={<AdminPrivacy />} />
+            <Route path='terms-condition' element={<AdminTerms />} />
             <Route path='userlist' element={<AdminUserList />} />
             
             <Route path='contact' element={<AdminContact />} />

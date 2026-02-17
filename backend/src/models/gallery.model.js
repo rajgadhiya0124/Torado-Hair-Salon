@@ -26,6 +26,15 @@ export const GalleryModel = {
         return result[0][0];
     },
 
+    updateGalleryStaus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_gallery_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
     updateGallery : async(data)=>{
         const {id, category_id, serivce_name, service_image, updatedBy} = data;
 

@@ -97,6 +97,26 @@ END$$
 
 DELIMITER ;
 
+-- update Product status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_product_review_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_product_reviews
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
+
+
 -- delete product review
 DELIMITER $$
 CREATE PROCEDURE sp_delete_product_review (

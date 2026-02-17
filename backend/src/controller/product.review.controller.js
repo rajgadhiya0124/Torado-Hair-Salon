@@ -66,6 +66,30 @@ export const getProductAllReview = async(req,res)=>{
     }
 }
 
+
+//update Product Review status
+export const updateProductReviewStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await ProductReviewModel.updateProductReviewStaus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Product Review Status updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //delete product review
 export const deleteProductReview = async(req,res)=>{
     try {

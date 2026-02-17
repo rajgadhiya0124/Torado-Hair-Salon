@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { BiSolidTrashAlt } from 'react-icons/bi'
 import { IoPencil } from 'react-icons/io5'
-import { MdOutlineRemoveRedEye } from 'react-icons/md'
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight, MdOutlineRemoveRedEye } from 'react-icons/md'
 import { TiArrowSync } from 'react-icons/ti'
 import FormateDate from '../../../components/FormateDate'
 import RatingStar from '../../../components/RatingStar'
@@ -32,6 +32,15 @@ const AdminProduct = () => {
         additional_information:"",
         stock:""
     });
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
+
+    const lastIndex = currentPage * itemsPerPage;
+    const firstIndex = lastIndex - itemsPerPage;
+
+    const currentPrduct = products.slice(firstIndex,lastIndex);
+    const totalPages = Math.ceil(products.length / itemsPerPage)
 
     const token = localStorage.getItem("token");
 
@@ -195,14 +204,14 @@ const AdminProduct = () => {
                         <th>Stock</th>
                         <th>Created Date</th>
                         <th>Status</th>
-                        <th>Product Review</th>
+                        {/* <th>Product Review</th> */}
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((item,index) => (
+                    {currentPrduct.map((item,index) => (
                     <tr key={item.id}>
-                        <td>{index + 1}</td>
+                        <td>{firstIndex+ index + 1}</td>
                         <td>
                             <img src={`http://localhost:4000/uploads/product/${item.product_image}`} 
                                style={{width:"25px"}}
@@ -252,11 +261,11 @@ const AdminProduct = () => {
                             </label>
                         </td>
 
-                        <td>
+                        {/* <td>
                             <button onClick={() => handleOpenComments(item.id)} className='blog-review-btn'>
                                 Review
                             </button>
-                        </td>
+                        </td> */}
 
                         <td>
                             <div className='admin-action-button'>
@@ -280,6 +289,33 @@ const AdminProduct = () => {
                     ))}
                 </tbody>
             </table>
+            <div className="pagination-wrapper">
+                <button 
+                    className='admin-pagination-left-btn'
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                >
+                    <MdOutlineKeyboardArrowLeft />
+                </button>
+    
+                {[...Array(totalPages)].map((_,index)=>(
+                    <button
+                        key={index}
+                        className={`admin-pagination-btn ${currentPage === index + 1 ? "active-page" : ""}`}
+                        onClick={()=>setCurrentPage(index + 1)}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+    
+                <button 
+                    className='admin-pagination-right-btn'
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                >
+                    <MdOutlineKeyboardArrowRight />
+                </button>
+            </div>
 
             {/* Edit Modal */}
             {showEditModal && (

@@ -278,7 +278,7 @@ const ShopDetailsPage = () => {
                                 <p>Based On {productReview.total_review} Reviews</p>
                             </div>
 
-                            {productReview.reviews.map((item)=>(
+                            {productReview.reviews.slice(0,4).map((item)=>(
                             <div className='customer-review-show'>
                                 <div className='reivew-box'>
                                     <div className='d-flex gap-3'>

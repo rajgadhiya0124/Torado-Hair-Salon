@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BiSolidTrashAlt } from 'react-icons/bi'
 import { IoPencil } from 'react-icons/io5'
-import { MdOutlineRemoveRedEye } from 'react-icons/md'
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight, MdOutlineRemoveRedEye } from 'react-icons/md'
 import { TiArrowSync } from 'react-icons/ti'
 import FormateDate from '../../../components/FormateDate'
 import { toast } from 'react-toastify'
@@ -23,6 +23,15 @@ const AdminService = () => {
         service_video_bg: null,
         is_top : 0
     });
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
+
+    const lastIndex = currentPage * itemsPerPage;
+    const firstIndex = lastIndex - itemsPerPage;
+
+    const currentService = service.slice(firstIndex,lastIndex);
+    const totalPages = Math.ceil(service.length / itemsPerPage)
 
     const token = localStorage.getItem("token");
 
@@ -170,7 +179,7 @@ const AdminService = () => {
                 </tr>
             </thead>
             <tbody>
-                {service.map((item,index) => (
+                {currentService.map((item,index) => (
                 <tr key={item.id}>
                     <td>{index + 1}</td>
                     <td>
@@ -217,6 +226,34 @@ const AdminService = () => {
                 ))}
             </tbody>
         </table>
+
+        <div className="pagination-wrapper">
+            <button 
+                className='admin-pagination-left-btn'
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(currentPage - 1)}
+            >
+                <MdOutlineKeyboardArrowLeft />
+            </button>
+
+            {[...Array(totalPages)].map((_,index)=>(
+                <button
+                    key={index}
+                    className={`admin-pagination-btn ${currentPage === index + 1 ? "active-page" : ""}`}
+                    onClick={()=>setCurrentPage(index + 1)}
+                >
+                    {index + 1}
+                </button>
+            ))}
+
+            <button 
+                className='admin-pagination-right-btn'
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(currentPage + 1)}
+            >
+                <MdOutlineKeyboardArrowRight />
+            </button>
+        </div>
         </div>
 
         {editModal && (

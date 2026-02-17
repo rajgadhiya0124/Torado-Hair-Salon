@@ -1044,6 +1044,16 @@ h1,h2,h3,h4{
     color: #555;
     font-weight: 500;
 }
+.explor-more-content{
+    display: flex;
+    justify-content: center;
+}
+.explor-more-link{
+    text-decoration: none;
+    color: #e63946;
+    font-size: 18px;
+    font-weight: 600;
+}
 
 @media(max-width:1400px){
     .home-team-icon{

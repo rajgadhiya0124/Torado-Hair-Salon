@@ -7,7 +7,9 @@ import { IoCalendarNumber } from "react-icons/io5";
 import { RiQuestionAnswerLine } from "react-icons/ri";
 import { RiTeamLine } from "react-icons/ri";
 import { AiFillProduct } from "react-icons/ai";
-
+import { RiGalleryFill } from "react-icons/ri";
+import { MdMiscellaneousServices } from "react-icons/md";
+import { MdOutlinePrivacyTip } from "react-icons/md";
 
 const AdminSidebar = ({collapsed }) => {
 
@@ -43,7 +45,7 @@ const AdminSidebar = ({collapsed }) => {
 
             <div className='admin-dropdown'>
                 <span className='admin-item-span' onClick={()=>toggle("service")}>
-                    <LuContactRound  className='item-icon'/>
+                    <MdMiscellaneousServices  className='item-icon'/>
 
                     <div className='admin-item-name'>
                         {!collapsed && (
@@ -146,6 +148,35 @@ const AdminSidebar = ({collapsed }) => {
                 )}
             </div>
 
+            <div className='admin-dropdown'>
+                <span className='admin-item-span' onClick={()=>toggle("gallery")}>
+                    <RiGalleryFill  className='item-icon'/>
+
+                    <div className='admin-item-name'>
+                        {!collapsed && (
+                            <span className='adminside-item-link'> Gallery </span>
+                        )}
+
+                        {!collapsed && (
+                            <FiChevronDown
+                            className={`dropdown-arrow ${open.gallery ? "rotate" : ""}`}
+                            />
+                        )}
+                    </div>
+                </span>
+
+                {open.gallery && !collapsed &&(
+                    <div className='admin-submenu'>
+                        <Link to="gallery/category" className='admin-submenu-link'>
+                            Gallery Category
+                        </Link>
+                        <Link to="gallery" className='admin-submenu-link'>
+                            Gallery Manage
+                        </Link>
+                    </div>
+                )}
+            </div>
+
             <span className='admin-item-span'>
                 <RiTeamLine  className='item-icon'/>
 
@@ -167,6 +198,22 @@ const AdminSidebar = ({collapsed }) => {
 
                 {!collapsed && (
                     <Link to={'appointment'} className='adminside-item-link'> Appointment</Link>
+                )}
+            </span>
+
+            <span className='admin-item-span'>
+                <MdOutlinePrivacyTip  className='item-icon'/>
+
+                {!collapsed && (
+                    <Link to={'privacy-policy'} className='adminside-item-link'> Privacy Policy</Link>
+                )}
+            </span>
+
+            <span className='admin-item-span'>
+                <MdOutlinePrivacyTip  className='item-icon'/>
+
+                {!collapsed && (
+                    <Link to={'terms-condition'} className='adminside-item-link'> Terms & Condition</Link>
                 )}
             </span>
 

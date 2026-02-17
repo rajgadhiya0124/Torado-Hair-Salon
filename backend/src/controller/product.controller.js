@@ -64,7 +64,7 @@ export const getProductById = async(req,res)=>{
 }
 
 
-//update Product Tag status
+//update Product status
 export const updateProductStatus = async(req,res)=>{
     try {
         const data ={

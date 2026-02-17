@@ -40,6 +40,29 @@ export const getAllGalleryCat =async(req,res)=>{
     }
 }
 
+//update Gallery Categoey status
+export const updateGalleryCatStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await GalleryCatModel.updateGalleryCatStaus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Gallery Category Status updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //delete Galllery category
 export const deleteGalleryCat = async(req,res)=>{
     try {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import {useNavigate } from "react-router-dom"
 import { BiSolidTrashAlt } from 'react-icons/bi';
 import { IoPencil } from 'react-icons/io5';
-import { MdOutlineRemoveRedEye } from 'react-icons/md';
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight, MdOutlineRemoveRedEye } from 'react-icons/md';
 import { IoClose } from "react-icons/io5";
 import FormateDate from '../../../components/FormateDate';
 import { TiArrowSync } from 'react-icons/ti';
@@ -32,6 +32,15 @@ const AdminBlog = () => {
     const [showCommentModal, setShowCommentModal] = useState(false); //for comment 
     const [comments, setComments] = useState([]);
     const [currentBlogId, setCurrentBlogId] = useState(null);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
+
+    const lastIndex = currentPage * itemsPerPage;
+    const firstIndex = lastIndex - itemsPerPage;
+
+    const currentBlog = blog.slice(firstIndex,lastIndex);
+    const totalPages = Math.ceil(blog.length / itemsPerPage)
 
     const token = localStorage.getItem("token");
 
@@ -230,9 +239,9 @@ const AdminBlog = () => {
                 </tr>
             </thead>
             <tbody>
-                {blog.map((item,index) => (
+                {currentBlog.map((item,index) => (
                 <tr key={item.id}>
-                    <td>{index + 1}</td>
+                    <td>{firstIndex + index + 1}</td>
                     <td>
                         <img src={`http://localhost:4000/uploads/blog/${item.blog_image}`} 
                             className='admin-blog-img'
@@ -283,6 +292,34 @@ const AdminBlog = () => {
                 ))}
             </tbody>
         </table>
+
+        <div className="pagination-wrapper">
+            <button 
+                className='admin-pagination-left-btn'
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(currentPage - 1)}
+            >
+                <MdOutlineKeyboardArrowLeft />
+            </button>
+
+            {[...Array(totalPages)].map((_,index)=>(
+                <button
+                    key={index}
+                    className={`admin-pagination-btn ${currentPage === index + 1 ? "active-page" : ""}`}
+                    onClick={()=>setCurrentPage(index + 1)}
+                >
+                    {index + 1}
+                </button>
+            ))}
+
+            <button 
+                className='admin-pagination-right-btn'
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(currentPage + 1)}
+            >
+                <MdOutlineKeyboardArrowRight />
+            </button>
+        </div>
     </div>
 
     {/* update Modal */}

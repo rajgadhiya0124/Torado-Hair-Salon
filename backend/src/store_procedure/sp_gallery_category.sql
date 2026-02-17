@@ -37,11 +37,30 @@ CREATE PROCEDURE sp_get_all_gallery_categories ()
 BEGIN
     SELECT *
     FROM tbl_gallery_category
-    WHERE status = 1
     ORDER BY createdAt DESC;
 END $$
 
 DELIMITER ;
+
+
+-- update Product status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_gallery_cat_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_gallery_category
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
 
 
 -- delete gallery category

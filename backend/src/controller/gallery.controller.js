@@ -62,6 +62,30 @@ export const getGalleryById = async(req,res)=>{
     }
 }
 
+
+//update Gallery Categoey status
+export const updateGalleryStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await GalleryModel.updateGalleryStaus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Gallery Status updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
+
 //update Gallery
 export const updateGallery = async(req,res)=>{
     try {

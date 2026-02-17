@@ -25,6 +25,15 @@ export const ProductReviewModel = {
 
         return  result;
     },
+
+    updateProductReviewStaus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_product_review_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
     
     deleteProductReview : async(data)=>{
         const {id,updatedBy} = data;

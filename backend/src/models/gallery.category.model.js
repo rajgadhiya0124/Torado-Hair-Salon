@@ -18,6 +18,15 @@ export const GalleryCatModel = {
         return result[0];
     },
 
+    updateGalleryCatStaus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_gallery_cat_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
     deleteGalleryCat: async(data)=>{
         const {id , updatedBy} = data;
 

@@ -46,7 +46,7 @@ BEGIN
         c.category_name
     FROM tbl_gallery g
     JOIN tbl_gallery_category c ON c.id = g.category_id
-    WHERE g.status = 1
+    
     ORDER BY g.createdAt DESC;
 END $$
 
@@ -68,6 +68,27 @@ BEGIN
 END $$
 
 DELIMITER ;	
+
+-- update Gallery status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_gallery_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_gallery
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
+
+
 
 
 -- update Gallery

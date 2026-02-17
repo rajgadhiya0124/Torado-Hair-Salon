@@ -10,7 +10,10 @@ const GalleryPage = () => {
     const fetchGallery = async()=>{
         try {
             const res = await axios.get("http://localhost:4000/api/gallery/getall");
-            setGallery(res.data.data);
+            const ActiveGallery = res.data.data.filter(
+                (item)=> item.status === 1
+            )
+            setGallery(ActiveGallery);
         } catch (error) {
             console.error("Error Wile FetchGallery Data : ",error)
         }
