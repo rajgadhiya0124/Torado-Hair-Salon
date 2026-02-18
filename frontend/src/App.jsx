@@ -58,6 +58,9 @@ import AdminGalleryCategory from './pages/Admin/gallery/AdminGalleryCategory';
 import AdminGallery from './pages/Admin/gallery/AdminGallery';
 import AdminPrivacy from './pages/Admin/AdminPrivacy';
 import AdminTerms from './pages/Admin/AdminTerms';
+import AdminOrder from './pages/Admin/AdminOrder';
+import AdminLead from './pages/Admin/AdminLead';
+import AdminNewsletter from './pages/Admin/AdminNewsletter';
 
 function App() {
     const location = useLocation();
@@ -138,9 +141,13 @@ function App() {
             <Route path='gallery/category' element={<AdminGalleryCategory />} />
             <Route path='gallery' element={<AdminGallery />} />
 
+            <Route path='orders' element={<AdminOrder />} />
+
             <Route path='team' element={<AdminTeam />} />
             <Route path='faq' element={<AdminFaq />} />
             <Route path='appointment' element={<AdminAppointement />} />
+            <Route path='lead' element={<AdminLead />} />
+            <Route path='newsletter' element={<AdminNewsletter />} />
             <Route path='privacy-policy' element={<AdminPrivacy />} />
             <Route path='terms-condition' element={<AdminTerms />} />
             <Route path='userlist' element={<AdminUserList />} />

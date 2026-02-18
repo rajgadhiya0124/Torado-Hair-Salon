@@ -18,6 +18,24 @@ export const leadModel = {
         return result[0];
     },
 
+    updateleadtoogleStaus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_lead_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
+    updateLeadStatus: async(data)=>{
+        const {id, lead_status, updatedBy} = data;
+
+        const [rows] = await db.query("CALL sp_update_lead_status(?,?,?)",
+            [id,lead_status,updatedBy]
+        );
+        return rows;
+    },
+
     delteLead : async(data)=>{
         const {id, updatedBy} = data;
 

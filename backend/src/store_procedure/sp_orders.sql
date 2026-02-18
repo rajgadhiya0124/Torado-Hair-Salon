@@ -22,7 +22,7 @@ CREATE TABLE tbl_orders (
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     createdBy INT ,
-    updatedBy INT
+    updatedBy INT	
 );
 
 select * from tbl_orders;
@@ -77,7 +77,7 @@ DELIMITER $$
 CREATE PROCEDURE sp_get_all_orders ()
 BEGIN
     SELECT * FROM tbl_orders
-    WHERE status = 1 
+
     ORDER BY createdAt DESC;
 END$$
 
@@ -106,6 +106,25 @@ END$$
 DELIMITER ;
 
 
+-- update Order status
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_order_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_orders
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
+
 -- update order
 DELIMITER $$
 
@@ -127,7 +146,6 @@ END$$
 DELIMITER ;
 
 -- delete order
-
 DELIMITER $$
 
 CREATE PROCEDURE sp_delete_order (
@@ -140,7 +158,4 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-
-
 

@@ -80,6 +80,29 @@ export const getorderById = async(req,res)=>{
     }
 }
 
+
+//update Order status
+export const updateOrderStatus = async(req,res)=>{
+    try {
+        const data ={
+            id:req.params.id,
+            updatedBy: req.user? req.user.id : null,
+        }
+
+        await OrderModel.updateOrderStaus(data);
+
+        res.status(200).json({
+            success:true,
+            message:"Order Status updated Sucssfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+
 //update order
 export const updateOrder = async(req,res)=>{
     try {

@@ -10,6 +10,9 @@ import { AiFillProduct } from "react-icons/ai";
 import { RiGalleryFill } from "react-icons/ri";
 import { MdMiscellaneousServices } from "react-icons/md";
 import { MdOutlinePrivacyTip } from "react-icons/md";
+import { PiShoppingCartFill } from "react-icons/pi";
+import { MdLeaderboard } from "react-icons/md";
+import { RiNewspaperLine } from "react-icons/ri";
 
 const AdminSidebar = ({collapsed }) => {
 
@@ -178,6 +181,15 @@ const AdminSidebar = ({collapsed }) => {
             </div>
 
             <span className='admin-item-span'>
+                <PiShoppingCartFill  className='item-icon'/>
+
+                {!collapsed && (
+                    <Link to={'orders'} className='adminside-item-link'> Orders </Link>
+                )}
+            </span>
+
+
+            <span className='admin-item-span'>
                 <RiTeamLine  className='item-icon'/>
 
                 {!collapsed && (
@@ -198,6 +210,22 @@ const AdminSidebar = ({collapsed }) => {
 
                 {!collapsed && (
                     <Link to={'appointment'} className='adminside-item-link'> Appointment</Link>
+                )}
+            </span>
+
+            <span className='admin-item-span'>
+                <MdLeaderboard  className='item-icon'/>
+
+                {!collapsed && (
+                    <Link to={'lead'} className='adminside-item-link'> Lead Inquery</Link>
+                )}
+            </span>
+
+            <span className='admin-item-span'>
+                <RiNewspaperLine  className='item-icon'/>
+
+                {!collapsed && (
+                    <Link to={'newsletter'} className='adminside-item-link'> Newsletter</Link>
                 )}
             </span>
 

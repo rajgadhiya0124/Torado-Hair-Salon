@@ -39,6 +39,15 @@ export const OrderModel = {
         return {order,items}
     },
 
+    updateOrderStaus: async(data)=>{
+        const {id,updatedBy} = data;
+
+        const [result] = await db.query("CALL sp_toggle_order_status(?,?)",
+            [id,updatedBy]
+        );
+        return result[0];
+    },
+
     updateOrder: async(data)=>{
         const {order_id,payment_status,order_status,updatedBy} = data;
 

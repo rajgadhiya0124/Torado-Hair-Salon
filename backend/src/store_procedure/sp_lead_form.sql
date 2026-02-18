@@ -3,6 +3,7 @@ CREATE TABLE tbl_leads (
     user_name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
     company VARCHAR(150),
+    lead_status ENUM('new','contacted','closed') DEFAULT 'new',
     
     status TINYINT(1) DEFAULT 1 ,
 	createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -13,6 +14,9 @@ CREATE TABLE tbl_leads (
 
 -- alter table tbl_leads 
 -- add  status TINYINT(1) DEFAULT 1 after company;
+
+-- ALTER TABLE tbl_leads
+-- ADD lead_status ENUM('new','contacted','closed') DEFAULT 'new' AFTER company;
 
 select * from  tbl_leads;
 
@@ -46,6 +50,43 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+-- update lead staus active/ deactive
+DELIMITER $$
+CREATE PROCEDURE sp_toggle_lead_status(
+    IN p_id INT,
+    IN p_updatedBy INT
+)
+BEGIN
+    UPDATE tbl_leads
+    SET 
+        status = CASE 
+                    WHEN status = 1 THEN 0
+                    ELSE 1
+                 END,
+        updatedBy = p_updatedBy
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
+
+-- update lead status
+DELIMITER $$
+CREATE PROCEDURE sp_update_lead_status (
+	IN p_id INT,
+    IN p_lead_status ENUM('new','contacted','closed'),
+    IN p_updatedBy INT
+)
+BEGIN 
+	UPDATE tbl_leads
+    SET 
+		lead_status = p_lead_status,
+		updatedBy = p_updatedBy
+	WHERE id = p_id;
+END $$
+
+DELIMITER ;
+
 
 -- delete lead
 DELIMITER $$

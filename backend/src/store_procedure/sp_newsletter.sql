@@ -30,7 +30,7 @@ CREATE PROCEDURE sp_get_all_newsletters ()
 BEGIN
     SELECT *
     FROM tbl_newsletter
-    WHERE status = 1
+ 
     ORDER BY id DESC;
 END$$
 DELIMITER ;

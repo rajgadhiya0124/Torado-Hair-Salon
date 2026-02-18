@@ -4,8 +4,13 @@ import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { Link } from 'react-router-dom';
+import { RxCross2 } from "react-icons/rx";
+import { FiUser } from "react-icons/fi";
 
-const Navbar = () => {
+const Navbar = () => {  
+
+    const [showDrawer, setShowDrawer] = useState(false);
+
   return (
     <>
     <section className="navbar-section">
@@ -151,14 +156,57 @@ const Navbar = () => {
                     <div className='nav-icon-content'>
                         <button className='search-icon'><IoSearchOutline /></button>
                         <button className='shop-icon'><HiOutlineShoppingBag /></button>
-                        <button className='bar-icon'>
+                        <button className='bar-icon' onClick={()=>setShowDrawer(true)}>
                             <HiBars3BottomRight />
+                        </button>
+                        <button className='shop-icon'>
+                            <FiUser />
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div>
+        <div
+            className={`drawer-overlay ${showDrawer ? "active" : ""}`}
+            onClick={() => setShowDrawer(false)}
+        >
+        </div>  
+
+        <div className={`right-drawer ${showDrawer ? "open" : ""}`}>
+        
+            <div className="drawer-header">
+                <button onClick={() => setShowDrawer(false)}> 
+                    <RxCross2 />
+                </button>
+            </div>
+
+            <h2>Quick Info</h2>
+
+            <div className="drawer-content">
+                <div className='drawer-logo'>
+                    <img src="/image/navbar/navbar-logo2.svg" alt="" />
+                </div>
+
+                <ul className='salon-work-ul'>
+                    <li>
+                        <span>Working Days</span>
+                        <span>9 AM - 9 PM</span>
+                    </li>
+                    <li>
+                        <span>Saturday</span>
+                        <span>10 AM - 8 PM</span>
+                    </li>
+                    <li>
+                        <span>Sunday</span>
+                        <span>Closed</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     </>
   )
 }
