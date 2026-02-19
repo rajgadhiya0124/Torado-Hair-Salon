@@ -176,7 +176,7 @@ const AdminTeam = () => {
       <div className='admin-team-content'>
         <div className="team-list">
             {team.map((item) => (
-              <div key={item.id} className="team-card">
+              <div key={item.id} className="admin-team-card">
                 <img
                   src={`http://localhost:4000/uploads/team/${item.person_image}`}
                   alt={item.name}

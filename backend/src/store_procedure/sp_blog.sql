@@ -87,6 +87,11 @@ CREATE PROCEDURE sp_get_blog_by_id (
     IN p_id INT
 )
 BEGIN
+	UPDATE tbl_blogs
+    SET views = views + 1
+    WHERE id  = p_id
+		AND status = 1;
+	
     SELECT
         b.id,
         b.blog_title, b.blog_image,
@@ -254,3 +259,13 @@ END $$
 
 DELIMITER ;
 
+-- get populer blog
+DELIMITER $$
+CREATE PROCEDURE sp_get_populer_blog ()
+BEGIN
+	SELECT * FROM tbl_blogs
+    WHERE status= 1
+    ORDER BY views DESC
+    LIMIT 3;
+END $$
+DELIMITER ;

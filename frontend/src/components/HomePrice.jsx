@@ -1,6 +1,34 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 const HomePrice = () => {
+
+    const [bestpriceService, setbestPriceService] = useState([]);
+
+    //fetch best price services
+    const fetchBestPriceService = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/home/bestpriceService/get");
+            setbestPriceService(res.data.data);
+        } catch (error) {
+            console.error("Error While Fetch brest price service",error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchBestPriceService();
+    },[]);
+
+    const getFirstParagraph = (html) => {
+    if (!html) return "";
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const firstP = doc.querySelector("p");
+
+        return firstP ? firstP.textContent : "";
+    };
+
   return (
    <section className="home-price-section">
         <section className="containers">
@@ -11,83 +39,23 @@ const HomePrice = () => {
 
             <div className="price-main-section">
                 <div className="home-price-grid">
+                {bestpriceService.map((item)=>(
                     <div className="price-item-card">
                         <div>
-                            <img src="/image/home/price/img1.jpg" className='price-item-img' alt="" />
+                            <img src={`http://localhost:4000/uploads/salon-service/${item.service_image}`} 
+                            className='price-item-img' alt="" />
                         </div>
                         <div>
                             <div className='item-name-price'>
-                                <h3 className='item-name'>Modern Chic Cut </h3>
-                                <span className='item-price'>$34.00</span>
+                                <h3 className='item-name'>{item.service_name} </h3>
+                                <span className='item-price'>${item.price}</span>
                             </div>
-                            <p>Sed ut perspiciatis unde omnis iste natus</p>
+                            <p>
+                                {getFirstParagraph(item.service_description).substring(0,50)}
+                            </p>
                         </div>
                     </div>
-
-                    <div className="price-item-card">
-                        <div>
-                            <img src="/image/home/price/img1.jpg" className='price-item-img' alt="" />
-                        </div>
-                        <div>
-                            <div className='item-name-price'>
-                                <h3 className='item-name'>Modern Chic Cut </h3>
-                                <span className='item-price'>$34.00</span>
-                            </div>
-                            <p>Sed ut perspiciatis unde omnis iste natus</p>
-                        </div>
-                    </div>
-
-                    <div className="price-item-card">
-                        <div>
-                            <img src="/image/home/price/img1.jpg" className='price-item-img' alt="" />
-                        </div>
-                        <div>
-                            <div className='item-name-price'>
-                                <h3 className='item-name'>Modern Chic Cut </h3>
-                                <span className='item-price'>$34.00</span>
-                            </div>
-                            <p>Sed ut perspiciatis unde omnis iste natus</p>
-                        </div>
-                    </div>
-                    
-                    <div className="price-item-card">
-                        <div>
-                            <img src="/image/home/price/img1.jpg" className='price-item-img' alt="" />
-                        </div>
-                        <div>
-                            <div className='item-name-price'>
-                                <h3 className='item-name'>Modern Chic Cut </h3>
-                                <span className='item-price'>$34.00</span>
-                            </div>
-                            <p>Sed ut perspiciatis unde omnis iste natus</p>
-                        </div>
-                    </div>
-
-                    <div className="price-item-card">
-                        <div>
-                            <img src="/image/home/price/img1.jpg" className='price-item-img' alt="" />
-                        </div>
-                        <div>
-                            <div className='item-name-price'>
-                                <h3 className='item-name'>Modern Chic Cut </h3>
-                                <span className='item-price'>$34.00</span>
-                            </div>
-                            <p>Sed ut perspiciatis unde omnis iste natus</p>
-                        </div>
-                    </div>
-
-                    <div className="price-item-card">
-                        <div>
-                            <img src="/image/home/price/img1.jpg" className='price-item-img' alt="" />
-                        </div>
-                        <div>
-                            <div className='item-name-price'>
-                                <h3 className='item-name'>Modern Chic Cut </h3>
-                                <span className='item-price'>$34.00</span>
-                            </div>
-                            <p>Sed ut perspiciatis unde omnis iste natus</p>
-                        </div>
-                    </div>
+                ))}
                 </div>
             </div>
         </section>

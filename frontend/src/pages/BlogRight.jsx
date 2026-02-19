@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const BlogRight = () => {
     const navigate = useNavigate();
     const [blog,setBlog] = useState([]);
+    const [populerblog,setPopulerBlog] = useState([]);
     const [blogcategory , setBlogcategory] = useState([]);
     const [blogtag , setBlogtag] = useState([]);
 
@@ -40,6 +41,16 @@ const BlogRight = () => {
             setBlog(activeBlog);
         } catch (error) {
             console.error("Error While Fetch Blogs",error);
+        }
+    }
+
+    //fetch poluper Blog
+    const fethPopulerblog = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/blog/getPopulerBlog");
+            setPopulerBlog(res.data.data);
+        } catch (error) {
+            console.error("Error While fetch populer Blog",error);
         }
     }
 
@@ -75,6 +86,7 @@ const BlogRight = () => {
 
     useEffect(()=>{
         fetchBlogs();
+        fethPopulerblog();
         fetchblogCategory();
         fetchblogTag();
     },[]);
@@ -128,7 +140,7 @@ const BlogRight = () => {
                     {filterBlog.map((item)=>(
                         <div className="r-blog-card" key={item.id}>
                             <div>
-                                <img src={ `http://localhost:4000/uploads/blog/${item.blog_image}`}  
+                                <img src={`http://localhost:4000/uploads/blog/${item.blog_image}`}  
                                     className="r-blog-image" alt="" />
                             </div>
 
@@ -201,21 +213,25 @@ const BlogRight = () => {
 
                     <div className='popoular-blog-div'>
                         <h3 className='pop-blog-title'>Popular Blog</h3>
-
-                        <div className='pop-blog-box'>
-                            <img src="/image/blog/blog/blog-1.jpg" className='pop-blog-img' alt="" />
+                        {populerblog.map((item)=>(
+                        <div className='pop-blog-box' key={item.id}>
+                            <img src={`http://localhost:4000/uploads/blog/${item.blog_image}`} 
+                                className='pop-blog-img' alt="" />
                             <div className='pop-blog-info'>
-                                <span>08 Oct 2025</span>
-                                <h4>How To Get Smooth And Long Hair</h4>
+                                <span>{formatDate(item.blog_date)}</span>
+                                <h4 onClick={()=>navigate(`/blogdetails/${item.id}`)}>
+                                    {item.blog_title}
+                                </h4>
                             </div>
                         </div>
+                        ))}
                     </div>
 
                     <div className="blog-category-div">
                         <h3 className='category-title'>Categories</h3>
                         
                         {blogcategory.map((cat)=>(
-                            <ul className='blog-category-ul' key={cat.id}>
+                            <ul className='blog-category-ul' key={cat.id} onClick={()=>navigate(`/blogbycategory/${cat.id}`)}>
                                 <li className='cate-li'>{cat.category_name}</li>
                             </ul>
                         ))}
@@ -227,7 +243,9 @@ const BlogRight = () => {
 
                         <div className='blog-tag-box'>
                             {blogtag.map((tag)=>(
-                                <span>{tag.tag_name}</span>
+                                <span key={tag.id} onClick={()=>navigate(`/blogbytag/${tag.id}`)}>
+                                    {tag.tag_name}
+                                </span>
                             ))}
                         </div>
                     </div>

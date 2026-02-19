@@ -18,7 +18,6 @@ import BlogPage from './pages/BlogPage';
 import BlogRight from './pages/BlogRight';
 import BlogLeft from './pages/BlogLeft';
 import BlogDetails from './pages/BlogDetails';
-import BlogDetailsRight from './pages/BlogDetailsRight';
 import ServicePage from './pages/ServicePage';
 import ServiceDetails from './pages/ServiceDetails';
 import ScrollTop from './components/ScrollTop';
@@ -61,6 +60,12 @@ import AdminTerms from './pages/Admin/AdminTerms';
 import AdminOrder from './pages/Admin/AdminOrder';
 import AdminLead from './pages/Admin/AdminLead';
 import AdminNewsletter from './pages/Admin/AdminNewsletter';
+import AdminHero from './pages/Admin/home/AdminHero';
+import AdminAbout from './pages/Admin/home/AdminAbout';
+import AdminPartner from './pages/Admin/home/AdminPartner';
+import BlogByCategory from './pages/BlogByCategory';
+import BlogByTag from './pages/BlogByTag';
+import AboutusPage from './pages/AboutusPage';
 
 function App() {
     const location = useLocation();
@@ -84,6 +89,7 @@ function App() {
         <ScrollTop />
         <Routes>
           <Route path='/' element={<HomePage />} />        
+          <Route path='/aboutus' element={<AboutusPage />} />        
           <Route path='/contactus' element={<ContactUsPage />} />        
           <Route path='/register' element={<RegisterPage />} />        
           <Route path='/login' element={<LoginPage />} />        
@@ -110,9 +116,10 @@ function App() {
           <Route path='/blog-right' element={<BlogRight />} />        
           <Route path='/blog-left' element={<BlogLeft />} />  
 
-          <Route path='/blogdetails/:id' element={<BlogDetails />} />      
-          <Route path='/blogdetails/right' element={<BlogDetailsRight />} />      
+          <Route path='/blogbycategory/:id' element={<BlogByCategory />} />  
+          <Route path='/blogbytag/:id' element={<BlogByTag />} />  
 
+          <Route path='/blogdetails/:id' element={<BlogDetails />} />       
 
           <Route 
             path='/admin' 
@@ -128,6 +135,10 @@ function App() {
             <Route path='blog/author' element={<AdminblogAuthor />} />
             <Route path='blog' element={<AdminBlog />} />
             <Route path='blog/create' element={<AdminCreateBlog />} />
+
+            <Route path='home/hero' element={<AdminHero />} />
+            <Route path='home/about' element={<AdminAbout />} />
+            <Route path='home/partner' element={<AdminPartner />} />
 
             <Route path='service' element={<AdminService />} />
             <Route path='service/create' element={<AdminServiceCreate />} />

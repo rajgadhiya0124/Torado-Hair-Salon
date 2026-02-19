@@ -80,5 +80,12 @@ export const BlogModel = {
         );
 
         return result[0];
+    },
+
+    //get populer blog
+    getPopulerBlog : async()=>{
+
+        const [result] = await db.query("CALL sp_get_populer_blog()");
+        return result[0];
     }
 }

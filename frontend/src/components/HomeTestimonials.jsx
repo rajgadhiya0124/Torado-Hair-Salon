@@ -26,30 +26,6 @@ const HomeTestimonials = () => {
         fetchtestimonial();
     },[]);
 
-    
-    // const testimonials = [
-    // {
-    //     id: 1,
-    //     name: "John Doe",
-    //     role: "Hair Stylist",
-    //     image: "/image/home/testimonials/testimonials-1.png",
-    //     text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
-    // },
-    // {
-    //     id: 2,
-    //     name: "Sarah Smith",
-    //     role: "Customer",
-    //     image: "/image/home/testimonials/testimonials-2.png",
-    //     text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
-    // },
-    // {
-    //     id: 3,
-    //     name: "David Lee",
-    //     role: "Client",
-    //     image: "/image/home/testimonials/testimonials-3.png",
-    //     text: "Sed ut perspiciatis unde omnislom iste natus error sit voluptatem accusantium doloremque laudantium totam aperiam eaque ipsa quae illo inventore verita quasi sed yes architecto beatae vitae dicta sun."
-    // }
-    // ];
 
   return (
    <section className='home-testimonials-section'>

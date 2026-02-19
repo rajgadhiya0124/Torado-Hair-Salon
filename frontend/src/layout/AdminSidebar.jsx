@@ -13,6 +13,7 @@ import { MdOutlinePrivacyTip } from "react-icons/md";
 import { PiShoppingCartFill } from "react-icons/pi";
 import { MdLeaderboard } from "react-icons/md";
 import { RiNewspaperLine } from "react-icons/ri";
+import { IoHomeOutline } from "react-icons/io5";
 
 const AdminSidebar = ({collapsed }) => {
 
@@ -35,8 +36,6 @@ const AdminSidebar = ({collapsed }) => {
             {/* <img src="/image/navbar/navbar-logo.svg" alt="" /> */}
         </div>
 
-
-
         <div className='admin-menu'>
             <span className='admin-item-span'>
                 <MdOutlineDashboard  className='item-icon'/>
@@ -45,6 +44,39 @@ const AdminSidebar = ({collapsed }) => {
                     <Link to={'/admin'} className='adminside-item-link'> DashBoard</Link>
                 )}
             </span>
+
+            <div className='admin-dropdown'>
+                <span className='admin-item-span' onClick={()=>toggle("home")}>
+                    <IoHomeOutline  className='item-icon'/>
+
+                    <div className='admin-item-name'>
+                        {!collapsed && (
+                            <span className='adminside-item-link'> Home </span>
+                        )}
+
+                        {!collapsed && (
+                            <FiChevronDown
+                            className={`dropdown-arrow ${open.home ? "rotate" : ""}`}
+                            />
+                        )}
+                    </div>
+                </span>
+
+                {open.home && !collapsed &&(
+                    <div className='admin-submenu'>
+                        <Link to="home/hero" className='admin-submenu-link'>
+                            Hero section
+                        </Link>
+                        <Link to="home/about" className='admin-submenu-link'>
+                            About section
+                        </Link>
+                        <Link to="home/partner" className='admin-submenu-link'>
+                            Partner section
+                        </Link>
+                    </div>
+                )}
+            </div>
+
 
             <div className='admin-dropdown'>
                 <span className='admin-item-span' onClick={()=>toggle("service")}>

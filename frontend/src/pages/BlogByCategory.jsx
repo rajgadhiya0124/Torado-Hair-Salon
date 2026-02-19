@@ -1,60 +1,50 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { IoCalendarOutline } from "react-icons/io5";
-import { LiaComment } from "react-icons/lia";
-import { useState } from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
-import HomeAnimation from '../components/HomeAnimation';
-import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import React, { useEffect, useState } from 'react'
+import { IoCalendarOutline } from 'react-icons/io5';
+import { LiaComment } from 'react-icons/lia';
+import { Link, useParams } from 'react-router-dom'
+import FormateDate from '../components/FormateDate';
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
+const BlogByCategory = () => {
 
-const BlogPage = () => {
-    const navigate = useNavigate();
-
-    const [blog,setBlog] = useState([]);
+    const { id } = useParams();
+    const [blogByCat, setBlogByCat] = useState([]);
+    const [categoryName, setCategoryName] = useState("");
 
     const[currentPage , setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
+    const CurrentBlogs = blogByCat.slice(firstIndex,lastIndex);
+    const totalPage = Math.ceil(blogByCat.length / itemsPerPage);
 
-    const CurrentBlogs = blog.slice(firstIndex,lastIndex);
-
-    const totalPage = Math.ceil(blog.length / itemsPerPage);
-
-
-
-    const fetchBlogs  = async()=>{
+    const fetchBlogByCategory = async()=>{
         try {
-            const res = await axios.get("http://localhost:4000/api/blog/getAll");
-            
-            const activeBlog = res.data.data.filter(
-                (item)=> item.status === 1
-            )
+            const res = await axios.get(`http://localhost:4000/api/blog/getBycategory/${id}`);
+            setBlogByCat(res.data.data);
 
-            setBlog(activeBlog);
-            console.log(res.data)
+            setCategoryName(res.data.data[0].category_name);
         } catch (error) {
-            console.error("Error Whilr Fetch Blogs",error);
+            console.error("Error fetching blogs by category",error);
         }
     }
 
     useEffect(()=>{
-        fetchBlogs();
+        fetchBlogByCategory();
     },[]);
 
-    const formatDate = (date)=>{
-        return new Date(date).toLocaleDateString("en-US",{
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
-        });
+    const getFirstParagraph = (html) => {
+    if (!html) return "";
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const firstP = doc.querySelector("p");
+
+        return firstP ? firstP.textContent : "";
     };
 
-    
   return (
     <>
     <section className="blog-hero-section">
@@ -63,10 +53,12 @@ const BlogPage = () => {
                 
                 <div className="col-12 col-lg-6">
                     <div className='page-hero-left'>
-                        <h2>Blog Grid</h2>
+                        <h2>Blog By Category</h2>
                         <div className='home-navigation'>
                             <Link to={'/'} className='home-link'>Home</Link>  /   
-                            <span className='pages-title'>Blog</span>
+                            <span className='pages-title'>
+                                {(categoryName.length === 0 ? "Category Blog" : categoryName )}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -86,12 +78,16 @@ const BlogPage = () => {
         <section className="containers">
             <div className='blog-head'>
                 <span className='blog-sub'>News Feeds</span>
-                <h2 className='blog-head-title'>Our Latest Blog Update</h2>
+                <h2 className='blog-head-title'>{categoryName} Blogs</h2>
             </div>
+
 
             <div className="blog-list-content">
                 <div className='blog-grid'>
-                    {CurrentBlogs.map((item)=>(
+                    {blogByCat.length === 0 ? (
+                        <h5>No Blogs Found...</h5>
+                    ):(
+                    CurrentBlogs.map((item)=>(
                     <div className="blog-card" key={item.id}>
                         <img src={ `http://localhost:4000/uploads/blog/${item.blog_image}`}  className="blog-image" alt="" />
 
@@ -99,7 +95,7 @@ const BlogPage = () => {
                             <ul className='date-info-ul'>
                                 <li className='date-li'>
                                     <IoCalendarOutline  style={{color:"#FF6F61"}}/>
-                                    <p className='m-0'>{formatDate(item.blog_date)}</p>
+                                    <p className='m-0'>{FormateDate(item.blog_date)}</p>
                                 </li>
                                 <li className='date-li'>
                                     <LiaComment style={{color:"#FF6F61"}}/>
@@ -111,18 +107,19 @@ const BlogPage = () => {
                                 {item.blog_title}
                             </h4>
 
-                            <p>Lorem ipsum dolor sit amet conectetur adipis elementum erat ut aliquet neque pra.</p>
+                            <p>{getFirstParagraph(item.content).substring(0,80)}...</p>
 
                             <Link to={`/blogdetails/${item.id}`} className='read-more-link'>Read More</Link>
                         </div>
 
                     </div>
-                    ))}
+                    ))
+                    )}
                 </div>
 
                 <div className='pagination'>
                     <button
-                    className='pagination-left-btn'
+                        className='pagination-left-btn'
                         disabled = {currentPage === 1}
                         onClick={()=> setCurrentPage(currentPage - 1)}
                     >
@@ -150,10 +147,8 @@ const BlogPage = () => {
             </div>
         </section>
     </section>
-
-    <HomeAnimation />
     </>
   )
 }
 
-export default BlogPage
+export default BlogByCategory

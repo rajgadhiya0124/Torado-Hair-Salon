@@ -173,3 +173,22 @@ export const getBlogByTag = async(req,res)=>{
         });
     }
 }
+
+//get populer blog
+export const getPopulerblog = async(req,res)=>{
+    try {
+
+        const Populerblog = await BlogModel.getPopulerBlog();
+
+        res.status(200).json({
+            success:true,
+            data: Populerblog
+        });
+        
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}

@@ -145,7 +145,7 @@ const AdminProduct = () => {
     } 
 
 
-    //update blog status
+    //update product status
     const handleStatusChange = async (id) => {
     try {
         await axios.put(`http://localhost:4000/api/product/updateStatus/${id}`,{},

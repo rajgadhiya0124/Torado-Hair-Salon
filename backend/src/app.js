@@ -26,6 +26,7 @@ import termsRoutes from "./router/terms.router.js"
 import homeHeroRoutes from "./router/home.hero.router.js"
 import homeAboutRoutes from "./router/home.aboutus.router.js"
 import homePartnerRoutes from "./router/home.partner.router.js"
+import BestServiceRoutes from "./router/home.bestservice.router.js"
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(express.json());
 app.use("/api/home/hero",homeHeroRoutes);
 app.use("/api/home/about",homeAboutRoutes);
 app.use("/api/home/partner",homePartnerRoutes);
+app.use("/api/home/bestpriceService",BestServiceRoutes);
 
 app.use("/api/contactInfo",contactRoutes);
 app.use("/api/contactus",contactUsRoutes);

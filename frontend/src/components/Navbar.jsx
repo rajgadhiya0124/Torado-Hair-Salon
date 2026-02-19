@@ -43,9 +43,9 @@ const Navbar = () => {
                                     </li>
 
                                     <li className="nav-item nav-dropdown">
-                                        <a className="nav-link custom-nav-link" href="#">
+                                        <Link to={'aboutus'} className="nav-link custom-nav-link" >
                                             About Us
-                                        </a>
+                                        </Link>
                                     </li>
 
                                     <li className="nav-item nav-dropdown">
@@ -137,8 +137,8 @@ const Navbar = () => {
                                             <li><Link to={'/blog-left'} className='dropdown-items-link'>
                                                 Left Sidebar</Link>
                                             </li>
-                                            <li>Others <FiPlus/> </li>
-                                            <li>Single Post <FiPlus/> </li>
+                                            {/* <li>Others <FiPlus/> </li>
+                                            <li>Single Post <FiPlus/> </li> */}
                                         </ul>
                                     </li>
                                     <li className="nav-item">
