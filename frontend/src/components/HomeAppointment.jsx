@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -10,12 +10,32 @@ const HomeAppointment = () => {
         customer_email:"",
         customer_phone:"",
         persons:"",
+        service_id:"",
         appointment_date:"",
+        appointment_time:"",
         address:"",
         message:""
     });
 
+    const [service,setService] = useState([]);
+
     const token = localStorage.getItem("token");
+
+    const fetchService = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/service/getAll");
+            const ActiveService = res.data.data.filter(
+                (items)=>items.status === 1
+            );
+            setService(ActiveService);
+        } catch (error) {
+            console.error("Error Whie Fetch Service",error)
+        }
+    }
+
+    useEffect(()=>{
+        fetchService();
+    },[]);
 
     const handleChnage = (e)=>{
         setAppointmentForm({
@@ -37,7 +57,7 @@ const HomeAppointment = () => {
             );
             setAppointmentForm({
                 customer_name:"",customer_email:"",customer_phone:"",
-                persons:"",appointment_date:"",address:"",message:""
+                persons:"",service_id:"", appointment_date:"",appointment_time:"",address:"",message:""
             })
             toast.success("Form Submitted...")
         } catch (error) {
@@ -98,6 +118,23 @@ const HomeAppointment = () => {
                                 </div>
                             </div>
 
+                            <div className="appoint-form-row">
+                                <div className="form-groups">
+                                    <select
+                                        name="service_id"
+                                        value={appointmentForm.service_id}
+                                        onChange={handleChnage}
+                                    >
+                                        <option value="">Select Service</option>
+                                        {service.map((item)=>(
+                                            <option value={item.id} key={item.id} >
+                                                {item.service_name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+
                             <div className="form-row">
                                 <div className="form-group">
                                     <input 
@@ -107,7 +144,19 @@ const HomeAppointment = () => {
                                         onChange={handleChnage}
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-groups">
+                                    <input 
+                                        type="time"
+                                        name="appointment_time"
+                                        placeholder='select time'
+                                        value={appointmentForm.appointment_time}
+                                        onChange={handleChnage}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='appoint-form-row'>
+                                <div className="form-groups">
                                     <input 
                                         type="text" 
                                         placeholder="Address" 

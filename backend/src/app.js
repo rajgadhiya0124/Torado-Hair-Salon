@@ -27,7 +27,8 @@ import homeHeroRoutes from "./router/home.hero.router.js"
 import homeAboutRoutes from "./router/home.aboutus.router.js"
 import homePartnerRoutes from "./router/home.partner.router.js"
 import BestServiceRoutes from "./router/home.bestservice.router.js"
-
+import dashboardRoutes from "./router/dashboard.router.js"
+import notificationRoutes from "./router/notification.router.js"
 const app = express();
 
 app.use(cors());
@@ -37,6 +38,9 @@ app.use("/api/home/hero",homeHeroRoutes);
 app.use("/api/home/about",homeAboutRoutes);
 app.use("/api/home/partner",homePartnerRoutes);
 app.use("/api/home/bestpriceService",BestServiceRoutes);
+
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/notification", notificationRoutes);
 
 app.use("/api/contactInfo",contactRoutes);
 app.use("/api/contactus",contactUsRoutes);

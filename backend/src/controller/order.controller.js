@@ -1,3 +1,4 @@
+import { notificationModel } from "../models/notification.modal.js";
 import { OrderModel } from "../models/order.model.js";
 
 //create order
@@ -29,6 +30,13 @@ export const createOrder = async(req,res)=>{
                 createdBy
             })
         }
+
+        await notificationModel.createNotification({
+            title: "New Order Received",
+            message: `New order #${order_id} has been placed`,
+            type: "order",
+            reference_id: order_id
+        })
 
         res.status(201).json({
             success: true,

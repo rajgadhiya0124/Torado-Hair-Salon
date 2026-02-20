@@ -4,11 +4,11 @@ import db from "../config/db.js";
 export const AppointmentModel = {
     createAppointment: async(data)=>{
         const {customer_name,customer_email,customer_phone, 
-            persons, appointment_date, address, message, createdBy}= data;
+            persons,service_id, appointment_date,appointment_time, address, message, createdBy}= data;
 
-        const [rows]= await db.query("CALL sp_create_appointment(?,?,?,?,?,?,?,?)",
+        const [rows]= await db.query("CALL sp_create_appointment(?,?,?,?,?,?,?,?,?,?)",
             [customer_name,customer_email,customer_phone, 
-            persons, appointment_date, address, message, createdBy]
+            persons,service_id, appointment_date,appointment_time, address, message, createdBy]
         );
         return rows;
     },

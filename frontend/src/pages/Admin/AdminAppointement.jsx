@@ -86,8 +86,9 @@ const AdminAppointement = () => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Service</th>
                         <th>Persons</th>
-                        <th>Appointment Date</th>
+                        <th>Date & Time</th>
                         <th>Appointment Status</th>
                         <th>ACTION</th>
                     </tr>
@@ -99,8 +100,9 @@ const AdminAppointement = () => {
                             <td>{item.customer_name}</td>
                             <td>{item.customer_email}</td>
                             <td>{item.customer_phone}</td>
+                            <td>{item.service_name}</td>
                             <td>{item.persons}</td>
-                            <td>{FormateDate(item.appointment_date)}</td>
+                            <td>{FormateDate(item.appointment_date)} {item.appointment_time}</td>
                             <td>
                                 <select
                                     value={item.appointment_status}
@@ -167,7 +169,10 @@ const AdminAppointement = () => {
                         <div>
                             <span className="appoint-view-label">Date & Time</span>
                             <span>
-                            {FormateDate(selectedAppointment.appointment_date)}
+                                {FormateDate(selectedAppointment.appointment_date)}
+                            </span>{" "}
+                            <span>
+                                {selectedAppointment.appointment_time}
                             </span>
                         </div>
 

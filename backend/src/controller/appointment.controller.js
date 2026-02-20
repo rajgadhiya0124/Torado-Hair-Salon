@@ -7,7 +7,7 @@ export const createAppointment = async(req,res)=>{
     try {
 
         const {customer_name,customer_email,customer_phone, 
-            persons, appointment_date, address, message} = req.body;
+            persons,service_id, appointment_date,appointment_time, address, message} = req.body;
 
         const createdBy = req.user ? req.user.id : null;
         // const data = {
@@ -30,7 +30,7 @@ export const createAppointment = async(req,res)=>{
         })
 
         await AppointmentModel.createAppointment({customer_name,customer_email,customer_phone, 
-            persons, appointment_date, address, message,createdBy});
+            persons,service_id, appointment_date,appointment_time, address, message,createdBy});
         
         res.json({
             success:true,
