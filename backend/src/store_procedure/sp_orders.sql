@@ -105,7 +105,6 @@ END$$
 
 DELIMITER ;
 
-
 -- update Order status
 DELIMITER $$
 CREATE PROCEDURE sp_toggle_order_status(
@@ -159,3 +158,75 @@ END$$
 
 DELIMITER ;
 
+
+-- get order by user id or each user order 
+DELIMITER $$
+CREATE PROCEDURE sp_get_user_orders_list (
+    IN p_user_id  INT
+)
+BEGIN
+    SELECT 
+		o.id AS order_id,
+        o.payment_method,
+        o.payment_status,
+        o.order_status,
+		o.total_amount,
+        o.createdAt
+        
+    FROM tbl_orders o 
+    WHERE o.user_id = p_user_id 
+      AND o.status = 1
+	 ORDER BY o.createdAt DESC;
+      
+END$$
+DELIMITER ;
+
+select * from tbl_orders;
+
+-- get order details 
+DELIMITER $$
+
+CREATE PROCEDURE sp_get_order_details(
+    IN p_order_id INT,
+    IN p_user_id INT
+)
+BEGIN
+
+    -- Order Info
+    SELECT 
+        o.id,
+        o.first_name,
+        o.last_name,
+        o.email,
+        o.phone,
+        o.country,
+        o.address,
+        o.city,
+        o.state,
+        o.zip,
+        o.total_amount,
+        o.payment_method,
+        o.payment_status,
+        o.order_status,
+        o.createdAt
+    FROM tbl_orders o
+    WHERE o.id = p_order_id
+      AND o.user_id = p_user_id;
+
+    -- Order Items
+    SELECT 
+       --  oi.id,
+        oi.product_id,
+        p.product_name,	
+        p.product_image,
+        oi.price,
+        oi.quantity,
+        oi.total
+    FROM tbl_order_items oi
+    JOIN tbl_products p ON p.id = oi.product_id
+    WHERE oi.order_id = p_order_id
+      AND oi.status = 1;
+
+END $$
+
+DELIMITER ;

@@ -3,13 +3,28 @@ import { FiPlus } from "react-icons/fi";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { HiBars3BottomRight } from "react-icons/hi2";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RxCross2 } from "react-icons/rx";
 import { FiUser } from "react-icons/fi";
+import { BsBox } from "react-icons/bs";
+import { AiOutlineHeart } from "react-icons/ai";
+import { IoExitOutline } from "react-icons/io5";
+import { HiOutlineUser } from "react-icons/hi";
 
 const Navbar = () => {  
-
+    const navigate = useNavigate();
     const [showDrawer, setShowDrawer] = useState(false);
+
+    const [open, setOpen] = useState(false);
+
+    const user = JSON.parse(localStorage.getItem("user"))
+
+    const handleLogut = ()=>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        localStorage.removeItem("cart");
+        navigate("/login")
+    }
 
   return (
     <>
@@ -159,9 +174,32 @@ const Navbar = () => {
                         <button className='bar-icon' onClick={()=>setShowDrawer(true)}>
                             <HiBars3BottomRight />
                         </button>
-                        <button className='shop-icon'>
+                        <button className='shop-icon' onClick={()=>setOpen(!open)}>
                             <FiUser />
                         </button>
+
+                        {open && (
+                        <div className="user-dropdown-menu">
+                            <Link className="user-dropdown-item">
+                                <HiOutlineUser style={{fontSize:"18px"}}/> 
+                                {user?.name ? user.name : "Account"}
+                            </Link>
+                            <Link to={"/user/order"} className="user-dropdown-item">
+                                <BsBox style={{fontSize:"18px"}}/> My Orders
+                            </Link>
+
+                            <Link to={"/wishlist"} className="user-dropdown-item">
+                                <AiOutlineHeart style={{fontSize:"18px"}} /> Wishlist
+                            </Link>
+
+                            <Link className="user-dropdown-item" onClick={(e)=>{
+                                e.preventDefault();
+                                handleLogut();
+                            }}>
+                                <IoExitOutline style={{fontSize:"18px"}}/> Logout
+                            </Link>
+                        </div>
+                        )}
                     </div>
                 </div>
             </div>

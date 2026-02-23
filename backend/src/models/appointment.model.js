@@ -10,7 +10,7 @@ export const AppointmentModel = {
             [customer_name,customer_email,customer_phone, 
             persons,service_id, appointment_date,appointment_time, address, message, createdBy]
         );
-        return rows;
+        return rows[0][0];
     },
 
     getAllAppointment: async()=>{

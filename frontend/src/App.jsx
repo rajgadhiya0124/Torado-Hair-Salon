@@ -66,6 +66,8 @@ import AdminPartner from './pages/Admin/home/AdminPartner';
 import BlogByCategory from './pages/BlogByCategory';
 import BlogByTag from './pages/BlogByTag';
 import AboutusPage from './pages/AboutusPage';
+import UserOrderPage from './pages/UserOrderPage';
+import OrderDetailsPage from './pages/OrderDetailsPage';
 
 function App() {
     const location = useLocation();
@@ -99,6 +101,8 @@ function App() {
           <Route path='/privacy' element={<PrivacyPolicy />} />  
           <Route path='/terms&condition' element={<TermsPage />} />  
           <Route path='/wishlist' element={<WishListPage />} />  
+          <Route path='/user/order' element={<UserOrderPage />} />  
+          <Route path='/order/details/:id' element={<OrderDetailsPage />} />  
 
           <Route path='/team' element={<TeamPage />} />  
           <Route path='/gallery' element={<GalleryPage />} />  

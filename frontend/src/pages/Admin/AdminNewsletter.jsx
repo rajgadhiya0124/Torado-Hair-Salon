@@ -10,7 +10,7 @@ const AdminNewsletter = () => {
     const [subscriber, setSubscriber] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
+    const itemsPerPage = 8;
 
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;

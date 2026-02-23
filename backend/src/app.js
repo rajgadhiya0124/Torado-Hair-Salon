@@ -29,6 +29,8 @@ import homePartnerRoutes from "./router/home.partner.router.js"
 import BestServiceRoutes from "./router/home.bestservice.router.js"
 import dashboardRoutes from "./router/dashboard.router.js"
 import notificationRoutes from "./router/notification.router.js"
+import wishlistRoutes from "./router/wishlist.router.js";
+
 const app = express();
 
 app.use(cors());
@@ -66,6 +68,7 @@ app.use("/api/newsletter",newsletterRoutes);
 app.use("/api/faq",faqRoutes);
 app.use("/api/privacy",privacyRoutes);
 app.use("/api/terms",termsRoutes);
+app.use("/api/wishlist",wishlistRoutes);
 
 app.use("/api/gallery/category",galleryCatRoutes);
 app.use("/api/gallery",galleryRoutes);

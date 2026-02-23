@@ -1,4 +1,5 @@
 import { NewsletterModel } from "../models/newsletter.model.js";
+import { notificationModel } from "../models/notification.modal.js";
 
 
 //create newsletter
@@ -7,7 +8,24 @@ export const createNewsletter = async(req,res)=>{
         const {email} = req.body;
         const createdBy = req.user ? req.user.id : null
 
-        await NewsletterModel.createNewsletter(email,createdBy);
+        const existEmail = await NewsletterModel.checkEmailExists(email);
+        if(existEmail){
+            return res.status(400).json({
+                success: false,
+                message: "Email already subscribed"
+            });
+        }
+
+        const result = await NewsletterModel.createNewsletter(email,createdBy);
+
+        const newsletter_id = result.newsletter_id;
+
+        await notificationModel.createNotification({
+            title: "New Newsletter Subscriber",
+            message: `${email} subscribed to the newsletter`,
+            type: "newsletter",
+            reference_id: newsletter_id
+        })
         
         res.status(200).json({
             success:true,

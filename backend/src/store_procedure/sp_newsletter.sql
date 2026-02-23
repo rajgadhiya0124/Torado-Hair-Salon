@@ -20,6 +20,8 @@ CREATE PROCEDURE sp_create_newsletter (
 BEGIN
     INSERT INTO tbl_newsletter (email, createdBy, updatedBy)
     VALUES (p_email, p_createdBy, p_createdBy);
+    
+    SELECT LAST_INSERT_ID() AS newsletter_id;
 END$$
 DELIMITER ;
 

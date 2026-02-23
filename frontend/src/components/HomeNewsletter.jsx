@@ -32,6 +32,8 @@ const HomeNewsletter = () => {
             setEmail("");
         } catch (error) {
             console.error("Error while subscibe newsletter",error);
+            setMessage(error.response.data.message)
+            setMessageType("error")
         }finally{
             setLoading(false)
         }

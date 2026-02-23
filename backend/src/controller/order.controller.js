@@ -153,3 +153,50 @@ export const deleteOrder = async(req,res)=>{
         });
     }
 }
+
+//get user orderlist
+export const getUserOrdersList = async (req, res) => {
+    try {
+
+        const user_id = req.user.id;
+
+        const orders = await OrderModel.getUserOrderList(user_id);
+
+        res.status(200).json({
+            success: true,
+            data: orders
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+//get order details
+export const getOrderDetails = async (req, res) => {
+    try {
+
+        const user_id = req.user.id;
+        const { order_id } = req.params;
+
+        const result = await OrderModel.getOrderDetails(order_id, user_id);
+
+        const order = result[0][0];
+        const items = result[1];
+
+        res.status(200).json({
+            success: true,
+            order,
+            items
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};

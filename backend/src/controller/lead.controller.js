@@ -1,14 +1,22 @@
 import { leadModel } from "../models/lead.model.js";
+import { notificationModel } from "../models/notification.modal.js";
 
 //create lead
 export const createLead = async(req,res)=>{
     try {
-        const data = {
-            ...req.body,
-            createdBy : req.user ? req.user.id: null,
-        }
+        const {user_name,email,company} = req.body
+        const createdBy = req.user ? req.user.id : null;
 
-        await leadModel.createLead(data);
+        const result = await leadModel.createLead({user_name,email,company,createdBy});
+
+        const lead_id = result.lead_id;
+
+        await notificationModel.createNotification({
+            title: "New Lead Received",
+            message: `New inquiry received from #${user_name}`,
+            type: "lead",
+            reference_id: lead_id
+        })
 
         res.status(200).json({
             success:true,

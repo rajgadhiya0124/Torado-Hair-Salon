@@ -56,22 +56,49 @@ const ShopPage = () => {
     const CurrentProduct = filterProduct.slice(firstIndex,lastIndex);
     const totalPage = Math.ceil( product.length / itemsPerPage)
 
-    const addToWishlist = (item)=>{
-        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    // const addToWishlist = (item)=>{
+    //     let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-        const exists = wishlist.find(w => w.id === item.id);
+    //     const exists = wishlist.find(w => w.id === item.id);
 
-        if (exists) {
-            toast.info("Already added to wishlist");
+    //     if (exists) {
+    //         toast.info("Already added to wishlist");
+    //         return;
+    //     }
+
+    //     if(!exists){
+    //         wishlist.push(item);
+    //         localStorage.setItem("wishlist",JSON.stringify(wishlist));
+    //     }
+
+    //     navigate("/wishlist")
+    // }
+    const token = localStorage.getItem("token");
+
+    const handleWishlist = async(productId)=>{
+        if(!token){
+            alert("Please login first");
             return;
         }
 
-        if(!exists){
-            wishlist.push(item);
-            localStorage.setItem("wishlist",JSON.stringify(wishlist));
+        try {
+            const res = await axios.post("http://localhost:4000/api/wishlist/add",
+                {
+                    // user_id: from auth
+                    product_id : productId
+                },
+                {
+                    headers:{
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+            toast.success("Item Added To Wislist")
+        } catch (error) {
+            console.error("Error While Add To wishlist",error);
+            console.error(error.response.data.message);
+            toast.info(error.response.data.message)
         }
-
-        navigate("/wishlist")
     }
     
 
@@ -114,7 +141,8 @@ const ShopPage = () => {
                                     className="product-img" alt="" />
 
                                 <div className='products-icon'>
-                                    <button onClick={()=>addToWishlist(item)}><CiHeart /></button>
+                                    {/* <button onClick={()=>addToWishlist(item)}><CiHeart /></button> */}
+                                    <button onClick={()=>handleWishlist(item.id)}><CiHeart /></button>
                                     <button onClick={()=>addToCart(item,quantity)}>
                                         <AiOutlineShoppingCart />
                                     </button>

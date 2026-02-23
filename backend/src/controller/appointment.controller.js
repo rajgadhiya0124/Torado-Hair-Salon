@@ -1,4 +1,5 @@
 import { AppointmentModel } from "../models/appointment.model.js"
+import { notificationModel } from "../models/notification.modal.js";
 import { sendEmail } from "../utils/mailer.js";
 
 
@@ -29,8 +30,17 @@ export const createAppointment = async(req,res)=>{
             `
         })
 
-        await AppointmentModel.createAppointment({customer_name,customer_email,customer_phone, 
+        const result = await AppointmentModel.createAppointment({customer_name,customer_email,customer_phone, 
             persons,service_id, appointment_date,appointment_time, address, message,createdBy});
+
+        const appointment_id = result.appointment_id;
+
+        await notificationModel.createNotification({
+            title: "New Appointment Booked",
+            message: `New appointment #${appointment_id} has been scheduled`,
+            type: "appointment",
+            reference_id: appointment_id
+        })
         
         res.json({
             success:true,

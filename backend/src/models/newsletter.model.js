@@ -8,7 +8,15 @@ export const NewsletterModel = {
             [email,createdBy]
         );
 
-        return rows;
+        return rows[0][0];
+    },
+
+    checkEmailExists: async (email) => {
+        const [rows] = await db.query(
+            "SELECT id FROM tbl_newsletter WHERE email = ?",
+            [email]
+        );
+        return rows.length > 0;
     },
 
     getAllNewsletter : async()=>{

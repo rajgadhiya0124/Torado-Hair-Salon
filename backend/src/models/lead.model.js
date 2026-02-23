@@ -8,7 +8,7 @@ export const leadModel = {
             [user_name , email, company, createdBy]
         );
 
-        return rows;
+        return rows[0][0];
     },
 
     getAllLead : async()=>{

@@ -64,6 +64,7 @@ BEGIN
         p_createdBy,
         p_createdBy
     );
+    SELECT LAST_INSERT_ID() AS appointment_id;
 END$$
 DELIMITER ;
 

@@ -3,22 +3,64 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { IoMdTrash } from "react-icons/io";
+import axios from 'axios';
 
 const WishListPage = () => {
 
+    // const [wishlist, setWishlist] = useState([]);
+
+    // useEffect(()=>{
+    //     const data = JSON.parse(localStorage.getItem("wishlist")) || [];
+    //     setWishlist(data);
+    // }, []);
+
+    // const removeItem = (id) => {
+    //     const updated = wishlist.filter(item => item.id !== id);
+    //     setWishlist(updated);
+    //     localStorage.setItem("wishlist", JSON.stringify(updated));
+    // };
+
     const [wishlist, setWishlist] = useState([]);
 
+    const token = localStorage.getItem("token");
+
+    const fetchWishlist = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/wishlist/getByUser",
+                {
+                    headers:{
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            setWishlist(res.data.data);
+        
+        } catch (error) {
+            console.error("Error While Fetch Wishlist",error);
+            console.log(error.response?.data?.message);
+        }
+    }
+
     useEffect(()=>{
-        const data = JSON.parse(localStorage.getItem("wishlist")) || [];
-        setWishlist(data);
-    }, []);
+        fetchWishlist();
+    },[]);
 
-    const removeItem = (id) => {
-        const updated = wishlist.filter(item => item.id !== id);
-        setWishlist(updated);
-        localStorage.setItem("wishlist", JSON.stringify(updated));
-    };
-
+    const removeFromWishlist = async(product_id)=>{
+        try {
+            await axios.delete(`http://localhost:4000/api/wishlist/remove`,
+                {   
+                    data:{ product_id: product_id },
+                    headers:{
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            fetchWishlist();
+        } catch (error) {
+            console.error("Error While delete wishlist",error)
+            console.log(error.response?.data?.message);
+        }
+    }
 
   return (
     <>
@@ -66,9 +108,9 @@ const WishListPage = () => {
 
                                 <div className='wish-product-info'>
                                     <h4>{item.product_name}</h4>
-                                    <p>{item.price}</p>
+                                    <p>${item.price}</p>
 
-                                    <button className='wish-remove-btn' onClick={() => removeItem(item.id)}>
+                                    <button className='wish-remove-btn' onClick={() =>removeFromWishlist(item.product_id)}>
                                         <IoMdTrash />
                                     </button>
                                 </div>

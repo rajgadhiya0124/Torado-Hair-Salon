@@ -65,5 +65,24 @@ export const OrderModel = {
         );
 
         return rows;
+    },
+
+
+    getUserOrderList: async(user_id)=>{
+        const [result] = await db.query("CALL sp_get_user_orders_list(?)",
+            [user_id]
+        );
+        return result[0];
+    },
+
+    getOrderDetails : async(order_id, user_id)=>{
+        const [result] = await db.query("CALL sp_get_order_details(?,?)",
+            [order_id,user_id]
+        );
+        return result;
+        // return{
+        //     order: result[0][0],
+        //     items: result[1]
+        // }
     }
 }

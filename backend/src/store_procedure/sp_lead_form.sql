@@ -34,6 +34,7 @@ BEGIN
     VALUES (
         p_user_name, p_email, p_company, p_createdBy, p_createdBy
     );
+    SELECT LAST_INSERT_ID() AS lead_id;
 END $$
 
 DELIMITER ;
