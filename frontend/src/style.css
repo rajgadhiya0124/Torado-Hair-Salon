@@ -2965,6 +2965,24 @@ h1,h2,h3,h4{
         display: flex;
         flex-direction: column;
     }
+    .post-btn{
+        font-weight: 600;
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+}
+@media(max-width:576px){
+    .blog-comment-row{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 15px;
+    }
+    .post-btn{
+        font-weight: 600;
+        padding: 10px 20px;
+        font-size: 12px;
+    }
 }
 @media(max-width:480px){
     .blog-details-content .article-qoute p{
@@ -2983,8 +3001,17 @@ h1,h2,h3,h4{
         display: flex;
         flex-direction: column;
     }
+    .blog-author-image{
+        width: 80px;
+        border-radius: 50%;
+    }
 }
-
+@media(max-width:425px){
+    .blog-details-content .blogdetails-img img{
+        width: 300px;
+        border-radius: 8px;
+    }
+}
 
 /*service page*/
 .service-hero-section{
@@ -3717,20 +3744,21 @@ h1,h2,h3,h4{
 .price-filter-div{
     margin-top: 25px;
     align-items: center;
-    padding: 35px 25px;
+    padding: 20px 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .price-filter-title{
     font-size: 25px;
     border-bottom: 1px solid #FF6F61;
-    padding-bottom: 25px;
+    padding-bottom:15px;
     position: relative;
+    margin-top: 20px;
 }
 .price-filter-title::before{
     position: absolute;
     content: "";
-    top: 52px;
+    top: 42px;
     background-color: #FF6F61;
     left: 0;
     width: 45px;

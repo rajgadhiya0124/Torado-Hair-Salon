@@ -63,5 +63,21 @@ export const ProductModel = {
         const [result] = await db.query("CALL sp_get_best_selling_products()");
 
         return result[0];
+    },
+
+    filterProduct: async({ category, tag, priceMin, priceMax })=>{
+        const [rows] = await db.query("CALL sp_filter_products(?,?,?,?)",
+        [
+            // category ?? null,
+            // tag ?? null,
+            // priceMin ?? null,
+            // priceMax ?? null
+            category ? category.join(",") : null,
+            tag ? tag.join(",") : null,
+            priceMin ?? null,
+            priceMax ?? null
+        ]
+        );
+        return rows[0];
     }
 }

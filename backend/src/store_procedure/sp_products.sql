@@ -205,3 +205,40 @@ END$$
 
 DELIMITER ;
 
+-- filter product
+DELIMITER $$
+CREATE PROCEDURE sp_filter_products (
+    IN p_category VARCHAR(255),
+    IN p_tag VARCHAR(255),
+    IN p_price_min DECIMAL(10,2),
+    IN p_price_max DECIMAL(10,2)
+)
+BEGIN
+    SELECT p.*,
+        c.category_name,
+        t.tag_name,
+			
+        IFNULL(AVG(r.rating), 0) AS avg_rating
+    
+    FROM tbl_products p
+	JOIN tbl_product_category c ON p.category_id = c.id
+    JOIN tbl_product_tags t ON p.tag_id = t.id
+    
+    LEFT JOIN tbl_product_reviews r ON r.product_id = p.id AND r.status = 1
+
+    WHERE 
+        -- Category filter (optional)
+        (p_category IS NULL OR FIND_IN_SET(p.category_id , p_category))
+        
+        -- Tag filter (optional)
+        AND (p_tag IS NULL OR FIND_IN_SET(p.tag_id , p_tag))
+        
+        -- Price filters (optional)
+        AND (p_price_min IS NULL OR p.price >= p_price_min)
+        AND (p_price_max IS NULL OR p.price <= p_price_max)
+        
+		AND p.status = 1
+	GROUP BY p.id;
+END $$
+DELIMITER ;
+

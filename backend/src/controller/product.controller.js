@@ -172,3 +172,29 @@ export const getBestsellingProduct = async(req,res)=>{
         });
     }
 }
+
+//filter product
+export const filterProduct = async(req,res)=>{
+    try {
+        const { category, tag, priceMin, priceMax } = req.query;
+
+        const product = await ProductModel.filterProduct({
+            // category: category ? parseInt(category) : null,
+            // tag: tag ? parseInt(tag) : null,
+            category: category ? category.split(",") : null,
+            tag: tag ? tag.split(",") : null,
+            priceMin: priceMin ? parseFloat(priceMin) : null,
+            priceMax: priceMax ? parseFloat(priceMax) : null
+        })
+
+        res.json({
+            success: true,
+            data: product
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}

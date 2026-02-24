@@ -170,7 +170,9 @@ const Navbar = () => {
                 <div className="col-4">
                     <div className='nav-icon-content'>
                         <button className='search-icon'><IoSearchOutline /></button>
-                        <button className='shop-icon'><HiOutlineShoppingBag /></button>
+                        <button className='shop-icon' onClick={()=>navigate(`/cart`)}>
+                            <HiOutlineShoppingBag />
+                        </button>
                         <button className='bar-icon' onClick={()=>setShowDrawer(true)}>
                             <HiBars3BottomRight />
                         </button>

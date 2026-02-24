@@ -7,9 +7,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import RatingStar from './RatingStar';
+import { toast } from 'react-toastify';
+import { useCart } from '../Context/CartContext';
 
 const HomeShop = () => {
 
+    const { addToCart } = useCart();
+    const quantity = 1;
     const [product, setProduct] = useState([]);
 
     //fetch Product
@@ -25,6 +29,33 @@ const HomeShop = () => {
     useEffect(()=>{
         fetchProduct();
     },[]);
+
+     const token = localStorage.getItem("token");
+    
+    const handleWishlist = async(productId)=>{
+        if(!token){
+            alert("Please login first");
+            return;
+        }
+        try {
+            const res = await axios.post("http://localhost:4000/api/wishlist/add",
+                {
+                    // user_id: from auth
+                    product_id : productId
+                },
+                {
+                    headers:{
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+            toast.success("Item Added To Wislist")
+        } catch (error) {
+            console.error("Error While Add To wishlist",error);
+            console.error(error.response.data.message);
+            toast.info(error.response.data.message)
+        }
+    }
 
   return (
     <section className="home-shop-section">
@@ -42,8 +73,8 @@ const HomeShop = () => {
                             <div className='product-img-div'>
                                 <img src={`http://localhost:4000/uploads/product/${item.product_image}`} alt="" />
                                 <div className='home-product-icon'>
-                                    <button><CiHeart /></button>
-                                    <button><AiOutlineShoppingCart /></button>
+                                    <button onClick={()=>handleWishlist(item.id)}><CiHeart /></button>
+                                    <button onClick={()=>addToCart(item,quantity)}><AiOutlineShoppingCart /></button>
                                     <button><IoSwapVertical /></button>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 import express from "express"
-import { createProduct, deleteProduct, getAllProducts, getBestsellingProduct, getProductById, updateProduct, updateProductStatus } from "../controller/product.controller.js";
+import { createProduct, deleteProduct, filterProduct, getAllProducts, getBestsellingProduct, getProductById, updateProduct, updateProductStatus } from "../controller/product.controller.js";
 import {upload} from "../middlewares/multer.js"
 import verifyToken from "../middlewares/auth.js";
 
@@ -15,5 +15,6 @@ router.put("/update/:id",verifyToken,upload("product").single("product_image"),u
 router.delete("/delete/:id",verifyToken,deleteProduct);
 
 router.get("/getBestselling",getBestsellingProduct);
+router.get("/filterproduct",filterProduct);
 
 export default router;

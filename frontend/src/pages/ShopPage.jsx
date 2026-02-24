@@ -18,32 +18,87 @@ const ShopPage = () => {
     const { addToCart } = useCart();
     const quantity = 1;
 
-    const MIN = 0;
-    const MAX = 10000;
-    const [values, setValues] = useState([2000, 8000]);
-
     const [product, setProduct] = useState([]);
     const [search, setSearch] = useState("");
+    const [productcategory, setProductCategory] = useState([]);
+    const [productTag, setProductTag] = useState([]);
+
+    const [category, setCategory] = useState([]);  //filter state
+    const [tag, setTag] = useState("");
+    const [priceMin, setPriceMin] = useState("");
+    const [priceMax, setPriceMax] = useState("");
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    //fetch Product
-    const fetchProduct = async()=>{
+    //fetch product catgory
+    const fetchCategory = async()=>{
         try {
-            const res = await axios.get("http://localhost:4000/api/product/getAll");
-            const Activeproduct = res.data.data.filter(
+            const res = await axios.get("http://localhost:4000/api/product/category/getall");
+            const activeCat = res.data.data.filter(
                 (item)=> item.status === 1
             )
-            setProduct(Activeproduct);
+            setProductCategory(activeCat)
         } catch (error) {
-            console.error("Error While Fetch product", error);
+            console.error("Error While Fetch category",error);
         }
     }
 
+    //fetch product tag
+    const fetchTags = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/product/tag/getall");
+            const activetag = res.data.data.filter(
+                (item)=> item.status === 1
+            )
+            setProductTag(activetag)
+        } catch (error) {
+            console.error("Error While Fetch Tag",error);
+        }
+    }
     useEffect(()=>{
-        fetchProduct();
+        fetchCategory();
+        fetchTags();
     },[]);
+
+
+    const fetchFilterProduct = async()=>{
+        try {
+            const res = await axios.get("http://localhost:4000/api/product/filterproduct",
+                {
+                    params:{
+                        category: category.length ? category.join(",") : undefined,
+                        tag: tag.length ? tag.join(",") : undefined,
+                        priceMin: priceMin || undefined,
+                        priceMax: priceMax || undefined,
+                    }
+                }
+            );
+            setProduct(res.data.data)
+        } catch (error) {
+            
+        }
+    }
+    useEffect(() => {
+        fetchFilterProduct();
+    }, [category, tag, priceMin, priceMax]);
+
+    // //fetch Product
+    // const fetchProduct = async()=>{
+    //     try {
+    //         const res = await axios.get("http://localhost:4000/api/product/getAll");
+    //         const Activeproduct = res.data.data.filter(
+    //             (item)=> item.status === 1
+    //         )
+    //         setProduct(Activeproduct);
+    //     } catch (error) {
+    //         console.error("Error While Fetch product", error);
+    //     }
+    // }
+
+    // useEffect(()=>{
+    //     fetchProduct();
+    // },[]);
 
     
     const filterProduct = product.filter((product)=>
@@ -54,25 +109,8 @@ const ShopPage = () => {
     const firstIndex = lastIndex - itemsPerPage;
 
     const CurrentProduct = filterProduct.slice(firstIndex,lastIndex);
-    const totalPage = Math.ceil( product.length / itemsPerPage)
+    const totalPage = Math.ceil( filterProduct.length / itemsPerPage)
 
-    // const addToWishlist = (item)=>{
-    //     let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-    //     const exists = wishlist.find(w => w.id === item.id);
-
-    //     if (exists) {
-    //         toast.info("Already added to wishlist");
-    //         return;
-    //     }
-
-    //     if(!exists){
-    //         wishlist.push(item);
-    //         localStorage.setItem("wishlist",JSON.stringify(wishlist));
-    //     }
-
-    //     navigate("/wishlist")
-    // }
     const token = localStorage.getItem("token");
 
     const handleWishlist = async(productId)=>{
@@ -80,7 +118,6 @@ const ShopPage = () => {
             alert("Please login first");
             return;
         }
-
         try {
             const res = await axios.post("http://localhost:4000/api/wishlist/add",
                 {
@@ -151,7 +188,7 @@ const ShopPage = () => {
                             </div>
 
                             <div className='produt-info-box'>
-                                <p> <RatingStar rating={item.avg_rating}/> </p>
+                                <div> <RatingStar rating={item.avg_rating}/> </div>
                                 <h3 className='product-name' onClick={()=>navigate(`/shopdetails/${item.id}`)}>
                                     {item.product_name}
                                 </h3>
@@ -205,68 +242,75 @@ const ShopPage = () => {
                     </div>
                     
                     <div className='price-filter-div'>
-                        <h3 className='price-filter-title'>Filter By Price</h3>
 
                         <ul className='price-filter-ul'>
-                            {/* <li className='price-inputs'>
-                                ₹{values[0]} – ₹{values[1]}
-                            </li>  */}
-
+                            <h3 className='price-filter-title'>Filter By Price</h3>
                             <li className="price-inputs">
                                 <input
                                     type="number"
-                                    value={values[0]}
-                                    onChange={(e) =>
-                                        setValues([Number(e.target.value), values[1]])
-                                    }
+                                    placeholder="Min Price"
+                                    value={priceMin}
+                                    onChange={(e) => setPriceMin(e.target.value)}
+                                    // className="w-full border p-2"
                                 />
-                                <span><HiMinusSmall /></span>
+
                                 <input
                                     type="number"
-                                    value={values[1]}
-                                    onChange={(e) =>
-                                        setValues([values[0], Number(e.target.value)])
-                                    }
-                            />
-                            </li>
-                            {/* <li>
-                                <Range
-                                    step={100}
-                                    min={MIN}
-                                    max={MAX}
-                                    values={values}
-                                    onChange={setValues}
-                                    renderTrack={({ props, children }) => (
-                                        <div
-                                        {...props}
-                                        style={{
-                                            height: "6px",
-                                            width: "100%",
-                                            background: "#ddd",
-                                            borderRadius: "4px",
-                                        }}
-                                        >
-                                        {children}
-                                        </div>
-                                    )}
-                                    renderThumb={({ props }) => (
-                                        <div
-                                        {...props}
-                                        style={{
-                                            height: "16px",
-                                            width: "16px",
-                                            background: "#000",
-                                            borderRadius: "50%",
-                                        }}
-                                        />
-                                    )}
+                                    placeholder="Max Price"
+                                    value={priceMax}
+                                    onChange={(e) => setPriceMax(e.target.value)}
+                                    // className="w-full border p-2"
                                 />
-                            </li> */}
+
+                            </li>
+
+                            <h3 className='price-filter-title'>Category</h3>
+                            <li>
+                                {productcategory.map((cat)=>(
+                                    <div key={cat.id}>
+                                    <input
+                                        type="checkbox"
+                                        value={cat.id}
+                                        checked={category.includes(cat.id)}
+                                         onChange={(e) => {
+                                            const { checked } = e.target;
+
+                                            setCategory((prev) =>
+                                                checked
+                                                ? [...prev, cat.id]
+                                                : prev.filter((id) => id !== cat.id)
+                                            );
+                                        }}
+                                    />
+                                    <label>{cat.category_name}</label>
+                                </div>
+                                ))}
+                            </li>
+                            
+                            <h3 className='price-filter-title'>Tag</h3>
+                            <li>
+                                {productTag.map((tags)=>(
+                                    <div key={tags.id}>
+                                    <input
+                                        type="checkbox"
+                                        value={tags.id}
+                                        checked={tag.includes(tags.id)}
+                                         onChange={(e) => {
+                                            const { checked } = e.target;
+
+                                            setTag((prev) =>
+                                                checked
+                                                ? [...prev, tags.id]
+                                                : prev.filter((id) => id !== tags.id)
+                                            );
+                                        }}
+                                    />
+                                    <label>{tags.tag_name}</label>
+                                </div>
+                                ))}
+                            </li>
                         </ul> 
 
-                        <button className='filter-btn'>
-                            Filter
-                        </button>  
                     </div>
                 </div>
             </div>
